@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>回魂夜 · 纸人招魂</title>
+    <!-- 性能: 无构建时浏览器要逐层解析 import 才知道子模块, 这里一次性预声明全部模块, 避免三层瀑布
+         (href 必须与 import 语句里的 ?v= 完全一致, 改版本号时一起改) -->
+    <link rel="modulepreload" href="js/app.js?v=20261009-nocredits">
+    <link rel="modulepreload" href="js/api.js?v=20260601-hotfix21">
+    <link rel="modulepreload" href="js/audio.js?v=20260601-hotfix21">
+    <link rel="modulepreload" href="js/nodes.js?v=20260601-hotfix21">
+    <link rel="modulepreload" href="js/i18n.js?v=20260601-hotfix21">
+    <link rel="modulepreload" href="js/storage.js?v=20260601-hotfix21">
+    <link rel="modulepreload" href="js/sceneMixin.js?v=20260601-hotfix21">
+    <link rel="modulepreload" href="js/uiMixin.js?v=20260601-hotfix21">
+    <link rel="modulepreload" href="js/smsMixin.js?v=20260601-hotfix21">
+    <link rel="modulepreload" href="js/persistenceMixin.js?v=20260601-hotfix21">
+    <link rel="modulepreload" href="js/rpg/runtimeInstance.js?v=20260601-hotfix21">
+    <link rel="modulepreload" href="js/rpg/runtime.js?v=20260601-hotfix21">
+    <link rel="modulepreload" href="js/rpg/sceneEngine.js?v=20260601-hotfix21">
+    <link rel="modulepreload" href="js/rpg/assets.js?v=20260601-hotfix21">
+    <!-- 首屏实物素材先发起下载(标题字/名牌/令牌/字体), 不等 CSS 解析 -->
+    <link rel="preload" href="img/ui2/title.webp" as="image">
+    <link rel="preload" href="fonts/ui3/msz.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- 全站界面: 暗红漆木 + 旧铜金 + 米黄楷书(规范见 css/hhy.css 文件头) -->
+    <link rel="stylesheet" href="css/hhy.css?v=20261009-nocredits">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="img/icon-192.png">
+    <link rel="apple-touch-icon" href="img/icon-192.png">
+    <meta name="theme-color" content="#0a0606">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script>
+window.onerror = function(msg, url, line, col, err) {
+    // 挂载后的运行期错误只记日志, 不再清空整页(禁用存储等环境下的偶发错误不该让游戏整个打不开)
+    if (window.__hhsAppMounted) { try { console.error('[runtime error]', msg, url + ':' + line + ':' + col, err); } catch (e) {} return false; }
+    if (!document.body) return false;
+    document.body.innerHTML = '<div style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#000;color:#f00;padding:40px;font-size:16px;font-family:monospace;z-index:99999;overflow:auto;"><h2>JS ERROR</h2><pre>' + msg + '<br>at ' + url + ':' + line + ':' + col + '<br><br>' + (err && err.stack ? err.stack : '') + '</pre></div>';
+    return false;
+};
+</script>
+<!-- 锁定具体版本: vue@3 不锁版本会多一次 302 跳转且版本漂移 -->
+<script src="https://unpkg.com/vue@3.5.43/dist/vue.global.prod.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- 洇墨 / 盖章 两个 SVG 滤镜: 只用在黄裱纸上的朱砂字和印 -->
+    <svg class="fx-defs" aria-hidden="true" focusable="false">
+        <filter id="ink" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G" result="d"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.06 0.9" numOctaves="2" seed="3" result="dry"/>
+            <feComponentTransfer in="dry" result="drym"><feFuncA type="linear" slope="4" intercept="-2.55"/></feComponentTransfer>
+            <feComposite in="d" in2="drym" operator="out" result="dd"/>
+            <feComposite in="d" in2="dd" operator="arithmetic" k1="0" k2="0.25" k3="0.75" k4="0" result="core"/>
+            <feGaussianBlur in="d" stdDeviation="1.4" result="halo"/>
+            <feComponentTransfer in="halo" result="halo2"><feFuncA type="linear" slope="0.45"/></feComponentTransfer>
+            <feGaussianBlur in="core" stdDeviation="0.35" result="soft"/>
+            <feMerge><feMergeNode in="halo2"/><feMergeNode in="soft"/></feMerge>
+        </filter>
+        <filter id="stamp" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="2.5" xChannelSelector="R" yChannelSelector="G" result="d"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="3" seed="13" result="p"/>
+            <feComponentTransfer in="p" result="pm"><feFuncA type="linear" slope="3.2" intercept="-1.75"/></feComponentTransfer>
+            <feComposite in="d" in2="pm" operator="out" result="w"/>
+            <feGaussianBlur in="w" stdDeviation="0.4"/>
+        </filter>
+    </svg>
+
+    <!-- v-cloak: Vue 编译前隐藏原始模板, 否则浏览器会把所有 v-if 弹层当普通 HTML 渲染并提前下载它们的背景贴图 -->
+    <div id="app" class="rpg-mode" :class="{ 'fx-flicker': screen === 'game' && currentNode && currentNode.fx === 'flicker' }" v-cloak>
+
+        <!-- ===== 恐怖背景层 ===== -->
+        <div id="ghost-bg" :style="{ opacity: ghostOpacity }"></div>
+
+        <rpg-2d-stage
+            :screen="screen"
+            :rpg-mode="rpgMode"
+            :bg-image-url="bgImageUrl"
+            :bg-image-visible="bgImageVisible"
+            :bg-image-transition="bgImageTransition"
+            :scene-intro-active="sceneIntroActive"
+            :character-visible="characterVisible"
+            :character-url="characterUrl"
+            :character-emotion="characterEmotion"
+            :character-position="characterPosition"
+            :character-flicker="characterFlicker"
+            :noise-active="noiseActive"
+            :ghost-opacity="ghostOpacity"
+            :chapter="currentChapter"
+            :paused="stagePaused"
+        ></rpg-2d-stage>
+
+        <!-- 分享卡片(暂无入口, 保持可用) -->
+        <div id="share-card-overlay" class="veil" v-if="shareCardVisible" @click.self="closeShareCard">
+            <div class="board panel share-panel">
+                <h2 class="panel-title">{{ t("shareCardTitle") }}</h2>
+                <div class="panel-body"><img :src="shareCardDataUrl" class="share-card-img" alt="分享卡片"></div>
+                <nav class="panel-foot medals">
+                    <button type="button" class="medal sm" @click="closeShareCard"><span class="m obj tk-c"><b class="g">收</b></span><span class="medal-lbl">{{ t("close") }}</span></button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- 时间彩蛋 -->
+        <transition name="fade">
+            <div v-if="showEasterEgg" class="easter-egg">{{ easterEggText }}</div>
+        </transition>
+
+        <!-- 提示条 / 成就提示: 一块暗漆名牌 -->
+        <transition name="toast">
+            <div id="rpg-toast" class="strip" v-if="achievementToast" :class="{ ach: isAchToast }" role="status">
+                <img v-if="isAchToast" class="toast-seal" src="img/ui2/seal_zhong.webp" alt="">
+                <span class="toast-txt">{{ achievementToast }}</span>
+            </div>
+        </transition>
+
+        <!-- ===== 章节标题 ===== -->
+        <transition name="chapter-fade">
+            <div id="chapter-title" v-if="chapterTitleVisible">{{ chapterTitle }}</div>
+        </transition>
+
+        <!-- ===== 场景图片展示 ===== -->
+        <div id="scene-image" v-if="sceneImageVisible" @click="closeSceneImage">
+            <div class="scene-overlay">
+                <img :src="sceneImageUrl" class="scene-img" alt="">
+                <div class="scene-vignette"></div>
+                <div class="scene-hint">{{ sceneImageReady ? '点击屏幕继续' : '画面显影中…' }}</div>
+            </div>
+        </div>
+
+        <!-- ===== 舞台开场图过渡 ===== -->
+        <div id="scene-intro-gate" v-if="sceneIntroActive" :class="{ darkening: sceneIntroDarkening }" @click="closeSceneIntro">
+            <div class="scene-intro-hint">点击屏幕继续</div>
+        </div>
+
+        <!-- ===== 手机短信: 一部旧手机实物, 屏幕里是锁屏/通知/短信 ===== -->
+        <transition name="phone-slide">
+            <div id="phone-sms" v-if="smsVisible">
+                <div class="phone-frame obj" :class="{ 'phone-off': phoneBootStep < 2, 'phone-unlock': phoneBootStep >= 4 }">
+                    <div class="phone-screen">
+                        <!-- 步骤1+2：黑屏 / 锁屏（可点击） -->
+                        <div v-if="phoneBootStep < 4" class="phone-lockscreen" @click="handlePhoneClick">
+                            <div class="lock-time">{{ gameTime }}</div>
+                            <div class="lock-date">{{ smsDate }}</div>
+                            <div class="lock-hint" v-if="phoneBootStep === 1">点屏幕唤醒手机</div>
+                            <div class="lock-hint" v-if="phoneBootStep === 2">点屏幕查看通知</div>
+                        </div>
+                        <!-- 步骤3：新信息通知（可点击） -->
+                        <div v-if="phoneBootStep === 3" class="phone-notification glass" @click.stop="handlePhoneClick">
+                            <div class="notif-sender">{{ smsSender }}</div>
+                            <div class="notif-preview">有一条新信息 · 现在</div>
+                        </div>
+                        <!-- 步骤4+5：短信界面 -->
+                        <div v-if="phoneBootStep >= 4" class="phone-app">
+                            <div class="sms-nav">
+                                <button type="button" class="nav-back" @click="closeSms" aria-label="返回">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg><span>信息</span>
+                                </button>
+                                <div class="nav-contact">
+                                    <div class="contact-name" :class="{ 'avatar-creepy': smsCreepy }">{{ smsSender }}</div>
+                                </div>
+                            </div>
+                            <div class="sms-chat" ref="smsChat">
+                                <div class="chat-date">{{ smsDate }}</div>
+                                <div v-for="(msg, idx) in smsHistory" :key="idx" class="chat-row" :class="msg.type">
+                                    <div class="chat-bubble glass" :class="{ 'bubble-blood': msg.blood, 'bubble-glitch': msg.glitch }">
+                                        <div class="bubble-text">{{ msg.text }}</div>
+                                        <div class="bubble-time">{{ msg.time }}</div>
+                                    </div>
+                                </div>
+                                <div v-if="smsTyping" class="chat-row received">
+                                    <div class="chat-bubble glass typing-bubble"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>
+                                </div>
+                            </div>
+                            <div class="sms-input-bar">
+                                <span class="input-box">信息</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </transition>
+
+        <!-- ===== 遗言弹幕 ===== -->
+        <div id="danmu-container">
+            <div v-for="d in danmuList" :key="d.id" class="danmu" :style="d.style" @animationend="removeDanmu(d.id)">{{ d.text }}</div>
+        </div>
+
+        <!-- ===== RPG HUD: 左上 场景名+目标(暗漆名牌), 右上 三枚令牌 ===== -->
+        <div id="rpg-hud" v-if="screen === 'game' && rpgMode && showRpgHud && currentNode && !stageIntroActive && !sceneImageVisible && !sceneExploreVisible && !currentNode.isDeath && !currentNode.isFinal && !currentNode.isEnding">
+            <div id="rpg-objective" class="hud-where">
+                <div class="objective-eyebrow hud-scene">{{ currentSceneName }}</div>
+                <div class="objective-text strip"><span>{{ currentObjective }}</span></div>
+            </div>
+            <nav class="hud-tools medals" aria-label="随身">
+                <button type="button" class="medal hud-tool-btn" @click="toggleInventory" title="背包">
+                    <span class="m obj tk-b"><b class="g">囊</b></span><span class="medal-lbl">背包</span>
+                    <span v-if="inventory.length > 0" class="tool-badge">{{ inventory.length }}</span>
+                </button>
+                <button type="button" class="medal hud-tool-btn" @click="toggleSaveMenuRpg" title="存档">
+                    <span class="m obj tk-a"><b class="g">档</b></span><span class="medal-lbl">存档</span>
+                </button>
+                <button type="button" class="medal hud-tool-btn" @click="toggleMenu" title="菜单">
+                    <span class="m obj tk-c"><b class="g">停</b></span><span class="medal-lbl">菜单</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- ===== 主内容区 ===== -->
+        <div id="app-container" :class="{ 'ui-shatter': uiShatter }" @animationend.self="uiShatter = false">
+
+            <!-- ================= 标题页(样稿 ?s=home) ================= -->
+            <div v-if="screen === 'start'" id="start-screen" class="home">
+                <div class="scene" aria-hidden="true">
+                    <div class="scene-img home-img"></div>
+                    <div class="scene-shade"></div>
+                    <div class="scene-glow"></div>
+                    <div class="ash-layer"></div>
+                    <div class="ash-fall"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                </div>
+                <div class="home-wrap">
+                    <h1 class="title"><img src="img/ui2/title.webp" alt="回魂夜 · 纸人招魂" width="1280" height="622"></h1>
+                    <div class="altar">
+                        <label class="name-strip obj">
+                            <span class="txt">
+                                <span class="name-lbl">名讳</span>
+                                <input type="text" v-model="playerName" maxlength="8" placeholder="写下你的名字" class="name-input" autocomplete="off" spellcheck="false" ref="nameInput" @keydown.enter="onStartPrimary">
+                            </span>
+                        </label>
+                        <nav class="medals home-medals" aria-label="开始菜单">
+                            <button type="button" class="medal primary start-btn" style="--r:-2deg" @click="onStartPrimary" :disabled="starting" :class="{ dim: !playerName.trim() }">
+                                <span class="m obj tkt-a" style="--lit:1"><b class="g">入</b></span><span class="medal-lbl">{{ resumeInfo ? '重新入宅' : '入宅守灵' }}</span>
+                            </button>
+                            <button v-if="resumeInfo" type="button" class="medal continue-btn" style="--r:1.5deg;--y:6px" @click="continueRun" :disabled="starting">
+                                <span class="m obj tk-a" style="--lit:.92"><b class="g">续</b></span><span class="medal-lbl">继续上次</span>
+                            </button>
+                            <button v-if="saveSlots.some(s => s)" type="button" class="medal load-btn" style="--r:-1deg;--y:3px" @click="toggleSaveMenuRpg">
+                                <span class="m obj tk-b" style="--lit:.86"><b class="g">档</b></span><span class="medal-lbl">读取存档</span>
+                            </button>
+                            <button type="button" class="medal book-btn" style="--r:1deg;--y:5px" @click="toggleEndingBook">
+                                <span class="m obj tk-d" style="--lit:.84"><b class="g">册</b></span><span class="medal-lbl">收集册</span>
+                            </button>
+                            <button type="button" class="medal settings-btn" style="--r:2deg;--y:8px" @click="toggleSettings">
+                                <span class="m obj tk-c" style="--lit:.8"><b class="g">设</b></span><span class="medal-lbl">设置</span>
+                            </button>
+                        </nav>
+                        <p class="home-note" v-if="resumeInfo">上回守到：{{ resumeInfo.chapter }}</p>
+                        <div class="home-foot" v-if="stats.total_sessions > 0 || randomLastWord">
+                            <p v-if="stats.total_sessions > 0">已有 {{ stats.total_sessions }} 人踏入老宅，{{ stats.total_deaths }} 人永远留在了这里</p>
+                            <p v-if="randomLastWord" class="lastword-preview">前人遗言：{{ randomLastWord }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 游戏主界面 -->
+            <div v-if="screen === 'game'" id="game-screen" class="rpg-mode">
+
+                <!-- ================= 死亡页: 死法图做背景 + 漆板「死法」+ 殁印, 右侧遗言黄裱纸 + 令牌 ================= -->
+                <div v-if="!isTyping && !deathCGVisible && currentNode && currentNode.isDeath" id="death-screen" class="fin fin-death">
+                    <div class="scene" aria-hidden="true">
+                        <div class="scene-img" :style="{ backgroundImage: 'url(' + (currentNode.deathCG || bgImageUrl || '') + ')' }"></div>
+                        <div class="scene-shade fin-shade"></div>
+                        <div class="ash-layer"></div>
+                    </div>
+                    <div class="fin-wrap">
+                        <header class="fin-head">
+                            <p class="fin-kicker">{{ currentNode.chapter || '' }} · 死法</p>
+                            <h1 class="death-title"><span class="t" :style="{ '--n': titleLen(currentNode.deathName) }">{{ currentNode.deathName || '无名之死' }}</span><img class="seal" src="img/ui2/seal_mo.webp" alt="殁"></h1>
+                        </header>
+                        <div class="fin-grid">
+                            <section class="fin-story board">
+                                <div class="fin-text">
+                                    <p v-for="(p, i) in paras(fullText)" :key="i">{{ p }}</p>
+                                    <p class="death-desc">{{ currentNode.deathDesc }}</p>
+                                    <div class="death-board" v-if="deathCount > 0 || deathCountGlobal > 0">
+                                        <p>门外站着密密麻麻的亲戚……你是今晚被拖进去的第 {{ deathCountGlobal > 0 ? deathCountGlobal : deathCount }} 个人。</p>
+                                    </div>
+                                    <div class="last-death" v-if="lastDeathInfo">
+                                        <p>上一个在此阵亡的人：{{ lastDeathInfo.death_name }}。{{ lastDeathInfo.death_desc }}</p>
+                                    </div>
+                                </div>
+                            </section>
+                            <aside class="fin-side">
+                                <form class="lastword obj" @submit.prevent="submitLastWord">
+                                    <i class="nail" aria-hidden="true"></i>
+                                    <div class="txt">
+                                        <p class="lw-prompt cinnabar">留下一句遗言，封入黄裱纸</p>
+                                        <textarea v-model="lastWordInput" maxlength="30" rows="2" class="lw-input" placeholder="下一个守灵的人，会看到你写的字……" :disabled="lastWordSent"></textarea>
+                                        <div class="lw-foot">
+                                            <span class="lw-count">{{ lastWordSent ? '已封入' : '余 ' + (30 - (lastWordInput || '').length) + ' 字' }}</span>
+                                            <button type="submit" class="seal-btn cinnabar" :disabled="lastWordSubmitting || lastWordSent" aria-label="封入黄裱纸"><img src="img/ui2/seal_feng.webp" alt=""><span>{{ lastWordSent ? '已封' : (lastWordSubmitting ? '封存中' : '封入') }}</span></button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <nav class="medals fin-medals" aria-label="死亡后">
+                                    <button v-if="chapterCheckpoint" type="button" class="medal primary act-checkpoint" style="--r:-2deg" @click="restartFromCheckpoint" :title="'回到本章开头（' + chapterCheckpoint.chapter + '）'">
+                                        <span class="m obj tkt-b" style="--lit:.9"><b class="g">章</b></span><span class="medal-lbl">回到本章</span>
+                                    </button>
+                                    <button type="button" class="medal act-restart" :class="{ primary: !chapterCheckpoint }" style="--r:1.5deg;--y:6px" @click="restartGame">
+                                        <span class="m obj" :class="chapterCheckpoint ? 'tk-b' : 'tkt-b'" style="--lit:.9"><b class="g">再</b></span><span class="medal-lbl">重新来过</span>
+                                    </button>
+                                    <button v-if="saveSlots.some(s => s)" type="button" class="medal act-load" style="--r:-1deg;--y:3px" @click="toggleSaveMenuRpg">
+                                        <span class="m obj tk-a" style="--lit:.86"><b class="g">档</b></span><span class="medal-lbl">读取存档</span>
+                                    </button>
+                                    <button type="button" class="medal act-book" style="--r:1deg;--y:5px" @click="toggleEndingBook">
+                                        <span class="m obj tk-c" style="--lit:.9"><b class="g">册</b></span><span class="medal-lbl">收集册</span>
+                                    </button>
+                                    <button type="button" class="medal act-share" style="--r:-1.5deg;--y:2px" @click="shareEnding">
+                                        <span class="m obj tk-d" style="--lit:.84"><b class="g">传</b></span><span class="medal-lbl">分享</span>
+                                    </button>
+                                </nav>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= 结局页(样稿 ?s=ending): 黄纸+志莽行朱砂结局名+「终」印, 靠左斜放 ================= -->
+                <div v-if="!isTyping && currentNode && (currentNode.isFinal || currentNode.isEnding)" id="ending-screen" class="fin fin-ending">
+                    <div class="scene" aria-hidden="true">
+                        <div class="scene-img end-img" :style="{ backgroundImage: 'url(' + (currentNode.endingCG || bgImageUrl || 'img/ui2/bg_title.webp') + ')' }"></div>
+                        <div class="scene-shade fin-shade"></div>
+                        <div class="scene-glow"></div>
+                        <div class="ash-layer"></div>
+                    </div>
+                    <div class="fin-wrap">
+                        <header class="fin-head">
+                            <p class="fin-kicker">{{ currentNode.chapter || '' }} · 结局 {{ currentNode.endingCode || '' }}</p>
+                            <h1 class="end-title obj"><span class="t ending-title" :style="{ '--n': titleLen(currentNode.endingName || '深渊注视') }">{{ currentNode.endingName || '深渊注视' }}</span><img class="zhong" src="img/ui2/seal_zhong.webp" alt="终"></h1>
+                        </header>
+                        <div class="fin-grid">
+                            <section class="fin-story board">
+                                <div class="fin-text ending-text">
+                                    <p v-for="(p, i) in paras(endingText)" :key="i">{{ p }}</p>
+                                    <div class="online-stats" v-if="onlineInfo">
+                                        <p>还有 {{ onlineInfo.active_players }} 个灵魂正在黑暗中挣扎，最近有 {{ onlineInfo.recent_deaths }} 人永远留在了这里。</p>
+                                    </div>
+                                </div>
+                            </section>
+                            <aside class="fin-side">
+                                <form class="lastword obj" @submit.prevent="submitLastWord">
+                                    <i class="nail" aria-hidden="true"></i>
+                                    <div class="txt">
+                                        <p class="lw-prompt cinnabar">留下一句遗言，封入黄裱纸</p>
+                                        <textarea v-model="lastWordInput" maxlength="30" rows="2" class="lw-input" placeholder="下一个守灵的人，会看到你写的字……" :disabled="lastWordSent"></textarea>
+                                        <div class="lw-foot">
+                                            <span class="lw-count">{{ lastWordSent ? '已封入' : '余 ' + (30 - (lastWordInput || '').length) + ' 字' }}</span>
+                                            <button type="submit" class="seal-btn cinnabar" :disabled="lastWordSubmitting || lastWordSent" aria-label="封入黄裱纸"><img src="img/ui2/seal_feng.webp" alt=""><span>{{ lastWordSent ? '已封' : (lastWordSubmitting ? '封存中' : '封入') }}</span></button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <nav class="medals fin-medals" aria-label="结局操作">
+                                    <button type="button" class="medal primary act-restart" style="--r:-2deg" @click="restartGame">
+                                        <span class="m obj tkt-b" style="--lit:.86"><b class="g">再</b></span><span class="medal-lbl">重新来过</span>
+                                    </button>
+                                    <button v-if="chapterCheckpoint" type="button" class="medal act-checkpoint" style="--r:1.5deg;--y:6px" @click="restartFromCheckpoint" :title="'回到本章开头（' + chapterCheckpoint.chapter + '）'">
+                                        <span class="m obj tk-b" style="--lit:.92"><b class="g">章</b></span><span class="medal-lbl">回到本章</span>
+                                    </button>
+                                    <button type="button" class="medal act-book" style="--r:-1deg;--y:3px" @click="toggleEndingBook">
+                                        <span class="m obj tk-c" style="--lit:1"><b class="g">册</b></span><span class="medal-lbl">收集册</span>
+                                    </button>
+                                    <button v-if="saveSlots.some(s => s)" type="button" class="medal act-load" style="--r:1deg;--y:5px" @click="toggleSaveMenuRpg">
+                                        <span class="m obj tk-a" style="--lit:.86"><b class="g">档</b></span><span class="medal-lbl">读取存档</span>
+                                    </button>
+                                    <button type="button" class="medal act-share" style="--r:-1.5deg;--y:2px" @click="shareEnding">
+                                        <span class="m obj tk-d" style="--lit:.84"><b class="g">传</b></span><span class="medal-lbl">分享</span>
+                                    </button>
+                                </nav>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 底部: 对白板 + 选项(同一 flex 列, 选项多了对白板自动上移) ===== -->
+        <div id="rpg-bottom" v-if="screen === 'game' && rpgMode && currentNode" :class="{ 'many-choices': visibleChoices.length > 3 }">
+            <!-- 死亡/结局节点也在这里打字（打完才切到死亡/结局界面） -->
+            <div id="rpg-dialog" @click="onDialogClick" v-if="!stageIntroActive && !sceneImageVisible && !sceneExploreVisible && (isTyping || (!currentNode.isDeath && !currentNode.isFinal && !currentNode.isEnding))" class="active board" :style="{ '--story-progress': storyProgress }">
+                <div class="speaker strip" v-if="speakerName"><span>{{ speakerName }}</span></div>
+                <div class="dialog-text-area">
+                    <div class="dialog-text" v-html="displayText" :style="{ color: storyInkColor, textShadow: storyInkGlow }"></div>
+                </div>
+                <div class="dialog-page-hint" v-if="pageWaiting" aria-label="下一页">下一页</div>
+                <div class="dialog-next-hint" v-if="!isTyping && !sceneImageVisible && !visibleChoices.length && !camAlertVisible && !currentNode.exploreScene && !currentNode.puzzle">点击继续</div>
+            </div>
+            <!-- 选项: 一枚小令牌(壹贰叁…) + 一条暗漆名牌 -->
+            <div id="choices-rpg" v-if="!stageIntroActive && !isTyping && !sceneImageVisible && !camAlertVisible && !currentNode.isDeath && !currentNode.isFinal && !currentNode.isEnding && !currentNode.exploreScene && !currentNode.puzzle" class="active">
+                <button v-for="(choice, idx) in visibleChoices" :key="idx" type="button" class="choice talisman-btn" :class="{ 'choice-locked': choice.locked }" @click="makeChoice(choice)" :style="choiceDelay(idx)">
+                    <span class="choice-tok obj" :class="'tk-' + ['a','b','c','d'][idx % 4]"><b>{{ choice.locked ? '锁' : numeral(idx) }}</b></span>
+                    <span class="choice-text strip">{{ choice.text }}</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ===== 暂停菜单: 漆木板 + 八枚令牌 ===== -->
+        <transition name="menu">
+            <div id="main-menu" class="veil" v-if="menuVisible" @click.self="toggleMenu">
+                <div class="board panel menu-panel">
+                    <h2 class="panel-title menu-title-text">暂 停</h2>
+                    <div class="panel-body">
+                        <nav class="medals menu-medals menu-items-rpg">
+                            <button type="button" class="medal menu-item-rpg" @click="menuContinue"><span class="m obj tk-a"><b class="g">续</b></span><span class="medal-lbl">继续游戏</span></button>
+                            <button type="button" class="medal menu-item-rpg" @click="menuAction('save')"><span class="m obj tk-b"><b class="g">存</b></span><span class="medal-lbl">存档进度</span></button>
+                            <button type="button" class="medal menu-item-rpg" @click="menuAction('load')"><span class="m obj tk-c"><b class="g">读</b></span><span class="medal-lbl">读取进度</span></button>
+                            <button type="button" class="medal menu-item-rpg" @click="menuAction('settings')"><span class="m obj tk-d"><b class="g">设</b></span><span class="medal-lbl">游戏设置</span></button>
+                            <button type="button" class="medal menu-item-rpg" @click="menuAction('book')"><span class="m obj tk-b"><b class="g">册</b></span><span class="medal-lbl">收集册</span></button>
+                            <button type="button" class="medal menu-item-rpg" @click="menuAction('achievements')"><span class="m obj tk-a"><b class="g">绩</b></span><span class="medal-lbl">成就</span></button>
+                            <button type="button" class="medal menu-item-rpg" @click="menuReturnTitle"><span class="m obj tk-d"><b class="g">归</b></span><span class="medal-lbl">返回标题</span></button>
+                            <button type="button" class="medal menu-item-rpg" @click="menuQuit"><span class="m obj tk-c"><b class="g">退</b></span><span class="medal-lbl">退出本局</span></button>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </transition>
+
+        <!-- ===== 背包: 药柜格 ===== -->
+        <transition name="panel">
+            <div id="inventory-panel" class="veil" v-if="inventoryVisible" @click.self="toggleInventory">
+                <div class="board panel inv-frame">
+                    <h2 class="panel-title inv-title">背 包</h2>
+                    <div class="panel-body inv-body">
+                        <div class="inv-grid">
+                            <div v-for="i in 10" :key="i" class="inv-slot" :class="{ empty: !inventory[i-1], selected: selectedItem && inventory[i-1] && selectedItem.key === inventory[i-1] }" :title="inventory[i-1] ? getItemName(inventory[i-1]) : ''" @click="selectInventoryItem(i-1)" @touchstart.passive="startItemPress(inventory[i-1], $event)" @touchmove.passive="moveItemPress($event)" @touchend="endItemPress" @touchcancel="endItemPress" @mousedown="startItemPress(inventory[i-1])" @mouseup="endItemPress" @mouseleave="endItemPress">
+                                <img v-if="inventory[i-1] && getItemImage(inventory[i-1])" :src="getItemImage(inventory[i-1])" alt="">
+                            </div>
+                        </div>
+                        <div class="inv-detail-area">
+                            <template v-if="selectedItem">
+                                <div class="detail-name">{{ selectedItem.name }}</div>
+                                <div class="detail-desc">{{ selectedItem.desc }}</div>
+                                <nav class="medals inv-actions">
+                                    <button type="button" class="medal sm inv-action-btn" @click.stop="inspectSelectedItem"><span class="m obj tk-a"><b class="g">看</b></span><span class="medal-lbl">查看</span></button>
+                                    <button type="button" class="medal sm inv-action-btn" :disabled="!canCombineSelectedItem()" @click.stop="combineSelectedItem"><span class="m obj tk-d"><b class="g">合</b></span><span class="medal-lbl">组合</span></button>
+                                </nav>
+                            </template>
+                            <div v-else class="detail-desc dim">{{ inventory.length ? '点道具看详情，长按看介绍。' : '还什么都没捡到。' }}</div>
+                        </div>
+                    </div>
+                    <nav class="panel-foot medals">
+                        <button type="button" class="medal sm inv-close-btn" @click="toggleInventory"><span class="m obj tk-c"><b class="g">收</b></span><span class="medal-lbl">收起</span></button>
+                    </nav>
+                </div>
+            </div>
+        </transition>
+
+        <!-- ===== 设置 ===== -->
+        <transition name="panel">
+            <div id="settings-panel" class="veil" v-if="settingsVisible" @click.self="toggleSettings">
+                <div class="board panel settings-frame">
+                    <h2 class="panel-title settings-title">设 置</h2>
+                    <div class="panel-body">
+                        <div class="setting-row-rpg">
+                            <span class="setting-label">文字速度</span>
+                            <div class="setting-control speed-ctl">
+                                <input type="range" min="1" max="5" step="1" class="rope-range" v-model.number="textSpeed" @input="saveSettings" aria-label="文字速度">
+                                <span class="setting-val">{{ ['', '慢', '稍慢', '中', '稍快', '快'][textSpeed] || textSpeed }}</span>
+                            </div>
+                        </div>
+                        <div class="setting-row-rpg">
+                            <span class="setting-label">音效</span>
+                            <button type="button" class="medal sm toggle-switch" :class="{ on: soundEnabled }" role="switch" :aria-checked="soundEnabled ? 'true' : 'false'" @click="toggleSound()"><span class="m obj tk-b"><b class="g">{{ soundEnabled ? '开' : '关' }}</b></span></button>
+                        </div>
+                        <div class="setting-row-rpg">
+                            <span class="setting-label">震动</span>
+                            <button type="button" class="medal sm toggle-switch" :class="{ on: vibrationEnabled }" role="switch" :aria-checked="vibrationEnabled ? 'true' : 'false'" @click="vibrationEnabled = !vibrationEnabled; saveSettings()"><span class="m obj tk-a"><b class="g">{{ vibrationEnabled ? '开' : '关' }}</b></span></button>
+                        </div>
+                    </div>
+                    <nav class="panel-foot medals">
+                        <button type="button" class="medal sm settings-close" @click="toggleSettings"><span class="m obj tk-c"><b class="g">好</b></span><span class="medal-lbl">关闭</span></button>
+                    </nav>
+                </div>
+            </div>
+        </transition>
+
+        <!-- ===== 存档 / 读档: 三块漆牌 ===== -->
+        <transition name="panel">
+            <div id="save-menu-rpg" class="veil" v-if="showSaveMenuRpg" @click.self="toggleSaveMenuRpg">
+                <div class="board panel save-frame">
+                    <h2 class="panel-title save-title">存 档</h2>
+                    <div class="panel-body save-slots-area">
+                        <div v-for="(slot, idx) in [0,1,2]" :key="idx" class="save-slot-row" :class="{ empty: !saveSlots[idx] }">
+                            <div class="slot-plank">
+                                <div class="slot-thumb" :style="saveSlots[idx] && saveSlots[idx].bgImage ? { backgroundImage: 'url(' + saveSlots[idx].bgImage + ')' } : null"><span v-if="!saveSlots[idx]">空</span></div>
+                                <div class="slot-info">
+                                    <div class="slot-name">{{ saveSlots[idx] ? saveSlots[idx].nodeName : '第' + ['一','二','三'][idx] + '格 · 空' }}</div>
+                                    <div class="slot-meta" v-if="saveSlots[idx]">{{ saveSlots[idx].time }}</div>
+                                </div>
+                            </div>
+                            <div class="slot-actions medals">
+                                <button v-if="screen === 'game' && currentNode && !currentNode.isDeath && !currentNode.isFinal && !currentNode.isEnding" type="button" class="medal xs slot-action act-save" @click="manualSaveRpg(idx)"><span class="m obj tk-b"><b class="g">存</b></span><span class="medal-lbl">保存</span></button>
+                                <button v-if="saveSlots[idx]" type="button" class="medal xs slot-action act-load" @click="manualLoad(idx)"><span class="m obj tk-a"><b class="g">读</b></span><span class="medal-lbl">读取</span></button>
+                                <button v-if="saveSlots[idx]" type="button" class="medal xs slot-action delete act-del" @click="deleteSave(idx)"><span class="m obj tk-d"><b class="g">删</b></span><span class="medal-lbl">删除</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="panel-foot medals">
+                        <button type="button" class="medal sm save-close" @click="toggleSaveMenuRpg"><span class="m obj tk-c"><b class="g">收</b></span><span class="medal-lbl">关闭</span></button>
+                    </nav>
+                </div>
+            </div>
+        </transition>
+
+        <!-- ===== 监控画面弹窗 ===== -->
+        <div id="cam-alert" v-if="camAlertVisible" @click="closeCamAlert">
+            <div class="cam-overlay">
+                <div class="cam-header">
+                    <span class="cam-rec">● REC</span>
+                    <span class="cam-date">1997/09/22 23:46:18</span>
+                    <span class="cam-id">CAM 3</span>
+                </div>
+                <div class="cam-body">
+                    <img :src="'img/death/death_09_possess.jpg'" class="cam-img" alt="">
+                    <div class="cam-scanlines"></div>
+                    <div class="cam-static"></div>
+                    <div class="cam-glitch"></div>
+                </div>
+                <div class="cam-footer"><span class="cam-hint">点击屏幕关闭监控</span></div>
+            </div>
+        </div>
+
+        <!-- ===== 死亡CG层 ===== -->
+        <transition name="cg-fade">
+            <div id="death-cg" v-if="deathCGVisible">
+                <img :src="deathCGUrl" class="cg-img" alt="">
+                <div class="cg-vignette"></div>
+                <div class="cg-overlay">
+                    <div class="cg-blood-text">{{ deathCGName }}</div>
+                    <div class="cg-desc">{{ deathCGDesc }}</div>
+                </div>
+            </div>
+        </transition>
+
+        <!-- ===== 结局CG层 ===== -->
+        <transition name="cg-fade">
+            <div id="ending-cg" v-if="endingCGVisible" @click="closeEndingCG">
+                <img :src="endingCGUrl" class="cg-img" alt="">
+                <div class="cg-vignette"></div>
+            </div>
+        </transition>
+
+        <!-- ===== Jumpscare 层 ===== -->
+        <div id="jumpscare" v-if="jumpscareVisible">
+            <img :src="'img/death/death_12_wedding.jpg'" id="js-img" alt="">
+        </div>
+
+        <!-- ===== 场景探索: 漆木框里的场景图 + 右侧(竖屏下方)调查栏 ===== -->
+        <div id="scene-explore" v-if="sceneExploreVisible" @click.self="closeSceneExplore">
+            <div class="explore-container" @click.self="closeSceneExplore">
+                <header class="explore-head">
+                    <div class="explore-names">
+                        <div class="explore-kicker">{{ currentSceneName }}</div>
+                        <h2 class="explore-title">{{ exploreTitle }}</h2>
+                    </div>
+                    <div class="explore-progress">{{ exploreProgressText }}</div>
+                </header>
+                <div class="explore-stage">
+                    <div class="explore-scene" :style="{ backgroundImage: 'url(' + exploreImage + ')' }">
+                        <div v-for="(hs, idx) in exploreHotspots" :key="idx"
+                             class="hotspot"
+                             :class="{ 'requires-item': hs.requireItem, 'ready-use': selectedItem && selectedItem.key === hs.requireItem, 'lbl-up': hs.y + hs.h > 82 }"
+                             :style="{ left: hs.x + '%', top: hs.y + '%', width: hs.w + '%', height: hs.h + '%' }"
+                             role="button" tabindex="0"
+                             :aria-label="hs.label || hs.itemName || hs.id"
+                             :data-hotspot-id="hs.id || hs._id"
+                             @click.stop="onHotspotClick(hs)" @keydown.enter.stop="onHotspotClick(hs)">
+                            <span class="hotspot-pin"></span>
+                            <span class="hotspot-label">{{ hs.label || hs.itemName || '可疑处' }}</span>
+                        </div>
+                    </div>
+                </div>
+                <aside class="explore-side">
+                    <p class="explore-hint">{{ selectedItem ? '正在使用：' + selectedItem.name + '。点场景里的物件试试。' : exploreHint }}</p>
+                    <div class="explore-inventory" v-if="inventory.length > 0">
+                        <button v-for="itemKey in inventory" :key="itemKey" type="button" class="explore-item" :class="{ selected: selectedItem && selectedItem.key === itemKey }"
+                                @click="selectInventoryKey(itemKey)"
+                                @touchstart.passive="startItemPress(itemKey, $event)" @touchmove.passive="moveItemPress($event)" @touchend="endItemPress" @touchcancel="endItemPress"
+                                @mousedown="startItemPress(itemKey)" @mouseup="endItemPress" @mouseleave="endItemPress">
+                            <span class="explore-item-cell"><img v-if="getItemImage(itemKey)" :src="getItemImage(itemKey)" alt=""></span>
+                            <span class="explore-item-name">{{ getItemName(itemKey) }}</span>
+                        </button>
+                    </div>
+                    <div class="explore-craft" v-if="craftableRecipes.length > 0">
+                        <button v-for="r in craftableRecipes" :key="r.baseKey" type="button" class="explore-craft-btn strip" @click="craftInExplore(r.baseKey)">合成「{{ r.resultName }}」</button>
+                    </div>
+                    <div class="explore-selected" v-if="selectedItem">
+                        <span>手里：{{ selectedItem.name }}</span>
+                        <button type="button" class="strip" @click="selectedItem = null">放下</button>
+                    </div>
+                    <div class="hint-paper" id="explore-hint-paper" v-if="hintPuzzleId" :class="{ phone: hintIsPhone }">
+                        <button type="button" class="hint-burn-btn strip" @click.stop="burnHint"><img class="hint-seal" src="img/ui2/seal_fen.webp" alt=""><span>{{ hintButtonText }}</span></button>
+                        <div v-for="(h, i) in shownHints" :key="i" class="hint-line"><b>{{ h.label }}：</b>{{ h.text }}</div>
+                    </div>
+                    <nav class="medals explore-foot" v-if="!exploreNoClose">
+                        <button type="button" class="medal sm explore-close" @click="closeSceneExplore"><span class="m obj tk-c"><b class="g">退</b></span><span class="medal-lbl">{{ exploreCloseText || t('close') }}</span></button>
+                    </nav>
+                </aside>
+            </div>
+        </div>
+
+        <!-- ===== 谜题面板(数据驱动: puzzleConfig.kind 选面板) ===== -->
+        <div id="puzzle-lock" class="veil" v-if="puzzleVisible && puzzleConfig" @click.self="closePuzzle" :data-puzzle="puzzleId" :data-kind="puzzleConfig.kind">
+            <div class="board panel puzzle-container" :class="'pz-' + puzzleConfig.kind">
+                <h2 class="panel-title puzzle-title">{{ puzzleConfig.title || '谜题' }}</h2>
+                <div class="panel-body pz-body">
+                    <div class="pz-play">
+                        <p class="puzzle-hint" v-if="puzzleIntro">{{ puzzleIntro }}</p>
+
+                        <!-- 时机点击: 盯车窗反光, 槐树出现时按铃 -->
+                        <template v-if="puzzleConfig.kind === 'timing'">
+                            <div class="pz-reflection" :data-phase="puzzlePhase">
+                                <div class="pz-window" :style="{ backgroundImage: 'url(' + (puzzleConfig.image || 'img/closeup/closeup_bus_window_reflection.jpg') + ')' }"></div>
+                                <div class="pz-window-txt">
+                                    <small>车窗反光</small>
+                                    <span v-if="puzzlePhase === 'tree'" class="tree">{{ puzzleConfig.treeText }}</span>
+                                    <span v-else>{{ puzzleConfig.idleText }}</span>
+                                </div>
+                            </div>
+                            <nav class="medals pz-actions">
+                                <button type="button" class="medal primary pz-press" @click="pressTiming"><span class="m obj tkt-a"><b class="g">铃</b></span><span class="medal-lbl">{{ puzzleConfig.pressText }}</span></button>
+                            </nav>
+                        </template>
+
+                        <!-- 数字锁: 石格 + 小令牌键盘 -->
+                        <template v-else-if="puzzleConfig.kind === 'code'">
+                            <div class="puzzle-display" :aria-label="puzzleInput">
+                                <span v-for="k in puzzleConfig.length" :key="k" class="pd-cell strip" :class="{ on: puzzleInput[k-1] !== undefined }">{{ puzzleInput[k-1] !== undefined ? puzzleInput[k-1] : '' }}</span>
+                            </div>
+                            <div class="puzzle-keypad">
+                                <button v-for="n in ['1','2','3','4','5','6','7','8','9','clear','0','enter']" :key="n"
+                                        type="button" class="puzzle-key obj" :class="[n === 'enter' ? 'tk-b' : n === 'clear' ? 'tk-d' : 'tk-a', { action: n === 'clear' || n === 'enter' }]" :data-key="n"
+                                        :aria-label="n === 'clear' ? '清空' : n === 'enter' ? '确定' : n"
+                                        @click="onPuzzleKey(n)"><b>{{ n === 'clear' ? '清' : n === 'enter' ? '定' : n }}</b></button>
+                            </div>
+                        </template>
+
+                        <!-- 三岔口: 先看纸偶, 再选路 -->
+                        <template v-else-if="puzzleConfig.kind === 'road'">
+                            <div class="pz-road-step">第 {{ puzzleRoadStep + 1 }} / {{ puzzleConfig.answer.length }} 个岔口</div>
+                            <button type="button" class="pz-look strip" @click="lookPuppet">{{ puzzleRoadLook === 1 ? '移开视线，再看纸偶' : '掏出纸偶看一眼' }}</button>
+                            <nav class="medals pz-roads">
+                                <button v-for="(d, i) in ['左','中','右']" :key="d" type="button" class="medal pz-road" :data-dir="d" @click="chooseRoad(d)"><span class="m obj" :class="'tk-' + ['a','b','c'][i]"><b class="g">{{ d }}</b></span><span class="medal-lbl">往{{ d }}走</span></button>
+                            </nav>
+                        </template>
+
+                        <!-- 摆香: 拖每炷香调高低 -->
+                        <template v-else-if="puzzleConfig.kind === 'drag'">
+                            <div class="pz-incense">
+                                <div class="pz-incense-row">
+                                    <div v-for="(h, i) in puzzleHeights" :key="i" class="pz-incense-track" :data-index="i" :data-level="h" @pointerdown="startIncenseDrag(i, $event)" :aria-label="'第' + (i + 1) + '炷香'">
+                                        <img class="pz-stick" src="img/ui2/incense.webp" alt="" draggable="false" :style="{ transform: 'translateY(' + ((1 - h / puzzleConfig.levels) * 100) + '%)' }">
+                                    </div>
+                                </div>
+                                <img class="pz-burner" src="img/ui2/burner.webp" alt="" draggable="false">
+                            </div>
+                            <div class="pz-tip">按住香往上、往下拖，调高低</div>
+                            <nav class="medals pz-actions">
+                                <button type="button" class="medal pz-confirm" @click="confirmIncense"><span class="m obj tk-b"><b class="g">插</b></span><span class="medal-lbl">插好了</span></button>
+                            </nav>
+                        </template>
+
+                        <!-- 四选一 -->
+                        <template v-else-if="puzzleConfig.kind === 'choice'">
+                            <div class="pz-options">
+                                <button v-for="(opt, i) in puzzleConfig.options" :key="i" type="button" class="choice pz-option" :data-option="opt" @click="choosePuzzleOption(opt)">
+                                    <span class="choice-tok obj" :class="'tk-' + ['a','b','c','d'][i % 4]"><b>{{ numeral(i) }}</b></span>
+                                    <span class="choice-text strip">{{ opt }}</span>
+                                </button>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="pz-aside">
+                        <div class="pz-msg" v-if="puzzleMsg">{{ puzzleMsg }}</div>
+                        <div class="hint-paper" id="puzzle-hint-paper" v-if="hintPuzzleId" :class="{ phone: hintIsPhone }">
+                            <button type="button" class="hint-burn-btn strip" @click.stop="burnHint"><img class="hint-seal" src="img/ui2/seal_fen.webp" alt=""><span>{{ hintButtonText }}</span></button>
+                            <div v-for="(h, i) in shownHints" :key="i" class="hint-line"><b>{{ h.label }}：</b>{{ h.text }}</div>
+                        </div>
+                    </div>
+                </div>
+                <nav class="panel-foot medals">
+                    <button type="button" class="medal sm puzzle-close" @click="closePuzzle"><span class="m obj tk-c"><b class="g">收</b></span><span class="medal-lbl">{{ t('close') }}</span></button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- ===== 物件特写(纸类线索写在黄纸上) ===== -->
+        <div id="item-closeup" class="veil" v-if="closeupVisible" @click.self="closeCloseup">
+            <div class="board panel closeup-container" :class="{ 'is-paper': closeupIsPaper, 'has-img': !!closeupImage }">
+                <h2 class="panel-title closeup-title">{{ closeupTitle }}</h2>
+                <div class="panel-body closeup-body">
+                    <div class="closeup-pic" v-if="closeupImage"><img :src="closeupImage" class="closeup-img" alt="item"></div>
+                    <div class="closeup-words">
+                        <div class="closeup-text">{{ closeupText }}</div>
+                    </div>
+                </div>
+                <div class="closeup-hint" v-if="closeupHint">{{ closeupHint }}</div>
+                <nav class="panel-foot medals">
+                    <button type="button" class="medal sm closeup-btn" @click="closeCloseup"><span class="m obj tk-c"><b class="g">{{ closeupNextNode ? '行' : '收' }}</b></span><span class="medal-lbl">{{ closeupNextNode ? '继续' : t('close') }}</span></button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- ===== 收集册: 结局 / 死法 / 墓志铭 ===== -->
+        <div id="ending-book" class="veil" v-if="showEndingBook" @click.self="toggleEndingBook">
+            <div class="board panel book-overlay">
+                <h2 class="panel-title book-title">黄裱纸收集册</h2>
+                <nav class="book-tabs" role="tablist">
+                    <button v-for="tab in bookTabs" :key="tab.key" type="button" role="tab" class="book-tab" :class="{ on: bookTab === tab.key, strip: bookTab === tab.key }" :aria-selected="bookTab === tab.key ? 'true' : 'false'" @click="bookTab = tab.key">{{ tab.name }}<small>{{ tab.count }}</small></button>
+                </nav>
+                <div class="panel-body book-body">
+                    <div v-if="bookTab === 'ending'" class="tag-grid book-grid">
+                        <div v-for="code in allEndingCodes" :key="code" class="book-cell tag" :class="{ unlocked: endingCollection.includes(code), legendary: ['G','H'].includes(code) }">
+                            <span class="cell-code">{{ code }}</span>
+                            <span class="cell-name">{{ endingCollection.includes(code) ? getEndingName(code) : '未 解' }}</span>
+                        </div>
+                    </div>
+                    <div v-else-if="bookTab === 'death'" class="tag-grid">
+                        <button v-for="(d, i) in deathCatalog" :key="d.id" type="button" class="tag death-tag" :class="{ unlocked: d.seen }" @click="openDeathCard(d)" :disabled="!d.seen">
+                            <span class="cell-code">{{ numeral(i) }}</span>
+                            <span class="cell-name">{{ d.seen ? d.name : '未 解' }}</span>
+                        </button>
+                    </div>
+                    <div v-else class="epitaphs">
+                        <div v-for="(e, i) in epitaphs" :key="i" class="epitaph">
+                            <p class="ep-text">{{ e.text }}</p>
+                            <p class="ep-sign">—— {{ e.name || '无名' }}<template v-if="e.ending"> · {{ e.ending }}</template></p>
+                        </div>
+                        <p v-if="!epitaphs.length" class="book-empty">还没有墓志铭。死了、或走到结局时，在黄裱纸上留一句话。</p>
+                    </div>
+                </div>
+                <div class="book-progress">{{ bookProgressText }}</div>
+                <nav class="panel-foot medals">
+                    <button type="button" class="medal sm book-close" @click="toggleEndingBook"><span class="m obj tk-c"><b class="g">合</b></span><span class="medal-lbl">合上</span></button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- ===== 成就 ===== -->
+        <div id="achievement-book" class="veil" v-if="showAchievementMenu" @click.self="toggleAchievementMenu">
+            <div class="board panel ach-panel">
+                <h2 class="panel-title">成 就</h2>
+                <div class="panel-body achievement-list">
+                    <div v-for="a in achievements" :key="a.code" class="achievement-row" :class="['r-' + a.rarity, { unlocked: a.unlocked }]">
+                        <span class="ach-tok obj" :class="a.unlocked ? 'tk-b' : 'tk-d'"><b>{{ a.unlocked ? achGlyph(a) : '？' }}</b></span>
+                        <span class="ach-txt">
+                            <span class="ach-name">{{ a.unlocked || !a.secret ? a.name : '？？？' }}</span>
+                            <span class="ach-desc">{{ a.unlocked || !a.secret ? a.desc : '这是一个秘密成就。' }}</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="book-progress">已解锁 {{ achievements.filter(a => a.unlocked).length }} / {{ achievements.length }}</div>
+                <nav class="panel-foot medals">
+                    <button type="button" class="medal sm book-close" @click="toggleAchievementMenu"><span class="m obj tk-c"><b class="g">收</b></span><span class="medal-lbl">关闭</span></button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- ===== 确认弹窗(替代浏览器 confirm) ===== -->
+        <div id="confirm-dialog" class="veil" v-if="confirmState" @click.self="answerConfirm(false)">
+            <div class="board panel confirm-panel" role="alertdialog" aria-modal="true">
+                <h2 class="panel-title">{{ confirmState.title }}</h2>
+                <div class="panel-body confirm-body">
+                    <p v-for="(line, i) in confirmState.lines" :key="i">{{ line }}</p>
+                </div>
+                <nav class="panel-foot medals">
+                    <button type="button" class="medal sm confirm-ok" @click="answerConfirm(true)"><span class="m obj tk-b"><b class="g">{{ confirmState.okGlyph }}</b></span><span class="medal-lbl">{{ confirmState.ok }}</span></button>
+                    <button type="button" class="medal sm confirm-cancel" @click="answerConfirm(false)"><span class="m obj tk-c"><b class="g">罢</b></span><span class="medal-lbl">{{ confirmState.cancel }}</span></button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- ===== 加载层 ===== -->
+        <div id="loading" v-if="loading">
+            <div class="loading-text">正在连接老宅…</div>
+        </div>
+    </div>
+
+    <script type="module" src="js/app.js?v=20261009-nocredits"></script>
+    <script>
+        // 开发期禁用旧 Service Worker，避免微信/安卓内核继续使用陈旧 UI 缓存。
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations()
+                .then(regs => Promise.all(regs.map(reg => reg.unregister())))
+                .then(() => caches && caches.keys ? caches.keys() : [])
+                .then(keys => Promise.all((keys || []).map(key => caches.delete(key))))
+                .catch(err => console.log('SW cleanup failed', err));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+[Unit]
+Description=Weikongbu Spring Boot Backend API
+After=network.target
+
+[Service]
+Type=simple
+# 加固建议: 在 setup.sh 中创建专用低权用户后改为 User=horror, 并加
+#   NoNewPrivileges=true / ProtectSystem=full / PrivateTmp=true
+User=root
+WorkingDirectory=/opt/horror-java
+# DB 凭据经环境变量注入 (文件可选, 不存在也不报错); 见 .env.example / application.properties.example
+EnvironmentFile=-/etc/horror/horror.env
+ExecStart=/usr/bin/java -jar /opt/horror-java/target/h5-horror-game-1.0.0.jar
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

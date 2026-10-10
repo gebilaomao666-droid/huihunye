@@ -1,0 +1,69 @@
+# ============================================================
+#  回魂夜·纸人招魂 — .gitignore
+#  原则: 凭据文件、第三方依赖、构建产物、临时文件一律不入库
+# ============================================================
+
+# ---- 凭据 / 机密 (绝不入库) ----
+.env
+.env.local
+# 真实后端配置含明文 DB 凭据, 只提交 .example 模板
+java-backend/src/main/resources/application.properties
+java-backend/src/main/resources/application-local.properties
+java-backend/src/main/resources/application-prod.properties
+# 本地部署凭据
+scripts/deploy_config.py
+scripts/.deploy_env
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+.deploy_deps/
+*.db
+*.sqlite
+.venv/
+venv/
+
+# ---- Java / Maven ----
+target/
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# ---- 前端 / Node ----
+node_modules/
+dist/
+.cache/
+
+# ---- 临时文件 / 编辑器 ----
+tmp_*.png
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# 原图备份与待处理图(不入库)
+vue-frontend/img/_orig_backup/
+vue-frontend/img/_incoming/
+
+
+# QA screenshots (not published)
+_qa/
+vue-frontend/_qa/
+_qa_prior_desktop_audit.json
+
+# 废弃归档(本地留底, 不入库)
+_废弃归档_*/
+
+# ---- 不发布的本地内容 ----
+# 美术源文件与生成中间产物(近 1G), 成品已在 vue-frontend/img
+art_v2/
+# 剧情工作区、原稿与修改说明
+_work/
+docs/剧情原稿/
+docs/剧情定稿/深改说明_*.md
+# 本地脚本日志
+*.log

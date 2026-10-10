@@ -1,0 +1,4563 @@
+{
+ "name": "回魂夜 audio_v2",
+ "generated": "2026-10-08",
+ "format": "每条均有 .ogg（首选）与 .mp3（兜底）",
+ "loudness": "音效 -16 LUFS（<3s 的短音按最大瞬时响度计）；环境与配乐 -18 LUFS；样本峰值 ≤ -1 dBFS",
+ "assets": [
+  {
+   "id": "amb_house_night_creak",
+   "category": "ambience",
+   "file": "ambience/amb_house_night_creak.ogg",
+   "fallback": "ambience/amb_house_night_creak.mp3",
+   "purpose": "老宅夜里木结构吱呀：极低的屋内底噪 + 稀疏的梁柱/地板吱呀，第一~七章常态铺底",
+   "tags": [
+    "环境"
+   ],
+   "loop": true,
+   "duration": 64.0,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -19.7,
+    "momentary_max": -9.6,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.18,
+    "mp3": -1.4
+   },
+   "size_bytes": {
+    "ogg": 657129,
+    "mp3": 729452
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0",
+    "CC0 1.0"
+   ],
+   "author": [
+    "AntumDeluge",
+    "Bashar3A",
+    "Kenney (kenney.nl)",
+    "bart"
+   ],
+   "source": [
+    {
+     "title": "Mild Wind Background Noise",
+     "author": "Bashar3A",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/mild-wind-background-noise"
+    },
+    {
+     "title": "Tree Creaking",
+     "author": "AntumDeluge",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/tree-creaking"
+    },
+    {
+     "title": "Kenney RPG Audio / creak1.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/rpg-audio"
+    },
+    {
+     "title": "Kenney RPG Audio / creak2.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/rpg-audio"
+    },
+    {
+     "title": "Kenney RPG Audio / creak3.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/rpg-audio"
+    },
+    {
+     "title": "25 spooky sound effects",
+     "author": "bart",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/25-spooky-sound-effects"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "amb_wind_paper_window",
+   "category": "ambience",
+   "file": "ambience/amb_wind_paper_window.ogg",
+   "fallback": "ambience/amb_wind_paper_window.mp3",
+   "purpose": "风穿纸窗：窗外风声经窗纸过滤，偶尔窗纸被吹得扑簌",
+   "tags": [
+    "环境"
+   ],
+   "loop": true,
+   "duration": 46.0,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -18.0,
+    "momentary_max": -15.7,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -5.45,
+    "mp3": -5.39
+   },
+   "size_bytes": {
+    "ogg": 617523,
+    "mp3": 780092
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0",
+    "CC0 1.0"
+   ],
+   "author": [
+    "AntumDeluge",
+    "Luckius",
+    "Luke.RUSTLTD"
+   ],
+   "source": [
+    {
+     "title": "Wind Loop",
+     "author": "AntumDeluge",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/wind-loop"
+    },
+    {
+     "title": "wind1",
+     "author": "Luke.RUSTLTD",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/wind1"
+    },
+    {
+     "title": "Various Paper Sound Effects",
+     "author": "Luckius",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/various-paper-sound-effects"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "amb_dog_far",
+   "category": "ambience",
+   "file": "ambience/amb_dog_far.ogg",
+   "fallback": "ambience/amb_dog_far.mp3",
+   "purpose": "远处狗吠：村口远远的几声狗叫，长间隔，带夜空气的远距离感",
+   "tags": [
+    "环境"
+   ],
+   "loop": true,
+   "duration": 48.0,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -19.0,
+    "momentary_max": -9.5,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.3,
+    "mp3": -1.47
+   },
+   "size_bytes": {
+    "ogg": 522464,
+    "mp3": 310268
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "HaelDB",
+    "pauliuw",
+    "syncopika"
+   ],
+   "source": [
+    {
+     "title": "Dog barking mono",
+     "author": "HaelDB",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/dog-barking-mono"
+    },
+    {
+     "title": "Dog sounds",
+     "author": "pauliuw",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/dog-sounds"
+    },
+    {
+     "title": "cricket sounds",
+     "author": "syncopika",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/cricket-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "amb_crickets",
+   "category": "ambience",
+   "file": "ambience/amb_crickets.ogg",
+   "fallback": "ambience/amb_crickets.mp3",
+   "purpose": "蟋蟀：院子里的秋虫，夜里安全时段的铺底",
+   "tags": [
+    "环境"
+   ],
+   "loop": true,
+   "duration": 36.042,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -18.3,
+    "momentary_max": -12.3,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -3.3,
+    "mp3": -3.18
+   },
+   "size_bytes": {
+    "ogg": 662934,
+    "mp3": 704828
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "syncopika"
+   ],
+   "source": [
+    {
+     "title": "cricket sounds",
+     "author": "syncopika",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/cricket-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "amb_rain_roof",
+   "category": "ambience",
+   "file": "ambience/amb_rain_roof.ogg",
+   "fallback": "ambience/amb_rain_roof.mp3",
+   "purpose": "雨：屋外的雨打瓦檐，连续可循环",
+   "tags": [
+    "环境"
+   ],
+   "loop": true,
+   "duration": 60.0,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -18.4,
+    "momentary_max": -15.5,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.91,
+    "mp3": -1.39
+   },
+   "size_bytes": {
+    "ogg": 1018750,
+    "mp3": 1315244
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kresiek The Furry"
+   ],
+   "source": [
+    {
+     "title": "AMB Rain Loop 1",
+     "author": "Kresiek The Furry",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/amb-rain-loop-1"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "amb_rain_window",
+   "category": "ambience",
+   "file": "ambience/amb_rain_window.ogg",
+   "fallback": "ambience/amb_rain_window.mp3",
+   "purpose": "雨（屋内听窗）：雨点打在窗棂与窗纸上，较近、较闷",
+   "tags": [
+    "环境"
+   ],
+   "loop": true,
+   "duration": 31.0,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -18.3,
+    "momentary_max": -16.9,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -3.8,
+    "mp3": -3.4
+   },
+   "size_bytes": {
+    "ogg": 586657,
+    "mp3": 691148
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "alxl"
+   ],
+   "source": [
+    {
+     "title": "Rain on Window Loop",
+     "author": "alxl",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/rain-on-window-loop"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "amb_candles_hall",
+   "category": "ambience",
+   "file": "ambience/amb_candles_hall.ogg",
+   "fallback": "ambience/amb_candles_hall.mp3",
+   "purpose": "灵堂蜡烛噼啪：长明灯/白蜡烛燃烧的细碎噼啪声",
+   "tags": [
+    "环境",
+    "灵堂"
+   ],
+   "loop": true,
+   "duration": 27.5,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -25.0,
+    "momentary_max": -18.1,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.35,
+    "mp3": -1.36
+   },
+   "size_bytes": {
+    "ogg": 630822,
+    "mp3": 738284
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "PagDev"
+   ],
+   "source": [
+    {
+     "title": "Fireplace Sound loop",
+     "author": "PagDev",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/fireplace-sound-loop"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "amb_incense",
+   "category": "ambience",
+   "file": "ambience/amb_incense.ogg",
+   "fallback": "ambience/amb_incense.mp3",
+   "purpose": "香燃烧：香头极轻的嘶嘶与偶发细响（很安静，用作贴近香炉时的近景层）",
+   "tags": [
+    "环境",
+    "灵堂"
+   ],
+   "loop": true,
+   "duration": 32.0,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -26.7,
+    "momentary_max": -20.2,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.37,
+    "mp3": -1.46
+   },
+   "size_bytes": {
+    "ogg": 605010,
+    "mp3": 777164
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 4.0"
+   ],
+   "author": [
+    "JC Sounds"
+   ],
+   "source": [
+    {
+     "title": "JC Sounds - Nature Ambient Pack Vol 1",
+     "author": "JC Sounds",
+     "license": "CC BY 4.0",
+     "source": "https://opengameart.org/content/jc-sounds-nature-ambient-pack-vol-1"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "amb_joss_paper_fire",
+   "category": "ambience",
+   "file": "ambience/amb_joss_paper_fire.ogg",
+   "fallback": "ambience/amb_joss_paper_fire.mp3",
+   "purpose": "纸钱燃烧（持续）：火盆里黄纸/纸钱燃烧，纸卷曲噼啪",
+   "tags": [
+    "环境",
+    "民俗"
+   ],
+   "loop": true,
+   "duration": 32.0,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -26.5,
+    "momentary_max": -19.7,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -2.2,
+    "mp3": -1.63
+   },
+   "size_bytes": {
+    "ogg": 740682,
+    "mp3": 905228
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 4.0",
+    "CC0 1.0"
+   ],
+   "author": [
+    "JC Sounds",
+    "Luckius"
+   ],
+   "source": [
+    {
+     "title": "JC Sounds - Nature Ambient Pack Vol 1",
+     "author": "JC Sounds",
+     "license": "CC BY 4.0",
+     "source": "https://opengameart.org/content/jc-sounds-nature-ambient-pack-vol-1"
+    },
+    {
+     "title": "Various Paper Sound Effects",
+     "author": "Luckius",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/various-paper-sound-effects"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "amb_well_drip",
+   "category": "ambience",
+   "file": "ambience/amb_well_drip.ogg",
+   "fallback": "ambience/amb_well_drip.mp3",
+   "purpose": "井水滴落：深井里零星水滴落入水面，带长回声",
+   "tags": [
+    "环境"
+   ],
+   "loop": true,
+   "duration": 32.0,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -18.4,
+    "momentary_max": -11.7,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -3.6,
+    "mp3": -2.93
+   },
+   "size_bytes": {
+    "ogg": 437968,
+    "mp3": 537500
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "Little Robot Sound Factory"
+   ],
+   "source": [
+    {
+     "title": "Horror Sound Effects Library",
+     "author": "Little Robot Sound Factory",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/horror-sound-effects-library"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "amb_cellar_drip",
+   "category": "ambience",
+   "file": "ambience/amb_cellar_drip.ogg",
+   "fallback": "ambience/amb_cellar_drip.mp3",
+   "purpose": "地下室滴水与回声：地窖里不规律的滴水 + 空洞回声",
+   "tags": [
+    "环境"
+   ],
+   "loop": true,
+   "duration": 18.5,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -19.8,
+    "momentary_max": -11.8,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.33,
+    "mp3": -1.36
+   },
+   "size_bytes": {
+    "ogg": 362182,
+    "mp3": 409580
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "qubodup"
+   ],
+   "source": [
+    {
+     "title": "Dripping water loop",
+     "author": "qubodup",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/dripping-water-loop"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "amb_taoist_chant_far",
+   "category": "ambience",
+   "file": "ambience/amb_taoist_chant_far.ogg",
+   "fallback": "ambience/amb_taoist_chant_far.mp3",
+   "purpose": "远处道士诵经（额外）：台湾葬仪实录的诵经+法器，压低高频推远，可作守灵夜远景",
+   "tags": [
+    "环境",
+    "民俗"
+   ],
+   "loop": true,
+   "duration": 89.0,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -18.2,
+    "momentary_max": -12.1,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -2.05,
+    "mp3": -1.95
+   },
+   "size_bytes": {
+    "ogg": 1691857,
+    "mp3": 2008268
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "Wu, Tsan-Cheng 吳燦政"
+   ],
+   "source": [
+    {
+     "title": "大甲火化場 Dajia, Taichung - Crematory, Taoist chanting (radio aporee)",
+     "author": "Wu, Tsan-Cheng 吳燦政",
+     "license": "CC BY 3.0",
+     "source": "https://archive.org/details/aporee_17873_20777"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_suona_phrase_1",
+   "category": "sfx",
+   "file": "sfx/sfx_suona_phrase_1.ogg",
+   "fallback": "sfx/sfx_suona_phrase_1.mp3",
+   "purpose": "唢呐短句 1：台湾传统葬仪实录（北管唢呐+锣鼓板），第八~十章冥婚/送葬",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 7.6,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.1,
+    "momentary_max": -13.1,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -4.86,
+    "mp3": -4.96
+   },
+   "size_bytes": {
+    "ogg": 159841,
+    "mp3": 179228
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "Wu, Tsan-Cheng 吳燦政"
+   ],
+   "source": [
+    {
+     "title": "Beitou, Taipei - Funeral (radio aporee)",
+     "author": "Wu, Tsan-Cheng 吳燦政",
+     "license": "CC BY 3.0",
+     "source": "https://archive.org/details/aporee_17272_20111"
+    }
+   ],
+   "note": "实地录音，有街道底噪；请作者试听确认是否合用"
+  },
+  {
+   "id": "sfx_suona_phrase_1_room",
+   "category": "sfx",
+   "file": "sfx/sfx_suona_phrase_1_room.ogg",
+   "fallback": "sfx/sfx_suona_phrase_1_room.mp3",
+   "purpose": "唢呐短句 1：台湾传统葬仪实录（北管唢呐+锣鼓板），第八~十章冥婚/送葬（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 10.212,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.1,
+    "momentary_max": -13.0,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -4.19,
+    "mp3": -3.7
+   },
+   "size_bytes": {
+    "ogg": 175284,
+    "mp3": 200228
+   },
+   "variant_of": "sfx_suona_phrase_1",
+   "reverb": "ir_hall",
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "Wu, Tsan-Cheng 吳燦政"
+   ],
+   "source": [
+    {
+     "title": "Beitou, Taipei - Funeral (radio aporee)",
+     "author": "Wu, Tsan-Cheng 吳燦政",
+     "license": "CC BY 3.0",
+     "source": "https://archive.org/details/aporee_17272_20111"
+    }
+   ],
+   "note": "实地录音，有街道底噪；请作者试听确认是否合用"
+  },
+  {
+   "id": "sfx_suona_phrase_2",
+   "category": "sfx",
+   "file": "sfx/sfx_suona_phrase_2.ogg",
+   "fallback": "sfx/sfx_suona_phrase_2.mp3",
+   "purpose": "唢呐短句 2：台湾传统葬仪实录（北管唢呐+锣鼓板），第八~十章冥婚/送葬",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 8.2,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.1,
+    "momentary_max": -13.8,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -4.57,
+    "mp3": -4.31
+   },
+   "size_bytes": {
+    "ogg": 176912,
+    "mp3": 194300
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "Wu, Tsan-Cheng 吳燦政"
+   ],
+   "source": [
+    {
+     "title": "Beitou, Taipei - Funeral (radio aporee)",
+     "author": "Wu, Tsan-Cheng 吳燦政",
+     "license": "CC BY 3.0",
+     "source": "https://archive.org/details/aporee_17272_20111"
+    }
+   ],
+   "note": "实地录音，有街道底噪；请作者试听确认是否合用"
+  },
+  {
+   "id": "sfx_suona_phrase_2_room",
+   "category": "sfx",
+   "file": "sfx/sfx_suona_phrase_2_room.ogg",
+   "fallback": "sfx/sfx_suona_phrase_2_room.mp3",
+   "purpose": "唢呐短句 2：台湾传统葬仪实录（北管唢呐+锣鼓板），第八~十章冥婚/送葬（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 10.812,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.1,
+    "momentary_max": -12.4,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -5.51,
+    "mp3": -5.52
+   },
+   "size_bytes": {
+    "ogg": 191698,
+    "mp3": 214508
+   },
+   "variant_of": "sfx_suona_phrase_2",
+   "reverb": "ir_hall",
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "Wu, Tsan-Cheng 吳燦政"
+   ],
+   "source": [
+    {
+     "title": "Beitou, Taipei - Funeral (radio aporee)",
+     "author": "Wu, Tsan-Cheng 吳燦政",
+     "license": "CC BY 3.0",
+     "source": "https://archive.org/details/aporee_17272_20111"
+    }
+   ],
+   "note": "实地录音，有街道底噪；请作者试听确认是否合用"
+  },
+  {
+   "id": "sfx_suona_phrase_3",
+   "category": "sfx",
+   "file": "sfx/sfx_suona_phrase_3.ogg",
+   "fallback": "sfx/sfx_suona_phrase_3.mp3",
+   "purpose": "唢呐短句 3：台湾传统葬仪实录（北管唢呐+锣鼓板），第八~十章冥婚/送葬",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 6.8,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.1,
+    "momentary_max": -13.6,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -4.54,
+    "mp3": -4.67
+   },
+   "size_bytes": {
+    "ogg": 147650,
+    "mp3": 155948
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "Wu, Tsan-Cheng 吳燦政"
+   ],
+   "source": [
+    {
+     "title": "Beitou, Taipei - Funeral (radio aporee)",
+     "author": "Wu, Tsan-Cheng 吳燦政",
+     "license": "CC BY 3.0",
+     "source": "https://archive.org/details/aporee_17272_20111"
+    }
+   ],
+   "note": "实地录音，有街道底噪；请作者试听确认是否合用"
+  },
+  {
+   "id": "sfx_suona_phrase_3_room",
+   "category": "sfx",
+   "file": "sfx/sfx_suona_phrase_3_room.ogg",
+   "fallback": "sfx/sfx_suona_phrase_3_room.mp3",
+   "purpose": "唢呐短句 3：台湾传统葬仪实录（北管唢呐+锣鼓板），第八~十章冥婚/送葬（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 9.412,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.1,
+    "momentary_max": -13.5,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -5.47,
+    "mp3": -5.06
+   },
+   "size_bytes": {
+    "ogg": 162336,
+    "mp3": 174884
+   },
+   "variant_of": "sfx_suona_phrase_3",
+   "reverb": "ir_hall",
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "Wu, Tsan-Cheng 吳燦政"
+   ],
+   "source": [
+    {
+     "title": "Beitou, Taipei - Funeral (radio aporee)",
+     "author": "Wu, Tsan-Cheng 吳燦政",
+     "license": "CC BY 3.0",
+     "source": "https://archive.org/details/aporee_17272_20111"
+    }
+   ],
+   "note": "实地录音，有街道底噪；请作者试听确认是否合用"
+  },
+  {
+   "id": "sfx_suona_far",
+   "category": "sfx",
+   "file": "sfx/sfx_suona_far.ogg",
+   "fallback": "sfx/sfx_suona_far.mp3",
+   "purpose": "唢呐（远处飘来）：同一实录压暗、推远，\"唢呐又响了一声，近了\"之前的远景",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 10.812,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.1,
+    "momentary_max": -12.6,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -5.21,
+    "mp3": -5.04
+   },
+   "size_bytes": {
+    "ogg": 161336,
+    "mp3": 196748
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "Wu, Tsan-Cheng 吳燦政"
+   ],
+   "source": [
+    {
+     "title": "Beitou, Taipei - Funeral (radio aporee)",
+     "author": "Wu, Tsan-Cheng 吳燦政",
+     "license": "CC BY 3.0",
+     "source": "https://archive.org/details/aporee_17272_20111"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_bell_copper",
+   "category": "sfx",
+   "file": "sfx/sfx_bell_copper.ogg",
+   "fallback": "sfx/sfx_bell_copper.mp3",
+   "purpose": "铜铃：手持法铃/铜铃的一击（皮槌敲击铃，余韵长）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 6.005,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -15.9,
+    "momentary_max": -12.4,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -8.77,
+    "mp3": -8.7
+   },
+   "size_bytes": {
+    "ogg": 103036,
+    "mp3": 120260
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "the_very_Real_Horst"
+   ],
+   "source": [
+    {
+     "title": "274316 the-very-real-horst ghanta-leather-mallet-2015-05-16.wav",
+     "author": "the_very_Real_Horst",
+     "license": "CC0 1.0",
+     "source": "https://commons.wikimedia.org/wiki/File:274316_the-very-real-horst_ghanta-leather-mallet-2015-05-16.wav"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_bell_copper_room",
+   "category": "sfx",
+   "file": "sfx/sfx_bell_copper_room.ogg",
+   "fallback": "sfx/sfx_bell_copper_room.mp3",
+   "purpose": "铜铃：手持法铃/铜铃的一击（皮槌敲击铃，余韵长）（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 8.617,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -15.9,
+    "momentary_max": -12.6,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -7.7,
+    "mp3": -7.76
+   },
+   "size_bytes": {
+    "ogg": 125423,
+    "mp3": 144644
+   },
+   "variant_of": "sfx_bell_copper",
+   "reverb": "ir_hall",
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "the_very_Real_Horst"
+   ],
+   "source": [
+    {
+     "title": "274316 the-very-real-horst ghanta-leather-mallet-2015-05-16.wav",
+     "author": "the_very_Real_Horst",
+     "license": "CC0 1.0",
+     "source": "https://commons.wikimedia.org/wiki/File:274316_the-very-real-horst_ghanta-leather-mallet-2015-05-16.wav"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_bell_copper_shake",
+   "category": "sfx",
+   "file": "sfx/sfx_bell_copper_shake.ogg",
+   "fallback": "sfx/sfx_bell_copper_shake.mp3",
+   "purpose": "铜铃摇动（法铃串响）：多次真实铃击叠成连续摇铃",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 2.758,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -17.6,
+    "momentary_max": -16.0,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -11.86,
+    "mp3": -11.89
+   },
+   "size_bytes": {
+    "ogg": 44995,
+    "mp3": 62852
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "the_very_Real_Horst"
+   ],
+   "source": [
+    {
+     "title": "274316 the-very-real-horst ghanta-leather-mallet-2015-05-16.wav",
+     "author": "the_very_Real_Horst",
+     "license": "CC0 1.0",
+     "source": "https://commons.wikimedia.org/wiki/File:274316_the-very-real-horst_ghanta-leather-mallet-2015-05-16.wav"
+    }
+   ],
+   "note": "由真实铃击录音叠合，非合成"
+  },
+  {
+   "id": "sfx_qing",
+   "category": "sfx",
+   "file": "sfx/sfx_qing.ogg",
+   "fallback": "sfx/sfx_qing.mp3",
+   "purpose": "引磬：小铜磬一击，清亮悠长（招魂/诵经起止）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 8.005,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.3,
+    "momentary_max": -8.9,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -3.48,
+    "mp3": -3.43
+   },
+   "size_bytes": {
+    "ogg": 141664,
+    "mp3": 157820
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "Public Domain"
+   ],
+   "author": [
+    "stephan"
+   ],
+   "source": [
+    {
+     "title": "Striking a bell 15cm large.ogg",
+     "author": "stephan",
+     "license": "Public Domain",
+     "source": "https://commons.wikimedia.org/wiki/File:Striking_a_bell_15cm_large.ogg"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_qing_room",
+   "category": "sfx",
+   "file": "sfx/sfx_qing_room.ogg",
+   "fallback": "sfx/sfx_qing_room.mp3",
+   "purpose": "引磬：小铜磬一击，清亮悠长（招魂/诵经起止）（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 10.617,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.3,
+    "momentary_max": -9.8,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -4.82,
+    "mp3": -4.58
+   },
+   "size_bytes": {
+    "ogg": 147469,
+    "mp3": 167804
+   },
+   "variant_of": "sfx_qing",
+   "reverb": "ir_hall",
+   "license": [
+    "Public Domain"
+   ],
+   "author": [
+    "stephan"
+   ],
+   "source": [
+    {
+     "title": "Striking a bell 15cm large.ogg",
+     "author": "stephan",
+     "license": "Public Domain",
+     "source": "https://commons.wikimedia.org/wiki/File:Striking_a_bell_15cm_large.ogg"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_muyu",
+   "category": "sfx",
+   "file": "sfx/sfx_muyu.ogg",
+   "fallback": "sfx/sfx_muyu.mp3",
+   "purpose": "木鱼：单击（真实木头敲击录音 + 空腔共鸣 EQ 处理）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 0.948,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -24.1,
+    "momentary_max": -20.0,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -1.45,
+    "mp3": -1.52
+   },
+   "size_bytes": {
+    "ogg": 16634,
+    "mp3": 12980
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)"
+   ],
+   "source": [
+    {
+     "title": "Kenney Impact Sounds / impactWood_light_002.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    }
+   ],
+   "note": "无现成 CC0 木鱼录音，以真实木击处理而成"
+  },
+  {
+   "id": "sfx_muyu_room",
+   "category": "sfx",
+   "file": "sfx/sfx_muyu_room.ogg",
+   "fallback": "sfx/sfx_muyu_room.mp3",
+   "purpose": "木鱼：单击（真实木头敲击录音 + 空腔共鸣 EQ 处理）（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 3.562,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -17.2,
+    "momentary_max": -12.0,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.42,
+    "mp3": -1.5
+   },
+   "size_bytes": {
+    "ogg": 32824,
+    "mp3": 32492
+   },
+   "variant_of": "sfx_muyu",
+   "reverb": "ir_hall",
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)"
+   ],
+   "source": [
+    {
+     "title": "Kenney Impact Sounds / impactWood_light_002.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    }
+   ],
+   "note": "无现成 CC0 木鱼录音，以真实木击处理而成"
+  },
+  {
+   "id": "sfx_muyu_roll",
+   "category": "sfx",
+   "file": "sfx/sfx_muyu_roll.ogg",
+   "fallback": "sfx/sfx_muyu_roll.mp3",
+   "purpose": "木鱼：诵经节奏的连敲（8 下，稳定节拍）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 6.564,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -20.8,
+    "momentary_max": -18.4,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.44,
+    "mp3": -1.49
+   },
+   "size_bytes": {
+    "ogg": 83890,
+    "mp3": 82484
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)"
+   ],
+   "source": [
+    {
+     "title": "Kenney Impact Sounds / impactWood_light_000.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactWood_light_002.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactWood_light_003.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_gong",
+   "category": "sfx",
+   "file": "sfx/sfx_gong.ogg",
+   "fallback": "sfx/sfx_gong.mp3",
+   "purpose": "锣：一记铜锣，余音长（开道/送葬/章节转折）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 4.005,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.0,
+    "momentary_max": -12.3,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -5.36,
+    "mp3": -5.4
+   },
+   "size_bytes": {
+    "ogg": 55177,
+    "mp3": 53636
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "the_very_Real_Horst"
+   ],
+   "source": [
+    {
+     "title": "240382 the-very-real-horst chinese-gong-finish-session-2014-06-10-29-143.wav",
+     "author": "the_very_Real_Horst",
+     "license": "CC0 1.0",
+     "source": "https://commons.wikimedia.org/wiki/File:240382_the-very-real-horst_chinese-gong-finish-session-2014-06-10-29-143.wav"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_gong_room",
+   "category": "sfx",
+   "file": "sfx/sfx_gong_room.ogg",
+   "fallback": "sfx/sfx_gong_room.mp3",
+   "purpose": "锣：一记铜锣，余音长（开道/送葬/章节转折）（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 6.617,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.0,
+    "momentary_max": -12.3,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -4.21,
+    "mp3": -4.27
+   },
+   "size_bytes": {
+    "ogg": 73484,
+    "mp3": 83852
+   },
+   "variant_of": "sfx_gong",
+   "reverb": "ir_hall",
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "the_very_Real_Horst"
+   ],
+   "source": [
+    {
+     "title": "240382 the-very-real-horst chinese-gong-finish-session-2014-06-10-29-143.wav",
+     "author": "the_very_Real_Horst",
+     "license": "CC0 1.0",
+     "source": "https://commons.wikimedia.org/wiki/File:240382_the-very-real-horst_chinese-gong-finish-session-2014-06-10-29-143.wav"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_gong_procession",
+   "category": "sfx",
+   "file": "sfx/sfx_gong_procession.ogg",
+   "fallback": "sfx/sfx_gong_procession.mp3",
+   "purpose": "开道锣：送葬队伍里一下一下、约一秒一记的行进锣（真实连续敲击）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 11.0,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.0,
+    "momentary_max": -9.5,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.49,
+    "mp3": -1.52
+   },
+   "size_bytes": {
+    "ogg": 156749,
+    "mp3": 173804
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "the_very_Real_Horst"
+   ],
+   "source": [
+    {
+     "title": "240382 the-very-real-horst chinese-gong-finish-session-2014-06-10-29-143.wav",
+     "author": "the_very_Real_Horst",
+     "license": "CC0 1.0",
+     "source": "https://commons.wikimedia.org/wiki/File:240382_the-very-real-horst_chinese-gong-finish-session-2014-06-10-29-143.wav"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_gong_procession_room",
+   "category": "sfx",
+   "file": "sfx/sfx_gong_procession_room.ogg",
+   "fallback": "sfx/sfx_gong_procession_room.mp3",
+   "purpose": "开道锣：送葬队伍里一下一下、约一秒一记的行进锣（真实连续敲击）（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 13.612,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.0,
+    "momentary_max": -9.3,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.42,
+    "mp3": -1.48
+   },
+   "size_bytes": {
+    "ogg": 179487,
+    "mp3": 213788
+   },
+   "variant_of": "sfx_gong_procession",
+   "reverb": "ir_hall",
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "the_very_Real_Horst"
+   ],
+   "source": [
+    {
+     "title": "240382 the-very-real-horst chinese-gong-finish-session-2014-06-10-29-143.wav",
+     "author": "the_very_Real_Horst",
+     "license": "CC0 1.0",
+     "source": "https://commons.wikimedia.org/wiki/File:240382_the-very-real-horst_chinese-gong-finish-session-2014-06-10-29-143.wav"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_gong_muffled",
+   "category": "sfx",
+   "file": "sfx/sfx_gong_muffled.ogg",
+   "fallback": "sfx/sfx_gong_muffled.mp3",
+   "purpose": "闷锣：手掌捂住的短促闷响（惊吓/错误的民俗版）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 1.605,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -17.7,
+    "momentary_max": -16.0,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -8.86,
+    "mp3": -8.99
+   },
+   "size_bytes": {
+    "ogg": 13259,
+    "mp3": 11012
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "the_very_Real_Horst"
+   ],
+   "source": [
+    {
+     "title": "240382 the-very-real-horst chinese-gong-finish-session-2014-06-10-29-143.wav",
+     "author": "the_very_Real_Horst",
+     "license": "CC0 1.0",
+     "source": "https://commons.wikimedia.org/wiki/File:240382_the-very-real-horst_chinese-gong-finish-session-2014-06-10-29-143.wav"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_paper_effigy_rustle",
+   "category": "sfx",
+   "file": "sfx/sfx_paper_effigy_rustle.ogg",
+   "fallback": "sfx/sfx_paper_effigy_rustle.mp3",
+   "purpose": "纸扎摩擦：纸人/纸马的竹骨与彩纸被碰到时的沙沙声",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 1.688,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -18.0,
+    "momentary_max": -16.4,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -1.54,
+    "mp3": -1.53
+   },
+   "size_bytes": {
+    "ogg": 32049,
+    "mp3": 31556
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)",
+    "Luckius"
+   ],
+   "source": [
+    {
+     "title": "Various Paper Sound Effects",
+     "author": "Luckius",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/various-paper-sound-effects"
+    },
+    {
+     "title": "Kenney RPG Audio / cloth2.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/rpg-audio"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_paper_effigy_rustle_room",
+   "category": "sfx",
+   "file": "sfx/sfx_paper_effigy_rustle_room.ogg",
+   "fallback": "sfx/sfx_paper_effigy_rustle_room.mp3",
+   "purpose": "纸扎摩擦：纸人/纸马的竹骨与彩纸被碰到时的沙沙声（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 3.496,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.4,
+    "momentary_max": -14.7,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -2.24,
+    "mp3": -1.48
+   },
+   "size_bytes": {
+    "ogg": 48508,
+    "mp3": 55388
+   },
+   "variant_of": "sfx_paper_effigy_rustle",
+   "reverb": "ir_oldhouse",
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)",
+    "Luckius"
+   ],
+   "source": [
+    {
+     "title": "Various Paper Sound Effects",
+     "author": "Luckius",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/various-paper-sound-effects"
+    },
+    {
+     "title": "Kenney RPG Audio / cloth2.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/rpg-audio"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_paper_page_turn",
+   "category": "sfx",
+   "file": "sfx/sfx_paper_page_turn.ogg",
+   "fallback": "sfx/sfx_paper_page_turn.mp3",
+   "purpose": "黄纸翻页：族谱/黄裱纸翻过一页",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 1.091,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -20.1,
+    "momentary_max": -18.5,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -2.21,
+    "mp3": -2.28
+   },
+   "size_bytes": {
+    "ogg": 22085,
+    "mp3": 21212
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "StarNinjas"
+   ],
+   "source": [
+    {
+     "title": "10 Book Page Flips",
+     "author": "StarNinjas",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/10-book-page-flips"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_brush_write",
+   "category": "sfx",
+   "file": "sfx/sfx_brush_write.ogg",
+   "fallback": "sfx/sfx_brush_write.mp3",
+   "purpose": "毛笔写字：在黄纸上写字（软笔头摩擦纸面）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 5.61,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -17.2,
+    "momentary_max": -14.7,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.26,
+    "mp3": -1.38
+   },
+   "size_bytes": {
+    "ogg": 98224,
+    "mp3": 116060
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "Public Domain"
+   ],
+   "author": [
+    "stephan"
+   ],
+   "source": [
+    {
+     "title": "Writing with feltpen.ogg",
+     "author": "stephan",
+     "license": "Public Domain",
+     "source": "https://commons.wikimedia.org/wiki/File:Writing_with_feltpen.ogg"
+    }
+   ],
+   "note": "由钢笔/毡笔书写实录压暗高频、放慢处理，模拟毛笔"
+  },
+  {
+   "id": "sfx_match_strike",
+   "category": "sfx",
+   "file": "sfx/sfx_match_strike.ogg",
+   "fallback": "sfx/sfx_match_strike.mp3",
+   "purpose": "火柴划燃：擦一下 + 起火的\"嘶\"",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 1.289,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -18.2,
+    "momentary_max": -16.1,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -5.52,
+    "mp3": -5.08
+   },
+   "size_bytes": {
+    "ogg": 24787,
+    "mp3": 26876
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "AntumDeluge",
+    "qubodup",
+    "themightyglider"
+   ],
+   "source": [
+    {
+     "title": "Scrapes",
+     "author": "AntumDeluge",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/scrapes"
+    },
+    {
+     "title": "Flare ignition",
+     "author": "qubodup",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/flare-ignition"
+    },
+    {
+     "title": "Catching fire",
+     "author": "themightyglider",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/catching-fire"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_oil_lamp_light",
+   "category": "sfx",
+   "file": "sfx/sfx_oil_lamp_light.ogg",
+   "fallback": "sfx/sfx_oil_lamp_light.mp3",
+   "purpose": "油灯点燃：灯芯着火、火苗稳定下来（带一点玻璃灯罩的轻碰）",
+   "tags": [
+    "民俗"
+   ],
+   "loop": false,
+   "duration": 3.15,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.1,
+    "momentary_max": -13.8,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -2.51,
+    "mp3": -2.47
+   },
+   "size_bytes": {
+    "ogg": 47854,
+    "mp3": 48620
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 4.0",
+    "CC0 1.0"
+   ],
+   "author": [
+    "JC Sounds",
+    "Kenney (kenney.nl)",
+    "themightyglider"
+   ],
+   "source": [
+    {
+     "title": "Catching fire",
+     "author": "themightyglider",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/catching-fire"
+    },
+    {
+     "title": "JC Sounds - Nature Ambient Pack Vol 1",
+     "author": "JC Sounds",
+     "license": "CC BY 4.0",
+     "source": "https://opengameart.org/content/jc-sounds-nature-ambient-pack-vol-1"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactGlass_light_001.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_woman_cry_far",
+   "category": "sfx",
+   "file": "sfx/sfx_woman_cry_far.ogg",
+   "fallback": "sfx/sfx_woman_cry_far.mp3",
+   "purpose": "远处女人哭声：隔着几进院子传来的抽泣（新娘）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 11.612,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.1,
+    "momentary_max": -11.8,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -2.16,
+    "mp3": -2.23
+   },
+   "size_bytes": {
+    "ogg": 159771,
+    "mp3": 194108
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "AlucardsBride"
+   ],
+   "source": [
+    {
+     "title": "Cry of woman.ogg",
+     "author": "AlucardsBride",
+     "license": "CC0 1.0",
+     "source": "https://commons.wikimedia.org/wiki/File:Cry_of_woman.ogg"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_woman_cry_wall",
+   "category": "sfx",
+   "file": "sfx/sfx_woman_cry_wall.ogg",
+   "fallback": "sfx/sfx_woman_cry_wall.mp3",
+   "purpose": "隔墙女人哭：墙那边压低的呜咽，闷（两段真实哭声叠合、降调）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 8.307,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -15.9,
+    "momentary_max": -11.0,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -4.5,
+    "mp3": -4.57
+   },
+   "size_bytes": {
+    "ogg": 95605,
+    "mp3": 113708
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0",
+    "CC0 1.0"
+   ],
+   "author": [
+    "AlucardsBride",
+    "JeanMyna_VA"
+   ],
+   "source": [
+    {
+     "title": "Cry of woman.ogg",
+     "author": "AlucardsBride",
+     "license": "CC0 1.0",
+     "source": "https://commons.wikimedia.org/wiki/File:Cry_of_woman.ogg"
+    },
+    {
+     "title": "Crying female low tone Voice Over | Vocal sound for character",
+     "author": "JeanMyna_VA",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/crying-female-low-tone-voice-over-vocal-sound-for-character"
+    }
+   ],
+   "note": "两段真实录音叠合处理"
+  },
+  {
+   "id": "sfx_whisper_ear",
+   "category": "sfx",
+   "file": "sfx/sfx_whisper_ear.ogg",
+   "fallback": "sfx/sfx_whisper_ear.mp3",
+   "purpose": "耳边低语：几段真实耳语切碎、反转、降调后贴着左右耳交替（听不清在说什么）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 3.416,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.3,
+    "momentary_max": -14.3,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.9,
+    "mp3": -1.97
+   },
+   "size_bytes": {
+    "ogg": 52754,
+    "mp3": 63548
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "MirceaKitsune",
+    "qubodup"
+   ],
+   "source": [
+    {
+     "title": "Dialog vocal samples",
+     "author": "MirceaKitsune",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/dialog-vocal-samples"
+    },
+    {
+     "title": "Ghost breath",
+     "author": "qubodup",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/ghost-breath"
+    }
+   ],
+   "note": "多段真实耳语录音叠加处理"
+  },
+  {
+   "id": "sfx_breath_ear",
+   "category": "sfx",
+   "file": "sfx/sfx_breath_ear.ogg",
+   "fallback": "sfx/sfx_breath_ear.mp3",
+   "purpose": "耳边气声：紧贴耳朵的一口长呼气（冷）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 3.416,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.3,
+    "momentary_max": -13.7,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -3.84,
+    "mp3": -3.26
+   },
+   "size_bytes": {
+    "ogg": 40791,
+    "mp3": 64796
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "qubodup"
+   ],
+   "source": [
+    {
+     "title": "Ghost breath",
+     "author": "qubodup",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/ghost-breath"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_nail_scratch_wood",
+   "category": "sfx",
+   "file": "sfx/sfx_nail_scratch_wood.ogg",
+   "fallback": "sfx/sfx_nail_scratch_wood.mp3",
+   "purpose": "指甲刮木头：几道从木板上慢慢刮过的指甲声",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 4.438,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.3,
+    "momentary_max": -11.3,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.3,
+    "mp3": -1.46
+   },
+   "size_bytes": {
+    "ogg": 68649,
+    "mp3": 78524
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "AntumDeluge"
+   ],
+   "source": [
+    {
+     "title": "Scrapes",
+     "author": "AntumDeluge",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/scrapes"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_nail_scratch_wood_room",
+   "category": "sfx",
+   "file": "sfx/sfx_nail_scratch_wood_room.ogg",
+   "fallback": "sfx/sfx_nail_scratch_wood_room.mp3",
+   "purpose": "指甲刮木头：几道从木板上慢慢刮过的指甲声（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 6.246,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.3,
+    "momentary_max": -11.2,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.98,
+    "mp3": -1.44
+   },
+   "size_bytes": {
+    "ogg": 101915,
+    "mp3": 141212
+   },
+   "variant_of": "sfx_nail_scratch_wood",
+   "reverb": "ir_oldhouse",
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "AntumDeluge"
+   ],
+   "source": [
+    {
+     "title": "Scrapes",
+     "author": "AntumDeluge",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/scrapes"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_coffin_scratch_inside",
+   "category": "sfx",
+   "file": "sfx/sfx_coffin_scratch_inside.ogg",
+   "fallback": "sfx/sfx_coffin_scratch_inside.mp3",
+   "purpose": "棺内抓挠：闷在木箱里面的抓挠声（node06 棺内抓挠）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 6.27,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.1,
+    "momentary_max": -12.4,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -2.38,
+    "mp3": -2.39
+   },
+   "size_bytes": {
+    "ogg": 79924,
+    "mp3": 91004
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "AntumDeluge"
+   ],
+   "source": [
+    {
+     "title": "Scrapes",
+     "author": "AntumDeluge",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/scrapes"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_footsteps_approach",
+   "category": "sfx",
+   "file": "sfx/sfx_footsteps_approach.ogg",
+   "fallback": "sfx/sfx_footsteps_approach.mp3",
+   "purpose": "脚步从远到近：木地板上慢慢走近、最后停在门外",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 7.799,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -18.6,
+    "momentary_max": -13.5,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.4,
+    "mp3": -1.49
+   },
+   "size_bytes": {
+    "ogg": 94624,
+    "mp3": 99836
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)"
+   ],
+   "source": [
+    {
+     "title": "Kenney Impact Sounds / footstep_wood_000.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / footstep_wood_001.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / footstep_wood_002.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / footstep_wood_003.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / footstep_wood_004.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_footsteps_recede",
+   "category": "sfx",
+   "file": "sfx/sfx_footsteps_recede.ogg",
+   "fallback": "sfx/sfx_footsteps_recede.mp3",
+   "purpose": "脚步由近及远：走开、消失在走廊尽头",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 7.739,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -19.4,
+    "momentary_max": -13.9,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.38,
+    "mp3": -1.49
+   },
+   "size_bytes": {
+    "ogg": 92202,
+    "mp3": 98276
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)"
+   ],
+   "source": [
+    {
+     "title": "Kenney Impact Sounds / footstep_wood_000.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / footstep_wood_001.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / footstep_wood_002.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / footstep_wood_003.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / footstep_wood_004.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_door_bolt",
+   "category": "sfx",
+   "file": "sfx/sfx_door_bolt.ogg",
+   "fallback": "sfx/sfx_door_bolt.mp3",
+   "purpose": "门闩：木门闩\"咔嗒\"推上/落下（node06 门闩落下）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 1.159,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -17.3,
+    "momentary_max": -16.3,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -1.62,
+    "mp3": -1.49
+   },
+   "size_bytes": {
+    "ogg": 16434,
+    "mp3": 12116
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "AntumDeluge",
+    "Kenney (kenney.nl)"
+   ],
+   "source": [
+    {
+     "title": "Scrapes",
+     "author": "AntumDeluge",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/scrapes"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactPlank_medium_001.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney RPG Audio / metalLatch.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/rpg-audio"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_door_bolt_room",
+   "category": "sfx",
+   "file": "sfx/sfx_door_bolt_room.ogg",
+   "fallback": "sfx/sfx_door_bolt_room.mp3",
+   "purpose": "门闩：木门闩\"咔嗒\"推上/落下（node06 门闩落下）（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 2.967,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -18.4,
+    "momentary_max": -16.0,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -2.25,
+    "mp3": -2.18
+   },
+   "size_bytes": {
+    "ogg": 30543,
+    "mp3": 30644
+   },
+   "variant_of": "sfx_door_bolt",
+   "reverb": "ir_oldhouse",
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "AntumDeluge",
+    "Kenney (kenney.nl)"
+   ],
+   "source": [
+    {
+     "title": "Scrapes",
+     "author": "AntumDeluge",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/scrapes"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactPlank_medium_001.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney RPG Audio / metalLatch.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/rpg-audio"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_door_creak_open",
+   "category": "sfx",
+   "file": "sfx/sfx_door_creak_open.ogg",
+   "fallback": "sfx/sfx_door_creak_open.mp3",
+   "purpose": "老木门吱呀推开",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 7.782,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -17.2,
+    "momentary_max": -12.9,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.05,
+    "mp3": -1.46
+   },
+   "size_bytes": {
+    "ogg": 138326,
+    "mp3": 169004
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "fractilegames"
+   ],
+   "source": [
+    {
+     "title": "Creaky light wooden door",
+     "author": "fractilegames",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/creaky-light-wooden-door"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_door_creak_open_room",
+   "category": "sfx",
+   "file": "sfx/sfx_door_creak_open_room.ogg",
+   "fallback": "sfx/sfx_door_creak_open_room.mp3",
+   "purpose": "老木门吱呀推开（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 9.59,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.7,
+    "momentary_max": -12.4,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.28,
+    "mp3": -1.47
+   },
+   "size_bytes": {
+    "ogg": 145350,
+    "mp3": 179348
+   },
+   "variant_of": "sfx_door_creak_open",
+   "reverb": "ir_oldhouse",
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "fractilegames"
+   ],
+   "source": [
+    {
+     "title": "Creaky light wooden door",
+     "author": "fractilegames",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/creaky-light-wooden-door"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_knock_door",
+   "category": "sfx",
+   "file": "sfx/sfx_knock_door.ogg",
+   "fallback": "sfx/sfx_knock_door.mp3",
+   "purpose": "敲门：三下不紧不慢地敲木门（替换代码合成的 playKnock）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 1.256,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -18.6,
+    "momentary_max": -18.3,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -1.44,
+    "mp3": -1.5
+   },
+   "size_bytes": {
+    "ogg": 12004,
+    "mp3": 7364
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)"
+   ],
+   "source": [
+    {
+     "title": "Kenney Impact Sounds / impactWood_medium_000.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactWood_medium_002.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactWood_medium_004.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_knock_door_room",
+   "category": "sfx",
+   "file": "sfx/sfx_knock_door_room.ogg",
+   "fallback": "sfx/sfx_knock_door_room.mp3",
+   "purpose": "敲门：三下不紧不慢地敲木门（替换代码合成的 playKnock）（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 3.064,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -17.0,
+    "momentary_max": -15.6,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.4,
+    "mp3": -1.5
+   },
+   "size_bytes": {
+    "ogg": 31769,
+    "mp3": 31172
+   },
+   "variant_of": "sfx_knock_door",
+   "reverb": "ir_oldhouse",
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)"
+   ],
+   "source": [
+    {
+     "title": "Kenney Impact Sounds / impactWood_medium_000.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactWood_medium_002.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactWood_medium_004.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_knock_slow",
+   "category": "sfx",
+   "file": "sfx/sfx_knock_slow.ogg",
+   "fallback": "sfx/sfx_knock_slow.mp3",
+   "purpose": "敲门（慢、重）：三下间隔很长的重敲，最后一下更轻",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 3.269,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -19.7,
+    "momentary_max": -18.0,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.42,
+    "mp3": -1.5
+   },
+   "size_bytes": {
+    "ogg": 9953,
+    "mp3": 15500
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)"
+   ],
+   "source": [
+    {
+     "title": "Kenney Impact Sounds / impactWood_heavy_000.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactWood_heavy_001.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactWood_heavy_003.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_knock_slow_room",
+   "category": "sfx",
+   "file": "sfx/sfx_knock_slow_room.ogg",
+   "fallback": "sfx/sfx_knock_slow_room.mp3",
+   "purpose": "敲门（慢、重）：三下间隔很长的重敲，最后一下更轻（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 5.077,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -18.1,
+    "momentary_max": -14.2,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.41,
+    "mp3": -1.49
+   },
+   "size_bytes": {
+    "ogg": 53148,
+    "mp3": 49748
+   },
+   "variant_of": "sfx_knock_slow",
+   "reverb": "ir_oldhouse",
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)"
+   ],
+   "source": [
+    {
+     "title": "Kenney Impact Sounds / impactWood_heavy_000.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactWood_heavy_001.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactWood_heavy_003.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_coffin_lid_slide",
+   "category": "sfx",
+   "file": "sfx/sfx_coffin_lid_slide.ogg",
+   "fallback": "sfx/sfx_coffin_lid_slide.mp3",
+   "purpose": "棺材盖挪动：沉重木盖摩擦着慢慢推开，最后\"咚\"地一顿",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 7.613,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -23.5,
+    "momentary_max": -17.9,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.47,
+    "mp3": -1.5
+   },
+   "size_bytes": {
+    "ogg": 87552,
+    "mp3": 75068
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0",
+    "CC0 1.0"
+   ],
+   "author": [
+    "AntumDeluge",
+    "Kenney (kenney.nl)",
+    "dklon"
+   ],
+   "source": [
+    {
+     "title": "Super Foley Pack",
+     "author": "dklon",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/super-foley-pack"
+    },
+    {
+     "title": "Scrapes",
+     "author": "AntumDeluge",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/scrapes"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactWood_heavy_002.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_coffin_lid_slide_room",
+   "category": "sfx",
+   "file": "sfx/sfx_coffin_lid_slide_room.ogg",
+   "fallback": "sfx/sfx_coffin_lid_slide_room.mp3",
+   "purpose": "棺材盖挪动：沉重木盖摩擦着慢慢推开，最后\"咚\"地一顿（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 10.225,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -20.3,
+    "momentary_max": -15.4,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.41,
+    "mp3": -1.5
+   },
+   "size_bytes": {
+    "ogg": 132008,
+    "mp3": 147548
+   },
+   "variant_of": "sfx_coffin_lid_slide",
+   "reverb": "ir_hall",
+   "license": [
+    "CC BY 3.0",
+    "CC0 1.0"
+   ],
+   "author": [
+    "AntumDeluge",
+    "Kenney (kenney.nl)",
+    "dklon"
+   ],
+   "source": [
+    {
+     "title": "Super Foley Pack",
+     "author": "dklon",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/super-foley-pack"
+    },
+    {
+     "title": "Scrapes",
+     "author": "AntumDeluge",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/scrapes"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactWood_heavy_002.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_cloth_drag",
+   "category": "sfx",
+   "file": "sfx/sfx_cloth_drag.ogg",
+   "fallback": "sfx/sfx_cloth_drag.mp3",
+   "purpose": "布料拖地：长衣摆/嫁衣拖过地面",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 3.42,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -17.7,
+    "momentary_max": -15.3,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.15,
+    "mp3": -1.35
+   },
+   "size_bytes": {
+    "ogg": 55123,
+    "mp3": 66476
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0",
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)",
+    "dklon"
+   ],
+   "source": [
+    {
+     "title": "Kenney RPG Audio / cloth1.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/rpg-audio"
+    },
+    {
+     "title": "Kenney RPG Audio / cloth2.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/rpg-audio"
+    },
+    {
+     "title": "Kenney RPG Audio / cloth3.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/rpg-audio"
+    },
+    {
+     "title": "Kenney RPG Audio / cloth4.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/rpg-audio"
+    },
+    {
+     "title": "Super Foley Pack",
+     "author": "dklon",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/super-foley-pack"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_cloth_drag_room",
+   "category": "sfx",
+   "file": "sfx/sfx_cloth_drag_room.ogg",
+   "fallback": "sfx/sfx_cloth_drag_room.mp3",
+   "purpose": "布料拖地：长衣摆/嫁衣拖过地面（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 5.228,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.8,
+    "momentary_max": -13.7,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.38,
+    "mp3": -1.41
+   },
+   "size_bytes": {
+    "ogg": 70970,
+    "mp3": 82676
+   },
+   "variant_of": "sfx_cloth_drag",
+   "reverb": "ir_oldhouse",
+   "license": [
+    "CC BY 3.0",
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)",
+    "dklon"
+   ],
+   "source": [
+    {
+     "title": "Kenney RPG Audio / cloth1.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/rpg-audio"
+    },
+    {
+     "title": "Kenney RPG Audio / cloth2.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/rpg-audio"
+    },
+    {
+     "title": "Kenney RPG Audio / cloth3.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/rpg-audio"
+    },
+    {
+     "title": "Kenney RPG Audio / cloth4.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/rpg-audio"
+    },
+    {
+     "title": "Super Foley Pack",
+     "author": "dklon",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/super-foley-pack"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_woman_laugh_far",
+   "category": "sfx",
+   "file": "sfx/sfx_woman_laugh_far.ogg",
+   "fallback": "sfx/sfx_woman_laugh_far.mp3",
+   "purpose": "女人笑（远/空）：几声轻笑放慢降调，从屋子另一头传来",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 10.041,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.0,
+    "momentary_max": -12.6,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -3.41,
+    "mp3": -3.27
+   },
+   "size_bytes": {
+    "ogg": 133796,
+    "mp3": 163556
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "Nocturnal_Vanguard"
+   ],
+   "source": [
+    {
+     "title": "Group giggling",
+     "author": "Nocturnal_Vanguard",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/group-giggling"
+    }
+   ],
+   "note": "真实笑声录音放慢降调+混响"
+  },
+  {
+   "id": "sfx_baby_cry_far",
+   "category": "sfx",
+   "file": "sfx/sfx_baby_cry_far.ogg",
+   "fallback": "sfx/sfx_baby_cry_far.mp3",
+   "purpose": "婴儿哭（远、空）：远处婴儿哭声，压暗推远",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 9.155,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.0,
+    "momentary_max": -9.0,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.55,
+    "mp3": -1.66
+   },
+   "size_bytes": {
+    "ogg": 136772,
+    "mp3": 157772
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "the_yura"
+   ],
+   "source": [
+    {
+     "title": "Crying newborn baby.ogg",
+     "author": "the_yura",
+     "license": "CC0 1.0",
+     "source": "https://commons.wikimedia.org/wiki/File:Crying_newborn_baby.ogg"
+    }
+   ],
+   "note": "未找到可商用婴儿笑声，提供婴儿哭替代"
+  },
+  {
+   "id": "sfx_bone_crack",
+   "category": "sfx",
+   "file": "sfx/sfx_bone_crack.ogg",
+   "fallback": "sfx/sfx_bone_crack.mp3",
+   "purpose": "骨头响：关节/骨头\"咔\"地一声",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 0.236,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -27.2,
+    "momentary_max": -27.2,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -2.41,
+    "mp3": -1.45
+   },
+   "size_bytes": {
+    "ogg": 7962,
+    "mp3": 4988
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "Little Robot Sound Factory"
+   ],
+   "source": [
+    {
+     "title": "Horror Sound Effects Library",
+     "author": "Little Robot Sound Factory",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/horror-sound-effects-library"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_bones_rattle",
+   "category": "sfx",
+   "file": "sfx/sfx_bones_rattle.ogg",
+   "fallback": "sfx/sfx_bones_rattle.mp3",
+   "purpose": "骨头碰撞：一串碎骨/指骨碰撞声",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 1.404,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -18.9,
+    "momentary_max": -17.5,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -1.62,
+    "mp3": -1.47
+   },
+   "size_bytes": {
+    "ogg": 30332,
+    "mp3": 37004
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "congusbongus"
+   ],
+   "source": [
+    {
+     "title": "Bones rattle",
+     "author": "congusbongus",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/bones-rattle"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_bones_rattle_room",
+   "category": "sfx",
+   "file": "sfx/sfx_bones_rattle_room.ogg",
+   "fallback": "sfx/sfx_bones_rattle_room.mp3",
+   "purpose": "骨头碰撞：一串碎骨/指骨碰撞声（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 3.212,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -17.0,
+    "momentary_max": -15.4,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.14,
+    "mp3": -1.46
+   },
+   "size_bytes": {
+    "ogg": 49377,
+    "mp3": 57404
+   },
+   "variant_of": "sfx_bones_rattle",
+   "reverb": "ir_oldhouse",
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "congusbongus"
+   ],
+   "source": [
+    {
+     "title": "Bones rattle",
+     "author": "congusbongus",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/bones-rattle"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_wet_squelch",
+   "category": "sfx",
+   "file": "sfx/sfx_wet_squelch.ogg",
+   "fallback": "sfx/sfx_wet_squelch.mp3",
+   "purpose": "湿黏的声音：湿漉漉、黏糊糊的一下（纸脸贴上来/井水里的东西）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 1.455,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -22.3,
+    "momentary_max": -16.2,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -5.91,
+    "mp3": -5.76
+   },
+   "size_bytes": {
+    "ogg": 23509,
+    "mp3": 24572
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "qubodup"
+   ],
+   "source": [
+    {
+     "title": "8 wet squish, slurp impacts",
+     "author": "qubodup",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/8-wet-squish-slurp-impacts"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_wet_drag",
+   "category": "sfx",
+   "file": "sfx/sfx_wet_drag.ogg",
+   "fallback": "sfx/sfx_wet_drag.mp3",
+   "purpose": "湿黏拖动：湿东西在地上慢慢拖过",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 6.263,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -21.7,
+    "momentary_max": -19.7,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.39,
+    "mp3": -1.48
+   },
+   "size_bytes": {
+    "ogg": 81859,
+    "mp3": 73532
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "dklon"
+   ],
+   "source": [
+    {
+     "title": "Super Foley Pack",
+     "author": "dklon",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/super-foley-pack"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_wet_drag_room",
+   "category": "sfx",
+   "file": "sfx/sfx_wet_drag_room.ogg",
+   "fallback": "sfx/sfx_wet_drag_room.mp3",
+   "purpose": "湿黏拖动：湿东西在地上慢慢拖过（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "恐怖"
+   ],
+   "loop": false,
+   "duration": 8.071,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -17.4,
+    "momentary_max": -14.0,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.39,
+    "mp3": -1.43
+   },
+   "size_bytes": {
+    "ogg": 119622,
+    "mp3": 130340
+   },
+   "variant_of": "sfx_wet_drag",
+   "reverb": "ir_oldhouse",
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "dklon"
+   ],
+   "source": [
+    {
+     "title": "Super Foley Pack",
+     "author": "dklon",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/super-foley-pack"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_stinger_hit_low",
+   "category": "sfx",
+   "file": "sfx/sfx_stinger_hit_low.ogg",
+   "fallback": "sfx/sfx_stinger_hit_low.mp3",
+   "purpose": "惊吓 stinger：极低的重击轰响",
+   "tags": [
+    "惊吓"
+   ],
+   "loop": false,
+   "duration": 5.726,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.1,
+    "momentary_max": -12.3,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.43,
+    "mp3": -1.5
+   },
+   "size_bytes": {
+    "ogg": 92902,
+    "mp3": 93284
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "psychhead_"
+   ],
+   "source": [
+    {
+     "title": "Horror Hit Soundpack 1",
+     "author": "psychhead_",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/horror-hit-soundpack-1"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_stinger_hit_mid",
+   "category": "sfx",
+   "file": "sfx/sfx_stinger_hit_mid.ogg",
+   "fallback": "sfx/sfx_stinger_hit_mid.mp3",
+   "purpose": "惊吓 stinger：中频冲击",
+   "tags": [
+    "惊吓"
+   ],
+   "loop": false,
+   "duration": 4.918,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.0,
+    "momentary_max": -12.4,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -3.15,
+    "mp3": -3.2
+   },
+   "size_bytes": {
+    "ogg": 83241,
+    "mp3": 74108
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "psychhead_"
+   ],
+   "source": [
+    {
+     "title": "Horror Hit Soundpack 1",
+     "author": "psychhead_",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/horror-hit-soundpack-1"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_stinger_hit_high",
+   "category": "sfx",
+   "file": "sfx/sfx_stinger_hit_high.ogg",
+   "fallback": "sfx/sfx_stinger_hit_high.mp3",
+   "purpose": "惊吓 stinger：尖锐高频刺击",
+   "tags": [
+    "惊吓"
+   ],
+   "loop": false,
+   "duration": 5.176,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -17.8,
+    "momentary_max": -13.7,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.31,
+    "mp3": -1.43
+   },
+   "size_bytes": {
+    "ogg": 95903,
+    "mp3": 106652
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "psychhead_"
+   ],
+   "source": [
+    {
+     "title": "Horror Hit Soundpack 1",
+     "author": "psychhead_",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/horror-hit-soundpack-1"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_stinger_gong_swell",
+   "category": "sfx",
+   "file": "sfx/sfx_stinger_gong_swell.ogg",
+   "fallback": "sfx/sfx_stinger_gong_swell.mp3",
+   "purpose": "惊吓 stinger：反向锣声吸气渐强 → 低频重击（转身看见时）",
+   "tags": [
+    "惊吓"
+   ],
+   "loop": false,
+   "duration": 7.51,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.0,
+    "momentary_max": -11.1,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -4.09,
+    "mp3": -4.15
+   },
+   "size_bytes": {
+    "ogg": 105997,
+    "mp3": 85004
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "psychhead_",
+    "the_very_Real_Horst"
+   ],
+   "source": [
+    {
+     "title": "240382 the-very-real-horst chinese-gong-finish-session-2014-06-10-29-143.wav",
+     "author": "the_very_Real_Horst",
+     "license": "CC0 1.0",
+     "source": "https://commons.wikimedia.org/wiki/File:240382_the-very-real-horst_chinese-gong-finish-session-2014-06-10-29-143.wav"
+    },
+    {
+     "title": "Horror Hit Soundpack 1",
+     "author": "psychhead_",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/horror-hit-soundpack-1"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_stinger_suona_crack",
+   "category": "sfx",
+   "file": "sfx/sfx_stinger_suona_crack.ogg",
+   "fallback": "sfx/sfx_stinger_suona_crack.mp3",
+   "purpose": "惊吓 stinger：闷锣 + 唢呐破音 + 低频重击（原 README 的 jumpscare 设想）",
+   "tags": [
+    "惊吓"
+   ],
+   "loop": false,
+   "duration": 4.25,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.0,
+    "momentary_max": -12.5,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -4.72,
+    "mp3": -4.74
+   },
+   "size_bytes": {
+    "ogg": 58294,
+    "mp3": 49340
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0",
+    "CC0 1.0"
+   ],
+   "author": [
+    "Wu, Tsan-Cheng 吳燦政",
+    "psychhead_",
+    "the_very_Real_Horst"
+   ],
+   "source": [
+    {
+     "title": "Beitou, Taipei - Funeral (radio aporee)",
+     "author": "Wu, Tsan-Cheng 吳燦政",
+     "license": "CC BY 3.0",
+     "source": "https://archive.org/details/aporee_17272_20111"
+    },
+    {
+     "title": "240382 the-very-real-horst chinese-gong-finish-session-2014-06-10-29-143.wav",
+     "author": "the_very_Real_Horst",
+     "license": "CC0 1.0",
+     "source": "https://commons.wikimedia.org/wiki/File:240382_the-very-real-horst_chinese-gong-finish-session-2014-06-10-29-143.wav"
+    },
+    {
+     "title": "Horror Hit Soundpack 1",
+     "author": "psychhead_",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/horror-hit-soundpack-1"
+    }
+   ],
+   "note": "唢呐来自葬仪实录片段"
+  },
+  {
+   "id": "sfx_slam",
+   "category": "sfx",
+   "file": "sfx/sfx_slam.ogg",
+   "fallback": "sfx/sfx_slam.mp3",
+   "purpose": "突然重击：门板/棺盖猛地砸下",
+   "tags": [
+    "惊吓"
+   ],
+   "loop": false,
+   "duration": 0.868,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -19.5,
+    "momentary_max": -17.1,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -1.39,
+    "mp3": -1.42
+   },
+   "size_bytes": {
+    "ogg": 16179,
+    "mp3": 13508
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0",
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)",
+    "bart"
+   ],
+   "source": [
+    {
+     "title": "25 spooky sound effects",
+     "author": "bart",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/25-spooky-sound-effects"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactWood_heavy_004.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_slam_room",
+   "category": "sfx",
+   "file": "sfx/sfx_slam_room.ogg",
+   "fallback": "sfx/sfx_slam_room.mp3",
+   "purpose": "突然重击：门板/棺盖猛地砸下（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "惊吓"
+   ],
+   "loop": false,
+   "duration": 2.678,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -19.7,
+    "momentary_max": -16.2,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -2.15,
+    "mp3": -1.78
+   },
+   "size_bytes": {
+    "ogg": 31775,
+    "mp3": 32492
+   },
+   "variant_of": "sfx_slam",
+   "reverb": "ir_oldhouse",
+   "license": [
+    "CC BY 3.0",
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)",
+    "bart"
+   ],
+   "source": [
+    {
+     "title": "25 spooky sound effects",
+     "author": "bart",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/25-spooky-sound-effects"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactWood_heavy_004.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_scream",
+   "category": "sfx",
+   "file": "sfx/sfx_scream.ogg",
+   "fallback": "sfx/sfx_scream.mp3",
+   "purpose": "尖叫：一声凄厉尖叫（替换代码合成的 playScream）",
+   "tags": [
+    "惊吓"
+   ],
+   "loop": false,
+   "duration": 4.13,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.2,
+    "momentary_max": -13.8,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -8.05,
+    "mp3": -7.41
+   },
+   "size_bytes": {
+    "ogg": 57552,
+    "mp3": 65252
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "bart"
+   ],
+   "source": [
+    {
+     "title": "25 spooky sound effects",
+     "author": "bart",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/25-spooky-sound-effects"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_scream_room",
+   "category": "sfx",
+   "file": "sfx/sfx_scream_room.ogg",
+   "fallback": "sfx/sfx_scream_room.mp3",
+   "purpose": "尖叫：一声凄厉尖叫（替换代码合成的 playScream）（老宅/灵堂混响版，用于室内事件）",
+   "tags": [
+    "惊吓"
+   ],
+   "loop": false,
+   "duration": 6.742,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.1,
+    "momentary_max": -13.8,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -7.43,
+    "mp3": -7.34
+   },
+   "size_bytes": {
+    "ogg": 91510,
+    "mp3": 105668
+   },
+   "variant_of": "sfx_scream",
+   "reverb": "ir_hall",
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "bart"
+   ],
+   "source": [
+    {
+     "title": "25 spooky sound effects",
+     "author": "bart",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/25-spooky-sound-effects"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "ui_paper_flip",
+   "category": "sfx",
+   "file": "sfx/ui_paper_flip.ogg",
+   "fallback": "sfx/ui_paper_flip.mp3",
+   "purpose": "界面·翻纸：翻页/切换对话",
+   "tags": [
+    "界面"
+   ],
+   "loop": false,
+   "duration": 0.572,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.7,
+    "momentary_max": -16.6,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -1.89,
+    "mp3": -1.42
+   },
+   "size_bytes": {
+    "ogg": 14502,
+    "mp3": 12140
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "StarNinjas"
+   ],
+   "source": [
+    {
+     "title": "10 Book Page Flips",
+     "author": "StarNinjas",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/10-book-page-flips"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "ui_incense_light",
+   "category": "sfx",
+   "file": "sfx/ui_incense_light.ogg",
+   "fallback": "sfx/ui_incense_light.mp3",
+   "purpose": "界面·点香：火柴一擦 + 香头点着的轻嘶（开始游戏/读档）",
+   "tags": [
+    "界面"
+   ],
+   "loop": false,
+   "duration": 0.548,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -17.1,
+    "momentary_max": -16.3,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -2.63,
+    "mp3": -2.5
+   },
+   "size_bytes": {
+    "ogg": 12716,
+    "mp3": 10988
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "AntumDeluge",
+    "themightyglider"
+   ],
+   "source": [
+    {
+     "title": "Scrapes",
+     "author": "AntumDeluge",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/scrapes"
+    },
+    {
+     "title": "Catching fire",
+     "author": "themightyglider",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/catching-fire"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "ui_paper_press",
+   "category": "sfx",
+   "file": "sfx/ui_paper_press.ogg",
+   "fallback": "sfx/ui_paper_press.mp3",
+   "purpose": "界面·按下黄纸：手指按在黄纸上（按住交互的开始）",
+   "tags": [
+    "界面"
+   ],
+   "loop": false,
+   "duration": 0.297,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -17.3,
+    "momentary_max": -17.3,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -1.32,
+    "mp3": -1.5
+   },
+   "size_bytes": {
+    "ogg": 8769,
+    "mp3": 5564
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)",
+    "Luckius"
+   ],
+   "source": [
+    {
+     "title": "Various Paper Sound Effects",
+     "author": "Luckius",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/various-paper-sound-effects"
+    },
+    {
+     "title": "Kenney Impact Sounds / impactSoft_medium_001.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "ui_confirm",
+   "category": "sfx",
+   "file": "sfx/ui_confirm.ogg",
+   "fallback": "sfx/ui_confirm.mp3",
+   "purpose": "界面·选项确认：轻轻一下木鱼般的确认",
+   "tags": [
+    "界面"
+   ],
+   "loop": false,
+   "duration": 0.255,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -23.1,
+    "momentary_max": -23.1,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -1.69,
+    "mp3": -1.54
+   },
+   "size_bytes": {
+    "ogg": 6276,
+    "mp3": 2156
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)"
+   ],
+   "source": [
+    {
+     "title": "Kenney Impact Sounds / impactWood_light_001.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "ui_save",
+   "category": "sfx",
+   "file": "sfx/ui_save.ogg",
+   "fallback": "sfx/ui_save.mp3",
+   "purpose": "界面·存档：毛笔落款一笔 + 远远一声小铃",
+   "tags": [
+    "界面"
+   ],
+   "loop": false,
+   "duration": 2.102,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -18.3,
+    "momentary_max": -16.0,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -7.49,
+    "mp3": -7.24
+   },
+   "size_bytes": {
+    "ogg": 37038,
+    "mp3": 36740
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0",
+    "Public Domain"
+   ],
+   "author": [
+    "stephan",
+    "the_very_Real_Horst"
+   ],
+   "source": [
+    {
+     "title": "Writing with feltpen.ogg",
+     "author": "stephan",
+     "license": "Public Domain",
+     "source": "https://commons.wikimedia.org/wiki/File:Writing_with_feltpen.ogg"
+    },
+    {
+     "title": "274316 the-very-real-horst ghanta-leather-mallet-2015-05-16.wav",
+     "author": "the_very_Real_Horst",
+     "license": "CC0 1.0",
+     "source": "https://commons.wikimedia.org/wiki/File:274316_the-very-real-horst_ghanta-leather-mallet-2015-05-16.wav"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "ui_error",
+   "category": "sfx",
+   "file": "sfx/ui_error.ogg",
+   "fallback": "sfx/ui_error.mp3",
+   "purpose": "界面·错误：一记沉闷的木敲 + 低闷锣（不对/不可）",
+   "tags": [
+    "界面"
+   ],
+   "loop": false,
+   "duration": 0.912,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -18.6,
+    "momentary_max": -16.3,
+    "basis": "momentary_max"
+   },
+   "peak_dbfs": {
+    "ogg": -1.47,
+    "mp3": -1.5
+   },
+   "size_bytes": {
+    "ogg": 9883,
+    "mp3": 7028
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "Kenney (kenney.nl)",
+    "the_very_Real_Horst"
+   ],
+   "source": [
+    {
+     "title": "Kenney Impact Sounds / impactWood_heavy_001.ogg",
+     "author": "Kenney (kenney.nl)",
+     "license": "CC0 1.0",
+     "source": "https://kenney.nl/assets/impact-sounds"
+    },
+    {
+     "title": "240382 the-very-real-horst chinese-gong-finish-session-2014-06-10-29-143.wav",
+     "author": "the_very_Real_Horst",
+     "license": "CC0 1.0",
+     "source": "https://commons.wikimedia.org/wiki/File:240382_the-very-real-horst_chinese-gong-finish-session-2014-06-10-29-143.wav"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "ui_reveal",
+   "category": "sfx",
+   "file": "sfx/ui_reveal.ogg",
+   "fallback": "sfx/ui_reveal.mp3",
+   "purpose": "界面·提示揭开：纸片滑开 + 磬声轻鸣（线索/提示出现）",
+   "tags": [
+    "界面"
+   ],
+   "loop": false,
+   "duration": 3.217,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -17.1,
+    "momentary_max": -14.8,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.7,
+    "mp3": -1.39
+   },
+   "size_bytes": {
+    "ogg": 48706,
+    "mp3": 57596
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0",
+    "Public Domain"
+   ],
+   "author": [
+    "Luckius",
+    "stephan"
+   ],
+   "source": [
+    {
+     "title": "Various Paper Sound Effects",
+     "author": "Luckius",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/various-paper-sound-effects"
+    },
+    {
+     "title": "Striking a bell 15cm large.ogg",
+     "author": "stephan",
+     "license": "Public Domain",
+     "source": "https://commons.wikimedia.org/wiki/File:Striking_a_bell_15cm_large.ogg"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_heartbeat_slow",
+   "category": "sfx",
+   "file": "sfx/sfx_heartbeat_slow.ogg",
+   "fallback": "sfx/sfx_heartbeat_slow.mp3",
+   "purpose": "心跳·慢（约 67 bpm）可循环：紧张前的平静/潜伏",
+   "tags": [
+    "生理"
+   ],
+   "loop": true,
+   "duration": 7.2,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.5,
+    "momentary_max": -14.2,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.43,
+    "mp3": -1.5
+   },
+   "size_bytes": {
+    "ogg": 24398,
+    "mp3": 32972
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "bart"
+   ],
+   "source": [
+    {
+     "title": "Heartbeat sounds",
+     "author": "bart",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/heartbeat-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_heartbeat_fast",
+   "category": "sfx",
+   "file": "sfx/sfx_heartbeat_fast.ogg",
+   "fallback": "sfx/sfx_heartbeat_fast.mp3",
+   "purpose": "心跳·快（约 106 bpm）可循环：被盯上/追逐",
+   "tags": [
+    "生理"
+   ],
+   "loop": true,
+   "duration": 6.75,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.2,
+    "momentary_max": -14.7,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.36,
+    "mp3": -1.49
+   },
+   "size_bytes": {
+    "ogg": 31460,
+    "mp3": 32420
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "bart"
+   ],
+   "source": [
+    {
+     "title": "Heartbeat sounds",
+     "author": "bart",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/heartbeat-sounds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_breath_slow",
+   "category": "sfx",
+   "file": "sfx/sfx_breath_slow.ogg",
+   "fallback": "sfx/sfx_breath_slow.mp3",
+   "purpose": "呼吸·压抑：屏住又放开的沉重呼吸，可循环",
+   "tags": [
+    "生理"
+   ],
+   "loop": true,
+   "duration": 5.654,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.0,
+    "momentary_max": -12.9,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -2.03,
+    "mp3": -2.03
+   },
+   "size_bytes": {
+    "ogg": 100614,
+    "mp3": 112508
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC0 1.0"
+   ],
+   "author": [
+    "primbal"
+   ],
+   "source": [
+    {
+     "title": "horror breathing",
+     "author": "primbal",
+     "license": "CC0 1.0",
+     "source": "https://opengameart.org/content/horror-breathing"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_breath_panic",
+   "category": "sfx",
+   "file": "sfx/sfx_breath_panic.ogg",
+   "fallback": "sfx/sfx_breath_panic.mp3",
+   "purpose": "呼吸·惊恐急促：连续的受惊喘息，可循环",
+   "tags": [
+    "生理"
+   ],
+   "loop": true,
+   "duration": 10.072,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.3,
+    "momentary_max": -10.2,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.89,
+    "mp3": -1.96
+   },
+   "size_bytes": {
+    "ogg": 128428,
+    "mp3": 128444
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "Little Robot Sound Factory"
+   ],
+   "source": [
+    {
+     "title": "Horror Sound Effects Library",
+     "author": "Little Robot Sound Factory",
+     "license": "CC BY 3.0",
+     "source": "https://opengameart.org/content/horror-sound-effects-library"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "sfx_tinnitus",
+   "category": "sfx",
+   "file": "sfx/sfx_tinnitus.ogg",
+   "fallback": "sfx/sfx_tinnitus.mp3",
+   "purpose": "耳鸣（高频）：铜磬余韵里取出单个分音，频移到约 6.5 kHz 的尖细鸣响（替换代码合成的 playTinnitus）",
+   "tags": [
+    "生理"
+   ],
+   "loop": false,
+   "duration": 6.0,
+   "loudness_target_lufs": -16.0,
+   "loudness_measured": {
+    "integrated": -16.0,
+    "momentary_max": -14.2,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -11.8,
+    "mp3": -11.83
+   },
+   "size_bytes": {
+    "ogg": 39424,
+    "mp3": 65588
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "Public Domain"
+   ],
+   "author": [
+    "stephan"
+   ],
+   "source": [
+    {
+     "title": "Striking a bell 15cm large.ogg",
+     "author": "stephan",
+     "license": "Public Domain",
+     "source": "https://commons.wikimedia.org/wiki/File:Striking_a_bell_15cm_large.ogg"
+    }
+   ],
+   "note": "由真实铜磬录音窄带提取+单边带频移得到，保留了原录音的自然起伏与拍频，非振荡器"
+  },
+  {
+   "id": "bgm_ambient_loop",
+   "category": "music",
+   "file": "music/bgm_ambient_loop.ogg",
+   "fallback": "music/bgm_ambient_loop.mp3",
+   "purpose": "现有·全程氛围铺底《Beneath the Frozen Rafters》（保留，重编码）",
+   "tags": [
+    "配乐",
+    "现有"
+   ],
+   "loop": true,
+   "duration": 176.771,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -18.0,
+    "momentary_max": -15.0,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -5.21,
+    "mp3": -5.8
+   },
+   "size_bytes": {
+    "ogg": 2247060,
+    "mp3": 2829356
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "未记录（需作者确认）"
+   ],
+   "author": [
+    "未记录（需作者确认来源与授权）"
+   ],
+   "source": [
+    {
+     "title": "bgm_ambient_loop.mp3",
+     "author": "未记录（需作者确认来源与授权）",
+     "license": "未记录（需作者确认）",
+     "source": "vue-frontend/audio/"
+    }
+   ],
+   "note": "只读复制自 vue-frontend/audio，未改原文件"
+  },
+  {
+   "id": "bgm_suona_climax",
+   "category": "music",
+   "file": "music/bgm_suona_climax.ogg",
+   "fallback": "music/bgm_suona_climax.mp3",
+   "purpose": "现有·唢呐送葬悲调《Funeral at the Mountain Gate》（保留，重编码）",
+   "tags": [
+    "配乐",
+    "现有"
+   ],
+   "loop": true,
+   "duration": 172.722,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -18.0,
+    "momentary_max": -14.1,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -5.43,
+    "mp3": -5.58
+   },
+   "size_bytes": {
+    "ogg": 2474702,
+    "mp3": 2764460
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "未记录（需作者确认）"
+   ],
+   "author": [
+    "未记录（需作者确认来源与授权）"
+   ],
+   "source": [
+    {
+     "title": "bgm_suona_climax.mp3",
+     "author": "未记录（需作者确认来源与授权）",
+     "license": "未记录（需作者确认）",
+     "source": "vue-frontend/audio/"
+    }
+   ],
+   "note": "只读复制自 vue-frontend/audio，未改原文件"
+  },
+  {
+   "id": "bgm_ending_relief",
+   "category": "music",
+   "file": "music/bgm_ending_relief.ogg",
+   "fallback": "music/bgm_ending_relief.mp3",
+   "purpose": "现有·结局释怀《Breath of the Valley》（保留，重编码）",
+   "tags": [
+    "配乐",
+    "现有"
+   ],
+   "loop": true,
+   "duration": 176.823,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -18.0,
+    "momentary_max": -11.0,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -6.41,
+    "mp3": -6.97
+   },
+   "size_bytes": {
+    "ogg": 2665864,
+    "mp3": 2830124
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "未记录（需作者确认）"
+   ],
+   "author": [
+    "未记录（需作者确认来源与授权）"
+   ],
+   "source": [
+    {
+     "title": "bgm_ending_relief.mp3",
+     "author": "未记录（需作者确认来源与授权）",
+     "license": "未记录（需作者确认）",
+     "source": "vue-frontend/audio/"
+    }
+   ],
+   "note": "只读复制自 vue-frontend/audio，未改原文件"
+  },
+  {
+   "id": "mus_drone_long_note",
+   "category": "music",
+   "file": "music/mus_drone_long_note.ogg",
+   "fallback": "music/mus_drone_long_note.mp3",
+   "purpose": "低频 drone：长音铺底，几乎无旋律，适合探索/解谜时压在最底层",
+   "tags": [
+    "配乐"
+   ],
+   "loop": true,
+   "duration": 188.052,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -22.0,
+    "momentary_max": -7.9,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.1,
+    "mp3": -1.87
+   },
+   "size_bytes": {
+    "ogg": 2202237,
+    "mp3": 3009836
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "Kevin MacLeod"
+   ],
+   "source": [
+    {
+     "title": "Long Note Three (ISRC USUAN1100424).mp3",
+     "author": "Kevin MacLeod",
+     "license": "CC BY 3.0",
+     "source": "https://commons.wikimedia.org/wiki/File:Long_Note_Three_(ISRC_USUAN1100424).mp3"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "mus_ossuary_air",
+   "category": "music",
+   "file": "music/mus_ossuary_air.ogg",
+   "fallback": "music/mus_ossuary_air.mp3",
+   "purpose": "阴森氛围曲：空灵、冷，适合地窖/井边/祠堂",
+   "tags": [
+    "配乐"
+   ],
+   "loop": true,
+   "duration": 196.0,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -18.0,
+    "momentary_max": -10.0,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.97,
+    "mp3": -2.35
+   },
+   "size_bytes": {
+    "ogg": 2577449,
+    "mp3": 3136940
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "Kevin MacLeod"
+   ],
+   "source": [
+    {
+     "title": "Ossuary 6 - Air (ISRC USUAN1500048).mp3",
+     "author": "Kevin MacLeod",
+     "license": "CC BY 3.0",
+     "source": "https://commons.wikimedia.org/wiki/File:Ossuary_6_-_Air_(ISRC_USUAN1500048).mp3"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "mus_cattails_east",
+   "category": "music",
+   "file": "music/mus_cattails_east.ogg",
+   "fallback": "music/mus_cattails_east.mp3",
+   "purpose": "东方色彩慢曲：带民乐音色的低回旋律，可作回忆/母亲线",
+   "tags": [
+    "配乐"
+   ],
+   "loop": true,
+   "duration": 155.033,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -18.0,
+    "momentary_max": -13.8,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -5.86,
+    "mp3": -6.14
+   },
+   "size_bytes": {
+    "ogg": 2570412,
+    "mp3": 2481452
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "Kevin MacLeod"
+   ],
+   "source": [
+    {
+     "title": "Cattails (ISRC USUAN1100743).mp3",
+     "author": "Kevin MacLeod",
+     "license": "CC BY 3.0",
+     "source": "https://commons.wikimedia.org/wiki/File:Cattails_(ISRC_USUAN1100743).mp3"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "mus_erhu_solo",
+   "category": "music",
+   "file": "music/mus_erhu_solo.ogg",
+   "fallback": "music/mus_erhu_solo.mp3",
+   "purpose": "二胡独奏感曲目（Antti Luode）：哀婉，可作结局或纸脸喜娘段",
+   "tags": [
+    "配乐"
+   ],
+   "loop": true,
+   "duration": 169.584,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -18.1,
+    "momentary_max": -14.2,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.81,
+    "mp3": -2.23
+   },
+   "size_bytes": {
+    "ogg": 2528925,
+    "mp3": 2714156
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "Antti Luode"
+   ],
+   "source": [
+    {
+     "title": "Erhu or Cease to be (Antti Luode).mp3",
+     "author": "Antti Luode",
+     "license": "CC BY 3.0",
+     "source": "https://commons.wikimedia.org/wiki/File:Erhu_or_Cease_to_be_(Antti_Luode).mp3"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "mus_darkness_speaks",
+   "category": "music",
+   "file": "music/mus_darkness_speaks.ogg",
+   "fallback": "music/mus_darkness_speaks.mp3",
+   "purpose": "短暗场乐句：一段很短的阴暗乐句，可作章节标题/死亡结局卡",
+   "tags": [
+    "配乐"
+   ],
+   "loop": false,
+   "duration": 25.078,
+   "loudness_target_lufs": -18.0,
+   "loudness_measured": {
+    "integrated": -18.4,
+    "momentary_max": -10.9,
+    "basis": "integrated"
+   },
+   "peak_dbfs": {
+    "ogg": -1.13,
+    "mp3": -1.76
+   },
+   "size_bytes": {
+    "ogg": 291725,
+    "mp3": 402092
+   },
+   "variant_of": null,
+   "reverb": null,
+   "license": [
+    "CC BY 3.0"
+   ],
+   "author": [
+    "Kevin MacLeod"
+   ],
+   "source": [
+    {
+     "title": "Darkness Speaks (ISRC USUAN1100364).mp3",
+     "author": "Kevin MacLeod",
+     "license": "CC BY 3.0",
+     "source": "https://commons.wikimedia.org/wiki/File:Darkness_Speaks_(ISRC_USUAN1100364).mp3"
+    }
+   ],
+   "note": ""
+  }
+ ]
+}
