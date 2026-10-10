@@ -1,9 +1,9 @@
 // 存档 / 读档 / 设置持久化 子系统 (从 app.js 抽出的方法 mixin)。
 // 相关状态 (saveSlots/playerStats/settings 等) 仍在主组件 data(); Vue 合并后 this 指向同一实例。
-import { gameRuntime } from './rpg/runtimeInstance.js?v=20260601-hotfix21';
-import { KEYS, readJSON, writeJSON } from './storage.js?v=20260601-hotfix21';
-import { initAudio, resumeAudio } from './audio.js?v=20260601-hotfix21';
-import * as audioExt from './audio.js?v=20260601-hotfix21';
+import { gameRuntime } from './rpg/runtimeInstance.js?v=20261010-cf';
+import { KEYS, readJSON, writeJSON } from './storage.js?v=20261010-cf';
+import { initAudio, resumeAudio } from './audio.js?v=20261010-cf';
+import * as audioExt from './audio.js?v=20261010-cf';
 
 export const persistenceMixin = {
     methods: {

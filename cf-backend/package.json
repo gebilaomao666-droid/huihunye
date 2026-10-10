@@ -1,0 +1,9 @@
+{
+  "name": "weikongbu-api",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "wrangler dev --port 8080",
+    "deploy": "wrangler deploy"
+  }
+}

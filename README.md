@@ -24,7 +24,8 @@
 │   └── tools/           build_nodes.mjs：剧情 Markdown → nodes.js
 ├── docs/剧情定稿/       剧情正文（按章分文件，FORMAT.md 是写法说明）
 ├── audio_v2/            音频源文件与授权说明
-├── java-backend/        可选后端（遗言板、成就统计），不接后端也能完整游玩
+├── cf-backend/          线上后端（Cloudflare Workers + D1，免费托管）
+├── java-backend/        自建服务器用的后端（Spring Boot），接口与 cf-backend 相同
 ├── scripts/             校验与部署脚本
 └── deploy/              服务器部署配置
 ```
@@ -55,7 +56,11 @@ node tools/build_nodes.mjs --check  # 只校验不写
 
 ## 后端（可选）
 
-`java-backend/` 是 Spring Boot 3 服务，提供遗言板、死亡和结局统计。前端在拿不到后端时会自动降级为本地存储，不影响游玩。
+后端提供遗言板、死亡和结局统计、成就同步。前端在拿不到后端时会自动降级为本地存储，不影响游玩。
+
+线上用的是 `cf-backend/`（Cloudflare Workers + D1，免费），部署步骤见该目录的 README。前端请求的后端地址写在 `vue-frontend/js/api.js` 的 `REMOTE_API`。
+
+`java-backend/` 是同一套接口的 Spring Boot 3 实现，适合自己有服务器的情况：
 
 ```bash
 cd java-backend

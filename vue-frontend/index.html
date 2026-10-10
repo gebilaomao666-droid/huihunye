@@ -6,25 +6,25 @@
     <title>回魂夜 · 纸人招魂</title>
     <!-- 性能: 无构建时浏览器要逐层解析 import 才知道子模块, 这里一次性预声明全部模块, 避免三层瀑布
          (href 必须与 import 语句里的 ?v= 完全一致, 改版本号时一起改) -->
-    <link rel="modulepreload" href="js/app.js?v=20261009-nocredits">
-    <link rel="modulepreload" href="js/api.js?v=20260601-hotfix21">
-    <link rel="modulepreload" href="js/audio.js?v=20260601-hotfix21">
-    <link rel="modulepreload" href="js/nodes.js?v=20260601-hotfix21">
-    <link rel="modulepreload" href="js/i18n.js?v=20260601-hotfix21">
-    <link rel="modulepreload" href="js/storage.js?v=20260601-hotfix21">
-    <link rel="modulepreload" href="js/sceneMixin.js?v=20260601-hotfix21">
-    <link rel="modulepreload" href="js/uiMixin.js?v=20260601-hotfix21">
-    <link rel="modulepreload" href="js/smsMixin.js?v=20260601-hotfix21">
-    <link rel="modulepreload" href="js/persistenceMixin.js?v=20260601-hotfix21">
-    <link rel="modulepreload" href="js/rpg/runtimeInstance.js?v=20260601-hotfix21">
-    <link rel="modulepreload" href="js/rpg/runtime.js?v=20260601-hotfix21">
-    <link rel="modulepreload" href="js/rpg/sceneEngine.js?v=20260601-hotfix21">
-    <link rel="modulepreload" href="js/rpg/assets.js?v=20260601-hotfix21">
+    <link rel="modulepreload" href="js/app.js?v=20261010-cf">
+    <link rel="modulepreload" href="js/api.js?v=20261010-cf">
+    <link rel="modulepreload" href="js/audio.js?v=20261010-cf">
+    <link rel="modulepreload" href="js/nodes.js?v=20261010-cf">
+    <link rel="modulepreload" href="js/i18n.js?v=20261010-cf">
+    <link rel="modulepreload" href="js/storage.js?v=20261010-cf">
+    <link rel="modulepreload" href="js/sceneMixin.js?v=20261010-cf">
+    <link rel="modulepreload" href="js/uiMixin.js?v=20261010-cf">
+    <link rel="modulepreload" href="js/smsMixin.js?v=20261010-cf">
+    <link rel="modulepreload" href="js/persistenceMixin.js?v=20261010-cf">
+    <link rel="modulepreload" href="js/rpg/runtimeInstance.js?v=20261010-cf">
+    <link rel="modulepreload" href="js/rpg/runtime.js?v=20261010-cf">
+    <link rel="modulepreload" href="js/rpg/sceneEngine.js?v=20261010-cf">
+    <link rel="modulepreload" href="js/rpg/assets.js?v=20261010-cf">
     <!-- 首屏实物素材先发起下载(标题字/名牌/令牌/字体), 不等 CSS 解析 -->
     <link rel="preload" href="img/ui2/title.webp" as="image">
     <link rel="preload" href="fonts/ui3/msz.woff2" as="font" type="font/woff2" crossorigin>
     <!-- 全站界面: 暗红漆木 + 旧铜金 + 米黄楷书(规范见 css/hhy.css 文件头) -->
-    <link rel="stylesheet" href="css/hhy.css?v=20261009-nocredits">
+    <link rel="stylesheet" href="css/hhy.css?v=20261010-cf">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="img/icon-192.png">
     <link rel="apple-touch-icon" href="img/icon-192.png">
@@ -778,7 +778,7 @@ window.onerror = function(msg, url, line, col, err) {
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=20261009-nocredits"></script>
+    <script type="module" src="js/app.js?v=20261010-cf"></script>
     <script>
         // 开发期禁用旧 Service Worker，避免微信/安卓内核继续使用陈旧 UI 缓存。
         if ('serviceWorker' in navigator) {

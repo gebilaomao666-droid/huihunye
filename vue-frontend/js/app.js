@@ -1,17 +1,17 @@
-import { apiPost, apiGet, isApiOffline } from './api.js?v=20260601-hotfix21';
-import { initAudio, resumeAudio, playTone, playHeartbeat, playScream, playKnock, playWhisper, playTinnitus, startBgm, stopBgm, playSuonaPhrase, playJumpscareSfx, setSfxEnabled } from './audio.js?v=20260601-hotfix21';
+import { apiPost, apiGet, isApiOffline } from './api.js?v=20261010-cf';
+import { initAudio, resumeAudio, playTone, playHeartbeat, playScream, playKnock, playWhisper, playTinnitus, startBgm, stopBgm, playSuonaPhrase, playJumpscareSfx, setSfxEnabled } from './audio.js?v=20261010-cf';
 // v2 音频新增接口用命名空间按需调用(浏览器若还缓存着旧 audio.js 也不会因缺导出而整页报错)
-import * as audioExt from './audio.js?v=20260601-hotfix21';
-import { NODES, ITEMS, HINT_SYSTEM, BPM_MAP, SFX_MAP, MESSAGES } from './nodes.js?v=20260601-hotfix21';
-import { t, setLang, getLang } from './i18n.js?v=20260601-hotfix21';
-import { gameRuntime } from './rpg/runtimeInstance.js?v=20260601-hotfix21';
-import { getVisibleHotspots, resolveHotspot } from './rpg/sceneEngine.js?v=20260601-hotfix21';
-import { CHAPTER_BACKGROUNDS, objectiveForNode, sceneNameForChapter, speakerForCharacter } from './rpg/assets.js?v=20260601-hotfix21';
-import { KEYS, readJSON, writeJSON, readRaw, writeRaw, remove as removeKey } from './storage.js?v=20260601-hotfix21';
-import { sceneMixin } from './sceneMixin.js?v=20260601-hotfix21';
-import { uiMixin } from './uiMixin.js?v=20260601-hotfix21';
-import { smsMixin } from './smsMixin.js?v=20260601-hotfix21';
-import { persistenceMixin } from './persistenceMixin.js?v=20260601-hotfix21';
+import * as audioExt from './audio.js?v=20261010-cf';
+import { NODES, ITEMS, HINT_SYSTEM, BPM_MAP, SFX_MAP, MESSAGES } from './nodes.js?v=20261010-cf';
+import { t, setLang, getLang } from './i18n.js?v=20261010-cf';
+import { gameRuntime } from './rpg/runtimeInstance.js?v=20261010-cf';
+import { getVisibleHotspots, resolveHotspot } from './rpg/sceneEngine.js?v=20261010-cf';
+import { CHAPTER_BACKGROUNDS, objectiveForNode, sceneNameForChapter, speakerForCharacter } from './rpg/assets.js?v=20261010-cf';
+import { KEYS, readJSON, writeJSON, readRaw, writeRaw, remove as removeKey } from './storage.js?v=20261010-cf';
+import { sceneMixin } from './sceneMixin.js?v=20261010-cf';
+import { uiMixin } from './uiMixin.js?v=20261010-cf';
+import { smsMixin } from './smsMixin.js?v=20261010-cf';
+import { persistenceMixin } from './persistenceMixin.js?v=20261010-cf';
 
 const { createApp } = Vue;
 

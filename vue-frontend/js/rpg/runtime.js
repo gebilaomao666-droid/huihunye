@@ -1,4 +1,4 @@
-import { KEYS, readRaw, writeRaw } from '../storage.js?v=20260601-hotfix21';
+import { KEYS, readRaw, writeRaw } from '../storage.js?v=20261010-cf';
 
 const PLAYER_ID_KEY = KEYS.playerId;
 

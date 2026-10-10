@@ -67,3 +67,6 @@ docs/剧情原稿/
 docs/剧情定稿/深改说明_*.md
 # 本地脚本日志
 *.log
+
+# Cloudflare 本地状态
+.wrangler/

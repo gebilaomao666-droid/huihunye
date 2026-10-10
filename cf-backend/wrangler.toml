@@ -1,0 +1,13 @@
+name = "weikongbu-api"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+workers_dev = true
+
+[vars]
+# 允许跨域的前端地址，逗号分隔（localhost 始终放行）
+ALLOWED_ORIGINS = "https://gebilaomao666-droid.github.io"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "weikongbu"
+database_id = "295058c5-e342-4397-90fb-b6d0c8f23b27"

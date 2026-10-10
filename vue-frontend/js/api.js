@@ -4,9 +4,11 @@
 // - 网络错误/超时/非 JSON/404: 判定后端不可用, 本次会话进入离线模式, 之后的请求直接返回 null
 // - 5xx 只重试 1 次; 连续 2 次失败也进入离线模式
 // - 只打一次 console.warn, 不再刷屏 console.error
-const API_BASE = window.location.origin.includes('localhost')
+// 线上后端地址(Cloudflare Worker); 留空则请求当前站点同源的 /api
+const REMOTE_API = 'https://weikongbu-api.gebilaomao666.workers.dev';
+const API_BASE = /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname)
     ? 'http://localhost:8080'
-    : (window.location.origin + '');
+    : (REMOTE_API || window.location.origin);
 
 const TIMEOUT_MS = 2500;
 const FAIL_LIMIT = 2;
