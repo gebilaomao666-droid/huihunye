@@ -583,8 +583,9 @@ body.final-flash #rpg-2d-stage::after { animation: final-flash .9s ease-out 1; }
 /* ================= 场景图 / 开场过渡 / 加载 ================= */
 #scene-image { position: fixed; inset: 0; z-index: 780; background: #000; cursor: pointer; animation: fade-in .5s; }
 #scene-image .scene-overlay { position: absolute; inset: 0; }
-#scene-image .scene-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.86) contrast(1.06); animation: scene-appear 1.4s ease-out; }
-#scene-image .scene-vignette { position: absolute; inset: 0; background: radial-gradient(circle, transparent 44%, rgba(0, 0, 0, .78) 100%); }
+#scene-image .scene-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: scene-appear 1.4s ease-out; }
+/* 压暗交给这一层(不给 img 加 filter: 真机上 filter + 入场动画会把图渲染成纯黑) */
+#scene-image .scene-vignette { position: absolute; inset: 0; background: radial-gradient(circle, rgba(0, 0, 0, .14) 44%, rgba(0, 0, 0, .8) 100%); }
 #scene-image .scene-hint, .scene-intro-hint {
     position: absolute; left: 50%; bottom: calc(max(20px, var(--sab)) + 3dvh); transform: translateX(-50%);
     font: normal 16px/1.5 var(--kai); letter-spacing: .3em; padding-left: .3em; color: var(--cream);
@@ -1232,7 +1233,7 @@ button.tag.unlocked:hover { filter: drop-shadow(0 0 8px rgba(200, 50, 30, .8)) b
 @keyframes char-ghost-breathe { 0%, 100% { opacity: .85; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-5px); } }
 @keyframes char-flicker { 0% { opacity: 1; } 100% { opacity: .82; } }
 @keyframes danmu-fly { from { transform: translateX(0); } to { transform: translateX(calc(-100vw - 100%)); } }
-@keyframes scene-appear { from { opacity: 0; transform: scale(1.04); filter: brightness(.2); } to { opacity: 1; transform: none; } }
+@keyframes scene-appear { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: none; } }
 @keyframes cg-zoom { 0% { transform: scale(1.1); filter: brightness(.3) contrast(1.3); } 30% { transform: scale(1.05); filter: brightness(.6) contrast(1.2); } 100% { transform: scale(1); filter: brightness(.4) contrast(1.1); } }
 @keyframes cg-text-reveal { 0% { opacity: 0; transform: translateY(20px); filter: blur(4px); } 100% { opacity: 1; transform: none; filter: blur(0); } }
 @keyframes cam-flicker { 0% { background: #000; } 100% { background: #0a0a0a; } }
@@ -1409,45 +1410,47 @@ button.tag.unlocked:hover { filter: drop-shadow(0 0 8px rgba(200, 50, 30, .8)) b
 .tkt-b { --img: url("../img/ui2/tokt_b.webp"); --ar-tokt: .673; }
 
 /* ---------------- 场景特效: 日光灯管闪烁(节点 fx: flicker, 目前末班车三节点) ---------------- */
-/* 不规则明暗：大部分时间稳定，偶尔抖两下，偶尔几乎灭掉再亮 */
-@keyframes lamp-flicker {
-    0%, 100% { filter: brightness(1) contrast(1.04); }
-    4% { filter: brightness(1) contrast(1.04); }
-    4.5% { filter: brightness(.62) contrast(1.1); }
-    5.2% { filter: brightness(1.05) contrast(1.04); }
-    5.8% { filter: brightness(.75) contrast(1.08); }
-    6.5% { filter: brightness(1) contrast(1.04); }
-    14% { filter: brightness(1) contrast(1.04); }
-    14.4% { filter: brightness(.8) contrast(1.06); }
-    14.9% { filter: brightness(1) contrast(1.04); }
-    24% { filter: brightness(1) contrast(1.04); }
-    24.4% { filter: brightness(.3) contrast(1.16); }
-    25.2% { filter: brightness(.95) contrast(1.04); }
-    25.8% { filter: brightness(.4) contrast(1.14); }
-    26.6% { filter: brightness(1.06) contrast(1.04); }
-    27.4% { filter: brightness(.7) contrast(1.08); }
-    28% { filter: brightness(1) contrast(1.04); }
-    40% { filter: brightness(1) contrast(1.04); }
-    40.5% { filter: brightness(.85) contrast(1.05); }
-    41% { filter: brightness(1) contrast(1.04); }
-    41.5% { filter: brightness(.78) contrast(1.06); }
-    42% { filter: brightness(1) contrast(1.04); }
-    55% { filter: brightness(1) contrast(1.04); }
-    55.4% { filter: brightness(.12) contrast(1.25); }
-    57.6% { filter: brightness(.16) contrast(1.25); }
-    58% { filter: brightness(.9) contrast(1.04); }
-    58.6% { filter: brightness(.25) contrast(1.18); }
-    59.4% { filter: brightness(1.06) contrast(1.04); }
-    60% { filter: brightness(.6) contrast(1.1); }
-    60.8% { filter: brightness(1) contrast(1.04); }
-    72% { filter: brightness(1) contrast(1.04); }
-    72.4% { filter: brightness(.82) contrast(1.06); }
-    72.9% { filter: brightness(1) contrast(1.04); }
-    84% { filter: brightness(1) contrast(1.04); }
-    84.4% { filter: brightness(.5) contrast(1.12); }
-    85% { filter: brightness(1) contrast(1.04); }
-    85.5% { filter: brightness(.66) contrast(1.1); }
-    86.2% { filter: brightness(1) contrast(1.04); }
+/* 不规则明暗: 大部分时间稳定, 偶尔抖两下, 偶尔几乎灭掉再亮。
+   做法是在画面上盖一层黑色遮罩、只动遮罩的透明度; 不给图片本身加 filter 动画
+   (真机 iOS Safari / 安卓 WebView 给大图做 filter 动画会把整张图渲染成纯黑) */
+@keyframes lamp-dim {
+    0%, 100% { opacity: 0; }
+    4% { opacity: 0; }
+    4.5% { opacity: 0.38; }
+    5.2% { opacity: 0; }
+    5.8% { opacity: 0.25; }
+    6.5% { opacity: 0; }
+    14% { opacity: 0; }
+    14.4% { opacity: 0.2; }
+    14.9% { opacity: 0; }
+    24% { opacity: 0; }
+    24.4% { opacity: 0.7; }
+    25.2% { opacity: 0.05; }
+    25.8% { opacity: 0.6; }
+    26.6% { opacity: 0; }
+    27.4% { opacity: 0.3; }
+    28% { opacity: 0; }
+    40% { opacity: 0; }
+    40.5% { opacity: 0.15; }
+    41% { opacity: 0; }
+    41.5% { opacity: 0.22; }
+    42% { opacity: 0; }
+    55% { opacity: 0; }
+    55.4% { opacity: 0.88; }
+    57.6% { opacity: 0.84; }
+    58% { opacity: 0.1; }
+    58.6% { opacity: 0.75; }
+    59.4% { opacity: 0; }
+    60% { opacity: 0.4; }
+    60.8% { opacity: 0; }
+    72% { opacity: 0; }
+    72.4% { opacity: 0.18; }
+    72.9% { opacity: 0; }
+    84% { opacity: 0; }
+    84.4% { opacity: 0.5; }
+    85% { opacity: 0; }
+    85.5% { opacity: 0.34; }
+    86.2% { opacity: 0; }
 }
 @keyframes lamp-glow {
     0%, 100% { opacity: 1; }
@@ -1459,24 +1462,23 @@ button.tag.unlocked:hover { filter: drop-shadow(0 0 8px rgba(200, 50, 30, .8)) b
     72.4% { opacity: .7; } 72.9% { opacity: 1; }
     84.4% { opacity: .35; } 85% { opacity: 1; } 85.5% { opacity: .55; } 86.2% { opacity: 1; }
 }
-}
-.fx-flicker #rpg-2d-stage .stage-backdrop,
-.fx-flicker .explore-scene,
-.fx-flicker #death-screen .scene-img {
-    animation: lamp-flicker 7s steps(1, end) infinite;
-}
-.fx-flicker #scene-image .scene-img {
-    animation: scene-appear 1.4s ease-out, lamp-flicker 7s steps(1, end) 1.4s infinite;
-}
-/* 灯管位置的光晕(--lamp-x/--lamp-y 按图调, 默认车厢图灯管在上方正中) */
+.fx-flicker #rpg-2d-stage .stage-backdrop::after,
 .fx-flicker .explore-scene::after,
+.fx-flicker #death-screen .scene-img::after,
+.fx-flicker #scene-image .scene-overlay::before {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: #000; opacity: 0;
+    animation: lamp-dim 7s steps(1, end) infinite;
+}
+.fx-flicker #scene-image .scene-overlay::before { animation-delay: 1.4s; }
+/* 灯管位置的光晕(--lamp-x/--lamp-y 按图调, 默认车厢图灯管在上方正中) */
 .fx-flicker #scene-image .scene-overlay::after {
     content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
-    background: radial-gradient(ellipse 34% 16% at var(--lamp-x, 50%) var(--lamp-y, 7%), rgba(226, 232, 190, .5), rgba(226, 232, 190, .12) 55%, transparent 75%);
-    mix-blend-mode: screen;
+    background: radial-gradient(ellipse 34% 16% at var(--lamp-x, 50%) var(--lamp-y, 7%), rgba(226, 232, 190, .32), rgba(226, 232, 190, .08) 55%, transparent 75%);
     animation: lamp-glow 7s steps(1, end) infinite;
 }
 @media (prefers-reduced-motion: reduce) {
-    .fx-flicker #rpg-2d-stage .stage-backdrop, .fx-flicker .explore-scene, .fx-flicker #death-screen .scene-img, .fx-flicker #scene-image .scene-img { animation: none; }
-    .fx-flicker .explore-scene::after, .fx-flicker #scene-image .scene-overlay::after { animation: none; }
+    .fx-flicker #rpg-2d-stage .stage-backdrop::after, .fx-flicker .explore-scene::after, .fx-flicker #death-screen .scene-img::after,
+    .fx-flicker #scene-image .scene-overlay::before, .fx-flicker #scene-image .scene-overlay::after { animation: none; }
+}
 }
