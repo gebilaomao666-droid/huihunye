@@ -1,6 +1,6 @@
 // 手机短信 / 开机过场 子系统 (从 app.js 抽出的方法 mixin)。
 // 相关状态 (smsVisible/phoneBootStep/smsHistory 等) 仍在主组件 data(); Vue 合并后 this 指向同一实例。
-import { playKnock } from './audio.js?v=20261010-pwa';
+import { playKnock } from './audio.js?v=20261010-warm';
 
 const CREEPY_SENDERS = ['未知号码', '无服务'];
 const FINAL_SMS_NODES = ['node25', 'node28'];

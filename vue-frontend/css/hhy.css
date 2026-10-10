@@ -593,7 +593,11 @@ body.final-flash #rpg-2d-stage::after { animation: final-flash .9s ease-out 1; }
 }
 #scene-intro-gate { position: fixed; inset: 0; z-index: 770; cursor: pointer; transition: background .6s; }
 #scene-intro-gate.darkening { background: rgba(0, 0, 0, .9); }
-#loading { position: fixed; inset: 0; z-index: 100000; background: var(--ink); display: flex; align-items: center; justify-content: center; }
+#loading { position: fixed; inset: 0; z-index: 100000; background: var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+/* 预热进度: 一道烧红的细线 */
+.loading-bar { width: min(62vw, 320px); height: 5px; background: rgba(255, 255, 255, .06); box-shadow: inset 0 0 0 1px rgba(176, 138, 78, .35); }
+.loading-bar i { display: block; height: 100%; background: linear-gradient(90deg, #5a1008, #c8281c 70%, #ffb38a); box-shadow: 0 0 10px rgba(200, 40, 28, .6); transition: width .25s ease; }
+.loading-sub { font: normal 13px/1 var(--kai); color: var(--cream-dim); letter-spacing: .2em; }
 .loading-text { font: normal 18px/1 var(--msz); color: var(--gold); letter-spacing: .4em; animation: hint-pulse 1.6s infinite; }
 
 /* ================= 场景探索 ================= */

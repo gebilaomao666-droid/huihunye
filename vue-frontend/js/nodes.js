@@ -1,7 +1,7 @@
 // ===== 回魂夜 · 剧情节点数据 =====
 // 本文件由 tools/build_nodes.mjs 从 docs/剧情定稿/*.md 生成, 不要手改; 改剧情请改 md 后重新生成:
 //   node tools/build_nodes.mjs
-// 92 个节点 | 21 种死法 | 8 个结局节点 | 10 个谜题
+// 93 个节点 | 21 种死法 | 8 个结局节点 | 10 个谜题
 
 const EPITAPHS = [
     "最后一排的温座",
@@ -88,7 +88,8 @@ const NODES = {
                 },
                 "closeup": true,
                 "closeupTitle": "指甲刻的字",
-                "closeupText": "前排椅背上有一行字，是用指甲刻的。刻得很深，笔画里塞满黑泥。\n\n“见槐即下。过槐不归。”\n\n字迹很老。最后一笔拖得很长，像刻字的人被谁从座位上拽走了。"
+                "closeupText": "前排椅背上有一行字，是用指甲刻的。刻得很深，笔画里塞满黑泥。\n\n“见槐即下。过槐不归。”\n\n字迹很老。最后一笔拖得很长，像刻字的人被谁从座位上拽走了。",
+                "closeupImage": "img/closeup/closeup_seat_carving.jpg?v=0140da74"
             },
             {
                 "id": "bus_window",
@@ -220,9 +221,9 @@ const NODES = {
         "chapter": "第一章：末班车与夜路",
         "sceneName": "村口夜路",
         "time": "00:22",
-        "text": "你低着头走。脚下一软。\n\n是青蛙。死的，一地都是，肚皮朝天，像被人从井里一捧一捧倒出来的。\n\n风把那堆火的灰吹过来，落在你肩上。\n\n灰是温的。\n\n老宅的门虚掩着。门槛上摆着一双男式布鞋，黑面白底，鞋尖朝里。\n\n你看了一眼自己的脚。是你的尺码。",
+        "text": "你低着头走。脚下一软。\n\n是青蛙。死的，一地都是，肚皮朝天，像被人从井里一捧一捧倒出来的。\n\n风把那堆火的灰吹过来，落在你肩上。\n\n灰是温的。",
         "bgImage": "img/bg/ch01_village_gate_burning_paper.jpg?v=bfedf222",
-        "sceneImage": "img/closeup/shoes_inward.webp?v=5278d574",
+        "sceneImage": "img/bg/ch01_dead_frogs.jpg?v=48e1c360",
         "vibration": [
             40,
             80,
@@ -230,6 +231,30 @@ const NODES = {
         ],
         "signal": 2,
         "battery": 60,
+        "hideCharacter": true,
+        "choices": [
+            {
+                "text": "踩着青蛙往老宅走",
+                "next": "node05b"
+            }
+        ]
+    },
+
+    "node05b": {
+        "chapter": "第一章：末班车与夜路",
+        "sceneName": "老宅门口",
+        "time": "00:25",
+        "text": "老宅的门虚掩着。门槛上摆着一双男式布鞋，黑面白底，鞋尖朝里。\n\n你看了一眼自己的脚。是你的尺码。",
+        "sceneImage": "img/closeup/shoes_inward.webp?v=5278d574",
+        "vibration": [
+            80,
+            150,
+            80,
+            150,
+            80
+        ],
+        "signal": 2,
+        "battery": 58,
         "hideCharacter": true,
         "choices": [
             {
@@ -420,7 +445,7 @@ const NODES = {
                 "closeup": true,
                 "closeupTitle": "还不能封的棺",
                 "closeupText": "棺缝里一阵一阵往外吐冷气。你刚靠近，供桌水碗里的倒影先动了一下。\n\n空手去碰，只会让里面的东西记住你的手温。",
-                "closeupImage": "img/bg/ch02_living_room.jpg?v=f45d98ed"
+                "closeupImage": "img/bg/ch02_living_room.jpg?v=f0aa3c8a"
             },
             {
                 "id": "black_coffin_seal",
@@ -482,7 +507,7 @@ const NODES = {
                 "closeup": true,
                 "closeupTitle": "反锁的木门",
                 "closeupText": "门闩已经压死了。门缝外没有脚步声，却有一股潮湿的泥土味慢慢钻进来。\n\n棺材还没压住。这时候开门，只会把屋里的东西也放出去。",
-                "closeupImage": "img/bg/ch02_living_room.jpg?v=f45d98ed"
+                "closeupImage": "img/closeup/closeup_locked_door.jpg?v=c32effa7"
             },
             {
                 "id": "hall_ready_exit",
@@ -515,7 +540,7 @@ const NODES = {
         ],
         "signal": 0,
         "battery": 0,
-        "deathCG": "img/death/death_double.webp?v=7b8e01e8",
+        "deathCG": "img/death/death_double.webp?v=1dd724f0",
         "hideCharacter": true,
         "isDeath": true,
         "deathName": "替死",
@@ -650,7 +675,7 @@ const NODES = {
         "chapter": "第二章：三条死规矩",
         "sceneName": "门外",
         "text": "你应了。\n\n门外那个声音停了一下。然后笑了。\n\n笑声很轻，贴着门缝进来，像等了很多年的人，终于等到一句回话。\n\n门闩自己滑开。门外伸进来很多只手，白得发青，指甲缝里全是泥。它们不抓你，只是托着你，一点一点，把你托出门槛。\n\n你最后看见的，是供桌上那三炷香。两短一长。",
-        "bgImage": "img/bg/ch02_living_room.jpg?v=f45d98ed",
+        "bgImage": "img/bg/ch02_living_room.jpg?v=f0aa3c8a",
         "vibration": [
             300,
             200,
@@ -842,7 +867,7 @@ const NODES = {
         "sceneName": "黑漆棺旁",
         "time": "02:16",
         "text": "黑暗里，棺材盖贴着棺沿缓缓滑开，一股陈年樟脑混着甜腻香灰的味道漫了出来，闻久了，竟让人发困。\n\n一只冰冷的手摸上你的脸。那只手没有一丝温度，动作却轻得过分，顺着你的眉骨、鼻梁一路抚下来，像在哄一个熟睡的婴儿。你本该挣的，可浑身一点力气都提不起来，反倒觉得这片黑暗又软又暖，像被人替你掖好了被角。\n\n那只手把你往棺里安顿，一下一下，替你理平衣襟。然后你听见盖子合上的声音，紧接着是钉子。\n\n第一颗钉下去，你的左手再也抬不起来；第二颗，右脚没了知觉；钉声一下比一下闷，每一颗都钉死你身上的一处。等钉到最后一颗。就钉在你眼睛正上方那寸木头上时，你的眼睛还睁着，睁得好好的，却怎么也闭不上了。",
-        "bgImage": "img/bg/ch02_living_room.jpg?v=f45d98ed",
+        "bgImage": "img/bg/ch02_living_room.jpg?v=f0aa3c8a",
         "vibration": [
             100,
             300,
@@ -961,6 +986,7 @@ const NODES = {
                 "closeup": true,
                 "closeupTitle": "空白的脸",
                 "closeupText": "这一个脸上什么都没有。白的，平的，像一张还没写字的纸。\n\n沙。纸脚又往前擦了一步。",
+                "closeupImage": "img/closeup/closeup_paper_blank.jpg?v=09e9d636",
                 "stepPuzzle": "pz_wipe_eyes"
             },
             {
@@ -1624,7 +1650,8 @@ const NODES = {
                 },
                 "closeup": true,
                 "closeupTitle": "蛛网上的纸条",
-                "closeupText": "蛛网上挂着一张泛黄的纸条，被潮气泡得发软。\n\n“那一夜，镜头替我记着。”\n\n铅笔写的，笔画发抖。写字的人另一只手里，像还攥着别的东西。"
+                "closeupText": "蛛网上挂着一张泛黄的纸条，被潮气泡得发软。\n\n“那一夜，镜头替我记着。”\n\n铅笔写的，笔画发抖。写字的人另一只手里，像还攥着别的东西。",
+                "closeupImage": "img/closeup/closeup_spider_web.jpg?v=c5a9e2b2"
             },
             {
                 "id": "phone_replay",
@@ -1642,7 +1669,8 @@ const NODES = {
                 },
                 "closeup": true,
                 "closeupTitle": "第三镜头",
-                "closeupText": "你掏出手机。屏幕自己亮了。\n\n【第三镜头】。还是堂屋那根梁。梁下那双脚还在晃。\n\n右下角的日子一动不动：二〇〇八年九月廿二。"
+                "closeupText": "你掏出手机。屏幕自己亮了。\n\n【第三镜头】。还是堂屋那根梁。梁下那双脚还在晃。\n\n右下角的日子一动不动：二〇〇八年九月廿二。",
+                "closeupImage": "img/closeup/closeup_phone_replay.jpg?v=79bb03de"
             },
             {
                 "id": "stone_door",
@@ -2067,7 +2095,8 @@ const NODES = {
                 "puzzle": "pz_lock_coffin",
                 "closeup": true,
                 "closeupTitle": "锁上的棺",
-                "closeupText": "你把钥匙插进铜扣。锈得很死，你拧了三下才拧动。咔。\n\n棺里的喘气声慢下来，匀了。像一个人终于敢睡着。\n\n他不用替你了。"
+                "closeupText": "你把钥匙插进铜扣。锈得很死，你拧了三下才拧动。咔。\n\n棺里的喘气声慢下来，匀了。像一个人终于敢睡着。\n\n他不用替你了。",
+                "closeupImage": "img/closeup/closeup_coffin_sealed_name_tag.jpg?v=fc2a0023"
             },
             {
                 "id": "blend_into_paper",
@@ -3647,6 +3676,7 @@ const BPM_MAP = {
     "node01_explore": 78,
     "node04": 75,
     "node05": 80,
+    "node05b": 90,
     "node06": 70,
     "node06_explore": 90,
     "node08": 85,

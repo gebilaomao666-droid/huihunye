@@ -1,17 +1,17 @@
-import { apiPost, apiGet, isApiOffline } from './api.js?v=20261010-pwa';
-import { initAudio, resumeAudio, playTone, playHeartbeat, playScream, playKnock, playWhisper, playTinnitus, startBgm, stopBgm, playSuonaPhrase, playJumpscareSfx, setSfxEnabled } from './audio.js?v=20261010-pwa';
+import { apiPost, apiGet, isApiOffline } from './api.js?v=20261010-warm';
+import { initAudio, resumeAudio, playTone, playHeartbeat, playScream, playKnock, playWhisper, playTinnitus, startBgm, stopBgm, playSuonaPhrase, playJumpscareSfx, setSfxEnabled } from './audio.js?v=20261010-warm';
 // v2 音频新增接口用命名空间按需调用(浏览器若还缓存着旧 audio.js 也不会因缺导出而整页报错)
-import * as audioExt from './audio.js?v=20261010-pwa';
-import { NODES, ITEMS, HINT_SYSTEM, BPM_MAP, SFX_MAP, MESSAGES } from './nodes.js?v=20261010-pwa';
-import { t, setLang, getLang } from './i18n.js?v=20261010-pwa';
-import { gameRuntime } from './rpg/runtimeInstance.js?v=20261010-pwa';
-import { getVisibleHotspots, resolveHotspot } from './rpg/sceneEngine.js?v=20261010-pwa';
-import { CHAPTER_BACKGROUNDS, objectiveForNode, sceneNameForChapter, speakerForCharacter } from './rpg/assets.js?v=20261010-pwa';
-import { KEYS, readJSON, writeJSON, readRaw, writeRaw, remove as removeKey } from './storage.js?v=20261010-pwa';
-import { sceneMixin } from './sceneMixin.js?v=20261010-pwa';
-import { uiMixin } from './uiMixin.js?v=20261010-pwa';
-import { smsMixin } from './smsMixin.js?v=20261010-pwa';
-import { persistenceMixin } from './persistenceMixin.js?v=20261010-pwa';
+import * as audioExt from './audio.js?v=20261010-warm';
+import { NODES, ITEMS, HINT_SYSTEM, BPM_MAP, SFX_MAP, MESSAGES } from './nodes.js?v=20261010-warm';
+import { t, setLang, getLang } from './i18n.js?v=20261010-warm';
+import { gameRuntime } from './rpg/runtimeInstance.js?v=20261010-warm';
+import { getVisibleHotspots, resolveHotspot } from './rpg/sceneEngine.js?v=20261010-warm';
+import { CHAPTER_BACKGROUNDS, objectiveForNode, sceneNameForChapter, speakerForCharacter } from './rpg/assets.js?v=20261010-warm';
+import { KEYS, readJSON, writeJSON, readRaw, writeRaw, remove as removeKey } from './storage.js?v=20261010-warm';
+import { sceneMixin } from './sceneMixin.js?v=20261010-warm';
+import { uiMixin } from './uiMixin.js?v=20261010-warm';
+import { smsMixin } from './smsMixin.js?v=20261010-warm';
+import { persistenceMixin } from './persistenceMixin.js?v=20261010-warm';
 
 const { createApp } = Vue;
 
@@ -162,6 +162,9 @@ createApp({
             screen: 'start',
             chapterCheckpoint: null,
             loading: true,
+            loadingText: '',
+            loadingPct: -1,
+            loadingItem: '',
 
             // 玩家信息
             playerName: '',
@@ -801,23 +804,80 @@ createApp({
                 (n.hotspots || []).forEach((h) => list.push(h && h.closeupImage));
             });
             }
+            const waits = [];
             list.forEach((src) => {
                 if (!src || typeof src !== 'string' || this._preloadedImgs.has(src)) return;
                 this._preloadedImgs.add(src);
                 const img = new Image();
                 img.decoding = 'async';
+                waits.push(new Promise((res) => { img.onload = img.onerror = () => res(); }));
                 img.src = src;
             });
+            return Promise.all(waits);
+        },
+        // 开局全量预热: 把游戏里所有图片一次拉完, 带进度; 已经热过就直接放行
+        collectAllImages() {
+            const set = new Set();
+            const add = (v) => { if (typeof v === 'string' && /^img\//.test(v)) set.add(v); };
+            Object.values(CHAPTER_BACKGROUNDS).forEach(add);
+            Object.values(NODES).forEach((n) => {
+                if (!n) return;
+                [n.bgImage, n.sceneImage, n.character, n.deathCG, n.endingCG, n.closeupImage].forEach(add);
+                (n.hotspots || []).forEach((h) => h && add(h.closeupImage));
+            });
+            Object.values(ITEMS).forEach((it) => it && add(it.image));
+            return [...set];
+        },
+        async ensureAssetsLoaded() {
+            if (this._assetsReady) return;
+            const list = this.collectAllImages().filter((src) => !(this._preloadedDone && this._preloadedDone.has(src)));
+            this._preloadedDone = this._preloadedDone || new Set();
+            const total = list.length;
+            if (!total) { this._assetsReady = true; return; }
+            const kind = (src) => ({ bg: '场景', closeup: '特写', death: '死法', ending: '结局', char: '人物', item: '道具' })[(src.split('/')[1] || '')] || '画面';
+            let done = 0;
+            this.loadingText = '资源预热中';
+            this.loadingPct = 0;
+            this.loadingItem = '';
+            this.loading = true;
+            const tick = (src) => {
+                done += 1;
+                this.loadingPct = Math.round(done / total * 100);
+                this.loadingItem = `${kind(src)} ${done} / ${total}`;
+            };
+            const loadOne = (src) => new Promise((res) => {
+                const img = new Image();
+                img.decoding = 'async';
+                img.onload = img.onerror = () => { this._preloadedDone.add(src); tick(src); res(); };
+                img.src = src;
+            });
+            // 6 路并发, 整体最多等 120 秒(网太差就放行, 后面边玩边补)
+            const queue = list.slice();
+            const worker = async () => { while (queue.length) await loadOne(queue.shift()); };
+            const all = Promise.all(Array.from({ length: 6 }, worker));
+            await Promise.race([all, new Promise((r) => setTimeout(r, 120000))]);
+            this._assetsReady = done >= total;
+            this.loading = false;
+            this.loadingPct = -1;
+            this.loadingItem = '';
+        },
+        // 下一章名(按章节顺序表), 用于提前预载
+        nextChapterOf(chapter) {
+            const keys = Object.keys(CHAPTER_BACKGROUNDS);
+            const i = keys.indexOf(chapter);
+            return i >= 0 && i + 1 < keys.length ? keys[i + 1] : null;
         },
 
         // ===== 开始游戏 =====
         // 新开一局(开始界面"入宅守灵"/"重新开始"、死亡/结局"重新来过")
-        startGame() {
+        async startGame() {
             if (this._starting) return;          // 防重入: 连点不会进两次第一个节点
             this._starting = true;
             this.starting = true;
             try {
                 try { initAudio(); resumeAudio(); if (audioExt.playUi) audioExt.playUi('light'); } catch (e) {}
+                // 图没到齐就开场, 手机上第一张就是黑的; 开局把全部图片预热完再进(带进度条)
+                try { await this.ensureAssetsLoaded(); } catch (e) { this.loading = false; }
                 this.resetRun({ keepSnapshot: false, stayOnScreen: true });
                 this.gameStartTime = Date.now();
                 this._runDeaths = 0;
@@ -834,7 +894,7 @@ createApp({
         },
 
         // 开始界面"继续上次"
-        continueRun() {
+        async continueRun() {
             const info = this.resumeInfo;
             if (!info || !info.snap || this._starting) return;
             const snap = info.snap;
@@ -843,6 +903,7 @@ createApp({
             this.starting = true;
             try {
                 try { initAudio(); resumeAudio(); if (audioExt.playUi) audioExt.playUi('light'); } catch (e) {}
+                try { await this.ensureAssetsLoaded(); } catch (e) { this.loading = false; }
                 this.stopRunTimers();
                 this.inventory = gameRuntime.normalizeInventory(snap.inventory || []);
                 this.flags = { ...(snap.flags || {}) };
@@ -1131,7 +1192,7 @@ createApp({
             // 多周目文本注入
             node = this.injectNewGamePlusText(node);
             this.currentNode = node;
-            if (node.chapter) this.preloadAssets(node.chapter); // 进入新章节时才预加载该章图片(已加载过的章节直接跳过)
+            if (node.chapter) { this.preloadAssets(node.chapter); const nx = this.nextChapterOf(node.chapter); if (nx) this.preloadAssets(nx); } // 当前章 + 下一章提前预载
 
             this._updateBgm(node);
 

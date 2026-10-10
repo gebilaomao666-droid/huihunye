@@ -112,7 +112,8 @@ const PRESENT = {
     node01: { fx: 'flicker' },
     node01_explore: { sceneImage: 'img/bg/ch01_bus.jpg', fx: 'flicker' },
     node_dead_wild: { bgImage: 'img/bg/ch01_bus.jpg', deathCG: 'img/death/death_06_bus.jpg', fx: 'flicker' },
-    node05: { sceneImage: 'img/closeup/shoes_inward.webp' },
+    node05: { sceneImage: 'img/bg/ch01_dead_frogs.jpg' },
+    node05b: { sceneImage: 'img/closeup/shoes_inward.webp' },
     node_dead3_v2: { deathCG: 'img/death/death_double.webp' },
     node08b: { sceneImage: 'img/closeup/door_red_eye_wide.webp' },
     node08c: { camAlert: true },
@@ -161,7 +162,7 @@ const HS_LAYOUT = {
     node01_explore: {
         // 坐标按 2026-10-09 新车厢图 ch01_bus.jpg(bus_g_102 后排视角, 1536x864) 用网格实测对位
         phone_message: [58, 84, 10, 10, 'img/closeup/closeup_phone_message.jpg'],
-        seat_carving: [24, 52, 18, 14],
+        seat_carving: [24, 52, 18, 14, 'img/closeup/closeup_seat_carving.jpg'],
         bus_window: [1, 22, 14, 38, 'img/closeup/closeup_bus_window_reflection.jpg'],
         rearview_mirror: [46, 24, 10, 8, 'img/closeup/closeup_rearview_mirror.jpg'],
         driver_hands: [41, 41, 8, 10, 'img/closeup/closeup_driver_hands.jpg'],
@@ -170,7 +171,8 @@ const HS_LAYOUT = {
     node06_explore: {
         yellow_paper_stack: [22, 74, 20, 10, 'img/item/yellow_paper.webp'],
         water_bowl_cover: [57, 62, 18, 9, 'img/closeup/water_bowl_handprint.webp'],
-        ancestral_tablet: [39, 18, 19, 23, 'img/closeup/tablet_crooked.webp']
+        ancestral_tablet: [39, 18, 19, 23, 'img/closeup/tablet_crooked.webp'],
+        locked_door_wait: [76, 22, 21, 36, 'img/closeup/closeup_locked_door.jpg']
     },
     node11: {
         // ch03_kitchen.jpg(_r3): 灶台在左中, 倒头饭+竖筷, 灶台左前角一盒火柴, 灶膛口在灶台正下方, 右边水缸
@@ -183,7 +185,7 @@ const HS_LAYOUT = {
     node14: {
         // ch04_paper_circle.webp: 十一个纸人从左到右, 第三(x≈26%)、第八(x≈68%)两个脸上补画了墨泪
         altar_ash_handful: [42, 84, 16, 14, 'img/closeup/closeup_altar_ash_red_string.jpg'],
-        paper_blank: [3, 14, 13, 55],
+        paper_blank: [3, 14, 13, 55, 'img/closeup/closeup_paper_blank.jpg'],
         paper_eye_3: [21, 18, 9, 50],
         paper_eye_8: [64, 18, 8, 50],
         shadow: [92, 2, 8, 34],
@@ -193,8 +195,8 @@ const HS_LAYOUT = {
     node_explore_cave: {
         bone_amulet: [10, 60, 22, 18, 'img/closeup/closeup_ritual_bone_charm.png'],
         blood_pearl: [40, 52, 20, 16],
-        spider_web: [74, 8, 20, 22],
-        phone_replay: [40, 78, 22, 14],
+        spider_web: [74, 8, 20, 22, 'img/closeup/closeup_spider_web.jpg'],
+        phone_replay: [40, 78, 22, 14, 'img/closeup/closeup_phone_replay.jpg'],
         stone_door: [42, 14, 22, 30]
     },
     node23: {
@@ -211,7 +213,7 @@ const HS_LAYOUT = {
         turning_puppet: [9, 30, 14, 62, 'img/item/item_puppet.jpg'],
         clan_book: [52, 62, 9, 7, 'img/item/item_genealogy.jpg'],
         funeral_coffin: [32, 76, 38, 20],
-        coffin_lock: [32, 76, 38, 20],
+        coffin_lock: [32, 76, 38, 20, 'img/closeup/closeup_coffin_sealed_name_tag.jpg'],
         blend_into_paper: [78, 30, 13, 62]
     },
     node8x_veil: {

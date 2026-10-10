@@ -12,8 +12,8 @@
   "navigationDividerColorDark": "#070404",
   "backgroundColor": "#070404",
   "enableNotifications": false,
-  "startUrl": "/weikongbu/",
-  "iconUrl": "https://gebilaomao666-droid.github.io/weikongbu/img/icon-512.png",
+  "startUrl": "/huihunye/",
+  "iconUrl": "https://gebilaomao666-droid.github.io/huihunye/img/icon-512.png",
   "splashScreenFadeOutDuration": 300,
   "signingKey": {
     "path": "./weikongbu.jks",
@@ -23,7 +23,7 @@
   "appVersionCode": 1,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
-  "webManifestUrl": "https://gebilaomao666-droid.github.io/weikongbu/manifest.json",
+  "webManifestUrl": "https://gebilaomao666-droid.github.io/huihunye/manifest.json",
   "fallbackType": "customtabs",
   "features": {},
   "alphaDependencies": {
@@ -32,7 +32,7 @@
   "enableSiteSettingsShortcut": false,
   "isChromeOSOnly": false,
   "isMetaQuest": false,
-  "fullScopeUrl": "https://gebilaomao666-droid.github.io/weikongbu/",
+  "fullScopeUrl": "https://gebilaomao666-droid.github.io/huihunye/",
   "minSdkVersion": 21,
   "orientation": "default",
   "fingerprints": [

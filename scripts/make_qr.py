@@ -5,7 +5,7 @@ from qrcode.constants import ERROR_CORRECT_M
 from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
 
-URL = "http://47.95.124.216/weikongbu/"
+URL = "https://gebilaomao666-droid.github.io/huihunye/"
 
 qr = qrcode.QRCode(error_correction=ERROR_CORRECT_M, box_size=12, border=3)
 qr.add_data(URL)
