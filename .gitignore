@@ -70,3 +70,8 @@ docs/剧情定稿/深改说明_*.md
 
 # Cloudflare 本地状态
 .wrangler/
+
+# 安卓壳: 只保留清单与说明, 生成的工程/证书/安装包不入库
+android/*
+!android/twa-manifest.json
+!android/README.md

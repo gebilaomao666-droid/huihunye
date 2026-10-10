@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.gebilaomao.weikongbu",
+    "sha256_cert_fingerprints": ["BE:60:CB:4F:74:7F:67:E1:E2:7F:B5:56:42:5E:B6:5E:09:4E:9A:D9:44:0B:F7:61:58:AF:96:FF:C0:DC:93:48"]
+  }
+}]

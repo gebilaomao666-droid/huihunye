@@ -1,6 +1,6 @@
 // 菜单 / 背包面板 / 道具操作 子系统 (从 app.js 抽出的方法 mixin)。
 // 相关状态仍在主组件 data(); Vue 合并后 this 指向同一实例。
-import { gameRuntime } from './rpg/runtimeInstance.js?v=20261010-fin';
+import { gameRuntime } from './rpg/runtimeInstance.js?v=20261010-pwa';
 
 export const uiMixin = {
     methods: {
@@ -20,6 +20,46 @@ export const uiMixin = {
             this._closeOverlays('inventoryVisible');
             this.inventoryVisible = open;
             this.selectedItem = null;
+        },
+        // ===== 手机壳: 添加到桌面 / 全屏 =====
+        setupMobileShell() {
+            const mq = (q) => { try { return window.matchMedia(q).matches; } catch (e) { return false; } };
+            this.isPhone = mq('(pointer: coarse)') || (navigator.maxTouchPoints || 0) > 0;
+            this.isStandalone = mq('(display-mode: standalone)') || mq('(display-mode: fullscreen)') || navigator.standalone === true;
+            this.installHintVisible = this.isPhone && !this.isStandalone;
+            window.addEventListener('appinstalled', () => { this.installHintVisible = false; this.showToast('已添加到桌面，从桌面打开就是全屏。'); });
+            const sync = () => { this.fullscreenOn = !!(document.fullscreenElement || document.webkitFullscreenElement); };
+            document.addEventListener('fullscreenchange', sync);
+            document.addEventListener('webkitfullscreenchange', sync);
+        },
+        async installApp() {
+            const ev = window.__installPrompt;
+            if (ev && ev.prompt) {
+                window.__installPrompt = null;
+                try { ev.prompt(); const r = await ev.userChoice; if (r && r.outcome === 'accepted') this.installHintVisible = false; } catch (e) {}
+                return;
+            }
+            const ua = navigator.userAgent || '';
+            let how;
+            if (/MicroMessenger/i.test(ua)) how = '微信里不能直接添加。\n点右上角「…」选「在浏览器打开」，再从浏览器菜单里「添加到主屏幕」。';
+            else if (/iPhone|iPad|iPod/i.test(ua)) how = '用 Safari 打开本页，点底部「分享」按钮，选「添加到主屏幕」。';
+            else how = '点浏览器菜单（右上角「⋮」或底部「≡」），选「添加到主屏幕」或「安装应用」。';
+            await this.askConfirm(how, { ok: '知道了', okGlyph: '好' });
+        },
+        enterFullscreen() {
+            if (!this.isPhone || this.isStandalone) return;
+            const el = document.documentElement;
+            const fn = el.requestFullscreen || el.webkitRequestFullscreen;
+            if (!fn || document.fullscreenElement || document.webkitFullscreenElement) return;
+            try { const r = fn.call(el, { navigationUI: 'hide' }); if (r && r.catch) r.catch(() => {}); } catch (e) {}
+        },
+        toggleFullscreen() {
+            if (document.fullscreenElement || document.webkitFullscreenElement) {
+                const fn = document.exitFullscreen || document.webkitExitFullscreen;
+                try { const r = fn && fn.call(document); if (r && r.catch) r.catch(() => {}); } catch (e) {}
+            } else {
+                this.enterFullscreen();
+            }
         },
         toggleSettings() {
             const open = !this.settingsVisible;

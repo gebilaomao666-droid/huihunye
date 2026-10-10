@@ -1,0 +1,47 @@
+{
+  "packageId": "com.gebilaomao.weikongbu",
+  "host": "gebilaomao666-droid.github.io",
+  "name": "回魂夜 · 纸人招魂",
+  "launcherName": "回魂夜",
+  "display": "fullscreen",
+  "themeColor": "#0a0606",
+  "themeColorDark": "#0a0606",
+  "navigationColor": "#070404",
+  "navigationColorDark": "#070404",
+  "navigationDividerColor": "#070404",
+  "navigationDividerColorDark": "#070404",
+  "backgroundColor": "#070404",
+  "enableNotifications": false,
+  "startUrl": "/weikongbu/",
+  "iconUrl": "https://gebilaomao666-droid.github.io/weikongbu/img/icon-512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "./weikongbu.jks",
+    "alias": "weikongbu"
+  },
+  "appVersionName": "1.0.0",
+  "appVersionCode": 1,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://gebilaomao666-droid.github.io/weikongbu/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": false,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://gebilaomao666-droid.github.io/weikongbu/",
+  "minSdkVersion": 21,
+  "orientation": "default",
+  "fingerprints": [
+    {
+      "name": "release",
+      "value": "BE:60:CB:4F:74:7F:67:E1:E2:7F:B5:56:42:5E:B6:5E:09:4E:9A:D9:44:0B:F7:61:58:AF:96:FF:C0:DC:93:48"
+    }
+  ],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "appVersion": "1.0.0"
+}

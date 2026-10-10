@@ -1,17 +1,17 @@
-import { apiPost, apiGet, isApiOffline } from './api.js?v=20261010-fin';
-import { initAudio, resumeAudio, playTone, playHeartbeat, playScream, playKnock, playWhisper, playTinnitus, startBgm, stopBgm, playSuonaPhrase, playJumpscareSfx, setSfxEnabled } from './audio.js?v=20261010-fin';
+import { apiPost, apiGet, isApiOffline } from './api.js?v=20261010-pwa';
+import { initAudio, resumeAudio, playTone, playHeartbeat, playScream, playKnock, playWhisper, playTinnitus, startBgm, stopBgm, playSuonaPhrase, playJumpscareSfx, setSfxEnabled } from './audio.js?v=20261010-pwa';
 // v2 音频新增接口用命名空间按需调用(浏览器若还缓存着旧 audio.js 也不会因缺导出而整页报错)
-import * as audioExt from './audio.js?v=20261010-fin';
-import { NODES, ITEMS, HINT_SYSTEM, BPM_MAP, SFX_MAP, MESSAGES } from './nodes.js?v=20261010-fin';
-import { t, setLang, getLang } from './i18n.js?v=20261010-fin';
-import { gameRuntime } from './rpg/runtimeInstance.js?v=20261010-fin';
-import { getVisibleHotspots, resolveHotspot } from './rpg/sceneEngine.js?v=20261010-fin';
-import { CHAPTER_BACKGROUNDS, objectiveForNode, sceneNameForChapter, speakerForCharacter } from './rpg/assets.js?v=20261010-fin';
-import { KEYS, readJSON, writeJSON, readRaw, writeRaw, remove as removeKey } from './storage.js?v=20261010-fin';
-import { sceneMixin } from './sceneMixin.js?v=20261010-fin';
-import { uiMixin } from './uiMixin.js?v=20261010-fin';
-import { smsMixin } from './smsMixin.js?v=20261010-fin';
-import { persistenceMixin } from './persistenceMixin.js?v=20261010-fin';
+import * as audioExt from './audio.js?v=20261010-pwa';
+import { NODES, ITEMS, HINT_SYSTEM, BPM_MAP, SFX_MAP, MESSAGES } from './nodes.js?v=20261010-pwa';
+import { t, setLang, getLang } from './i18n.js?v=20261010-pwa';
+import { gameRuntime } from './rpg/runtimeInstance.js?v=20261010-pwa';
+import { getVisibleHotspots, resolveHotspot } from './rpg/sceneEngine.js?v=20261010-pwa';
+import { CHAPTER_BACKGROUNDS, objectiveForNode, sceneNameForChapter, speakerForCharacter } from './rpg/assets.js?v=20261010-pwa';
+import { KEYS, readJSON, writeJSON, readRaw, writeRaw, remove as removeKey } from './storage.js?v=20261010-pwa';
+import { sceneMixin } from './sceneMixin.js?v=20261010-pwa';
+import { uiMixin } from './uiMixin.js?v=20261010-pwa';
+import { smsMixin } from './smsMixin.js?v=20261010-pwa';
+import { persistenceMixin } from './persistenceMixin.js?v=20261010-pwa';
 
 const { createApp } = Vue;
 
@@ -350,6 +350,11 @@ createApp({
             menuVisible: false,
             inventoryVisible: false,
             settingsVisible: false,
+            // 手机: 「添加到桌面」与全屏
+            isPhone: false,
+            isStandalone: false,
+            installHintVisible: false,
+            fullscreenOn: false,
             showSaveMenuRpg: false,
             pageHidden: false,
             selectedItem: null,
@@ -474,6 +479,7 @@ createApp({
         idle(() => { this.preloadAssets(); this.preloadAssets('第一章：末班车与夜路'); }, { timeout: 4000 });
         this.pageHidden = document.hidden;
         document.addEventListener('visibilitychange', () => { this.pageHidden = document.hidden; });
+        this.setupMobileShell();
 
         // 本地数据(同步读取, 不依赖后端)
         this.deathCount = parseInt(readRaw(KEYS.deathCount, '0'), 10) || 0;
@@ -817,6 +823,7 @@ createApp({
                 this._runDeaths = 0;
                 this._runHintBurns = 0;
                 this.screen = 'game';
+                this.enterFullscreen();          // 手机浏览器: 进游戏就全屏, 藏掉地址栏
                 this.showDanmuPreview();
                 this.checkNightOwl();
                 this.ensureSession();            // 会话请求在后台, 不阻塞进入游戏

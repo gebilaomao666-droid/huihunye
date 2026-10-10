@@ -4,9 +4,9 @@
   "description": "中式规则怪谈恐怖文字交互游戏",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#8a0000",
-  "orientation": "portrait",
+  "background_color": "#070404",
+  "theme_color": "#0a0606",
+  "orientation": "any",
   "icons": [
     {
       "src": "img/icon-192.png",
@@ -18,5 +18,12 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "id": "./",
+  "scope": "./",
+  "lang": "zh-CN",
+  "display_override": [
+    "fullscreen",
+    "standalone"
   ]
 }

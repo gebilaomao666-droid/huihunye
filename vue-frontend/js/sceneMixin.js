@@ -1,10 +1,10 @@
 // 场景探索 / 谜题面板 / 烧黄纸问 / 道具特写 子系统 (从 app.js 抽出的方法 mixin)。
 // 相关状态仍在主组件 data(); Vue 合并后 this 指向同一实例。
 // 谜题全部数据驱动: PUZZLES[pzId].kind 决定用哪种面板(timing/code/road/drag/choice), item/steps 两类只靠热点完成。
-import { getVisibleHotspots, resolveHotspot } from './rpg/sceneEngine.js?v=20261010-fin';
-import { gameRuntime } from './rpg/runtimeInstance.js?v=20261010-fin';
-import { PUZZLES, HINTS, HINT_SYSTEM } from './nodes.js?v=20261010-fin';
-import { playScream, playWhisper, playKnock, playTone } from './audio.js?v=20261010-fin';
+import { getVisibleHotspots, resolveHotspot } from './rpg/sceneEngine.js?v=20261010-pwa';
+import { gameRuntime } from './rpg/runtimeInstance.js?v=20261010-pwa';
+import { PUZZLES, HINTS, HINT_SYSTEM } from './nodes.js?v=20261010-pwa';
+import { playScream, playWhisper, playKnock, playTone } from './audio.js?v=20261010-pwa';
 
 const PANEL_KINDS = ['timing', 'code', 'road', 'drag', 'choice'];
 

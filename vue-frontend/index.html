@@ -6,25 +6,25 @@
     <title>回魂夜 · 纸人招魂</title>
     <!-- 性能: 无构建时浏览器要逐层解析 import 才知道子模块, 这里一次性预声明全部模块, 避免三层瀑布
          (href 必须与 import 语句里的 ?v= 完全一致, 改版本号时一起改) -->
-    <link rel="modulepreload" href="js/app.js?v=20261010-fin">
-    <link rel="modulepreload" href="js/api.js?v=20261010-fin">
-    <link rel="modulepreload" href="js/audio.js?v=20261010-fin">
-    <link rel="modulepreload" href="js/nodes.js?v=20261010-fin">
-    <link rel="modulepreload" href="js/i18n.js?v=20261010-fin">
-    <link rel="modulepreload" href="js/storage.js?v=20261010-fin">
-    <link rel="modulepreload" href="js/sceneMixin.js?v=20261010-fin">
-    <link rel="modulepreload" href="js/uiMixin.js?v=20261010-fin">
-    <link rel="modulepreload" href="js/smsMixin.js?v=20261010-fin">
-    <link rel="modulepreload" href="js/persistenceMixin.js?v=20261010-fin">
-    <link rel="modulepreload" href="js/rpg/runtimeInstance.js?v=20261010-fin">
-    <link rel="modulepreload" href="js/rpg/runtime.js?v=20261010-fin">
-    <link rel="modulepreload" href="js/rpg/sceneEngine.js?v=20261010-fin">
-    <link rel="modulepreload" href="js/rpg/assets.js?v=20261010-fin">
+    <link rel="modulepreload" href="js/app.js?v=20261010-pwa">
+    <link rel="modulepreload" href="js/api.js?v=20261010-pwa">
+    <link rel="modulepreload" href="js/audio.js?v=20261010-pwa">
+    <link rel="modulepreload" href="js/nodes.js?v=20261010-pwa">
+    <link rel="modulepreload" href="js/i18n.js?v=20261010-pwa">
+    <link rel="modulepreload" href="js/storage.js?v=20261010-pwa">
+    <link rel="modulepreload" href="js/sceneMixin.js?v=20261010-pwa">
+    <link rel="modulepreload" href="js/uiMixin.js?v=20261010-pwa">
+    <link rel="modulepreload" href="js/smsMixin.js?v=20261010-pwa">
+    <link rel="modulepreload" href="js/persistenceMixin.js?v=20261010-pwa">
+    <link rel="modulepreload" href="js/rpg/runtimeInstance.js?v=20261010-pwa">
+    <link rel="modulepreload" href="js/rpg/runtime.js?v=20261010-pwa">
+    <link rel="modulepreload" href="js/rpg/sceneEngine.js?v=20261010-pwa">
+    <link rel="modulepreload" href="js/rpg/assets.js?v=20261010-pwa">
     <!-- 首屏实物素材先发起下载(标题字/名牌/令牌/字体), 不等 CSS 解析 -->
     <link rel="preload" href="img/ui2/title.webp" as="image">
     <link rel="preload" href="fonts/ui3/msz.woff2" as="font" type="font/woff2" crossorigin>
     <!-- 全站界面: 暗红漆木 + 旧铜金 + 米黄楷书(规范见 css/hhy.css 文件头) -->
-    <link rel="stylesheet" href="css/hhy.css?v=20261010-fin">
+    <link rel="stylesheet" href="css/hhy.css?v=20261010-pwa">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="img/icon-192.png">
     <link rel="apple-touch-icon" href="img/icon-192.png">
@@ -40,6 +40,11 @@ window.onerror = function(msg, url, line, col, err) {
     document.body.innerHTML = '<div style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#000;color:#f00;padding:40px;font-size:16px;font-family:monospace;z-index:99999;overflow:auto;"><h2>JS ERROR</h2><pre>' + msg + '<br>at ' + url + ':' + line + ':' + col + '<br><br>' + (err && err.stack ? err.stack : '') + '</pre></div>';
     return false;
 };
+</script>
+<script>
+// 安卓浏览器的「添加到桌面」事件: 先截住, 等玩家在首页点「添加到桌面」再弹
+window.__installPrompt = null;
+window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); window.__installPrompt = e; });
 </script>
 <!-- 锁定具体版本: vue@3 不锁版本会多一次 302 跳转且版本漂移 -->
 <script src="js/vendor/vue.global.prod.js"></script>
@@ -245,6 +250,9 @@ window.onerror = function(msg, url, line, col, err) {
                             </button>
                             <button type="button" class="medal settings-btn" style="--r:2deg;--y:8px" @click="toggleSettings">
                                 <span class="m obj tk-c" style="--lit:.8"><b class="g">设</b></span><span class="medal-lbl">设置</span>
+                            </button>
+                            <button v-if="installHintVisible" type="button" class="medal install-btn" style="--r:-2deg;--y:4px" @click="installApp" title="添加到桌面，像 App 一样全屏玩">
+                                <span class="m obj tk-a" style="--lit:.9"><b class="g">装</b></span><span class="medal-lbl">添加到桌面</span>
                             </button>
                         </nav>
                         <p class="home-note" v-if="resumeInfo">上回守到：{{ resumeInfo.chapter }}</p>
@@ -463,6 +471,10 @@ window.onerror = function(msg, url, line, col, err) {
                         <div class="setting-row-rpg">
                             <span class="setting-label">音效</span>
                             <button type="button" class="medal sm toggle-switch" :class="{ on: soundEnabled }" role="switch" :aria-checked="soundEnabled ? 'true' : 'false'" @click="toggleSound()"><span class="m obj tk-b"><b class="g">{{ soundEnabled ? '开' : '关' }}</b></span></button>
+                        </div>
+                        <div class="setting-row-rpg" v-if="isPhone && !isStandalone">
+                            <span class="setting-label">全屏</span>
+                            <button type="button" class="medal sm toggle-switch" :class="{ on: fullscreenOn }" role="switch" :aria-checked="fullscreenOn ? 'true' : 'false'" @click="toggleFullscreen"><span class="m obj" :class="fullscreenOn ? 'tk-a' : 'tk-c'"><b class="g">{{ fullscreenOn ? '开' : '关' }}</b></span></button>
                         </div>
                         <div class="setting-row-rpg">
                             <span class="setting-label">震动</span>
@@ -778,15 +790,16 @@ window.onerror = function(msg, url, line, col, err) {
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=20261010-fin"></script>
+    <script type="module" src="js/app.js?v=20261010-pwa"></script>
     <script>
-        // 开发期禁用旧 Service Worker，避免微信/安卓内核继续使用陈旧 UI 缓存。
+        // 极简 Service Worker: 不缓存任何资源(避免旧界面被缓存), 只为让浏览器允许「添加到桌面」
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.getRegistrations()
-                .then(regs => Promise.all(regs.map(reg => reg.unregister())))
+                .then(regs => Promise.all(regs.filter(r => !(r.active && r.active.scriptURL.endsWith('/sw.js'))).map(r => r.unregister())))
                 .then(() => caches && caches.keys ? caches.keys() : [])
                 .then(keys => Promise.all((keys || []).map(key => caches.delete(key))))
-                .catch(err => console.log('SW cleanup failed', err));
+                .then(() => navigator.serviceWorker.register('sw.js'))
+                .catch(err => console.log('SW setup failed', err));
         }
     </script>
 </body>
