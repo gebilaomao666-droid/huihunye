@@ -13,6 +13,7 @@ import { uiMixin } from './uiMixin.js?v=20261011-soul';
 import { smsMixin } from './smsMixin.js?v=20261011-soul';
 import { persistenceMixin } from './persistenceMixin.js?v=20261011-soul';
 import { soulMixin } from './soulMixin.js?v=20261011-soul';
+import { extMixin } from './extMixin.js?v=20261011-soul';
 
 const { createApp } = Vue;
 
@@ -153,7 +154,7 @@ const Rpg2DStage = {
 };
 
 createApp({
-    mixins: [sceneMixin, uiMixin, smsMixin, persistenceMixin, soulMixin],
+    mixins: [sceneMixin, uiMixin, smsMixin, persistenceMixin, soulMixin, extMixin],
     components: {
         'rpg-2d-stage': Rpg2DStage
     },
@@ -1150,6 +1151,7 @@ createApp({
             this.currentNodeId = nodeId;
             let node = this.getNodeData(nodeId);
             if (!node) return;
+            this.probeExt(nodeId);
             // 多周目文本注入
             node = this.injectNewGamePlusText(node);
             this.currentNode = node;
@@ -2075,7 +2077,7 @@ createApp({
             this.unlockAchievement('survivor');
             this.unlockAchievement('ending_' + code);
             if (code === TRUE_ENDING_CODE) this.unlockAchievement('true_end');
-            if (code === 'Y' || code === 'Z') this.markNgPlusDone();
+            if (code === 'Y' || code === 'Z') { this.markNgPlusDone(); this.noteExtSeen(); }
             if (ALL_ENDING_CODES.length && ALL_ENDING_CODES.every((c) => this.endingCollection.includes(c))) this.unlockAchievement('all_endings');
             if (!this._runDeaths) this.unlockAchievement('no_death');
             if (!this._runHintBurns) this.unlockAchievement('no_hint');

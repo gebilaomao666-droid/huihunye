@@ -11,8 +11,8 @@ function corsHeaders(req, env) {
     const ok = allow.length === 0 || allow.includes(origin) || /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
     return {
         'Access-Control-Allow-Origin': ok ? origin || '*' : 'null',
-        'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET,POST,PUT,OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type,X-Admin-Key',
         'Access-Control-Max-Age': '86400',
         'Vary': 'Origin'
     };
@@ -294,6 +294,42 @@ async function world(db) {
     };
 }
 
+// ---------------- 扩展内容: 章节与素材存在库里, 按招魂码的收集进度放行 ----------------
+const EXT_REQUIRE = ['A', 'B', 'C', 'D', 'E', 'G', 'H', 'Z'];
+async function extChapter(db, key, soul) {
+    const c = normSoul(soul);
+    if (!SOUL_RE.test(c)) return { error: '需要招魂码。' };
+    const r = await db.prepare('SELECT endings FROM souls WHERE code = ?1').bind(c).first();
+    const have = parseList(r && r.endings);
+    if (!EXT_REQUIRE.every((k) => have.includes(k))) return { error: '还没到时候。' };
+    const row = await db.prepare('SELECT data FROM ext_chapters WHERE key = ?1').bind(str(key, 32)).first();
+    if (!row) return { error: '没有这一章。' };
+    try { return { key, nodes: JSON.parse(row.data) }; } catch (e) { return { error: '章节损坏。' }; }
+}
+async function extAsset(db, key) {
+    const row = await db.prepare('SELECT mime, data FROM ext_assets WHERE key = ?1').bind(str(key, 64)).first();
+    if (!row) return json({ error: 'not found' }, 404);
+    return new Response(row.data, { status: 200, headers: { 'content-type': row.mime || 'application/octet-stream', 'Cache-Control': 'public, max-age=86400' } });
+}
+function adminOk(req, env) {
+    const k = req.headers.get('X-Admin-Key') || '';
+    return !!env.EXT_ADMIN_KEY && k.length === env.EXT_ADMIN_KEY.length && k === env.EXT_ADMIN_KEY;
+}
+async function extPutChapter(db, key, req) {
+    const t = await req.text();
+    try { JSON.parse(t); } catch (e) { return { error: 'bad json' }; }
+    await db.prepare('INSERT INTO ext_chapters (key, data, updated_at) VALUES (?1, ?2, ?3) ON CONFLICT(key) DO UPDATE SET data = excluded.data, updated_at = excluded.updated_at')
+        .bind(str(key, 32), t, now()).run();
+    return { status: 'ok', key, bytes: t.length };
+}
+async function extPutAsset(db, key, req) {
+    const buf = await req.arrayBuffer();
+    const mime = req.headers.get('content-type') || 'application/octet-stream';
+    await db.prepare('INSERT INTO ext_assets (key, mime, data, updated_at) VALUES (?1, ?2, ?3, ?4) ON CONFLICT(key) DO UPDATE SET mime = excluded.mime, data = excluded.data, updated_at = excluded.updated_at')
+        .bind(str(key, 64), str(mime, 64), buf, now()).run();
+    return { status: 'ok', key, bytes: buf.byteLength };
+}
+
 // ---------------- 路由 ----------------
 
 async function route(req, env) {
@@ -304,7 +340,7 @@ async function route(req, env) {
     const seg = path.split('/').filter(Boolean);   // ['api', ...]
     if (seg[0] !== 'api') return json({ error: 'not found' }, 404);
     const rest = seg.slice(1);
-    const body = m === 'POST' ? await readBody(req) : null;
+    const body = m === 'POST' ? await readBody(req) : null;   // PUT 由各自处理函数读 body
 
     if (m === 'GET' && rest.join('/') === 'health') return json({ status: 'alive', whisper: '它没睡。' });
     if (m === 'POST' && rest.join('/') === 'session') return json(await createSession(db, body, req));
@@ -328,6 +364,10 @@ async function route(req, env) {
     if (m === 'GET' && rest[0] === 'player_achievements' && rest[1]) return json(await playerAchievements(db, decodeURIComponent(rest[1])));
     if (m === 'POST' && rest.join('/') === 'achievement/unlock') return json(await unlockAchievement(db, body));
     if (m === 'GET' && rest.join('/') === 'world') return json(await world(db));
+    if (m === 'GET' && rest[0] === 'ext' && rest[1] === 'chapter' && rest[2]) return json(await extChapter(db, decodeURIComponent(rest[2]), url.searchParams.get('soul') || ''));
+    if (m === 'GET' && rest[0] === 'ext' && rest[1] === 'asset' && rest[2]) return extAsset(db, decodeURIComponent(rest[2]));
+    if (m === 'PUT' && rest[0] === 'ext' && rest[1] === 'admin' && rest[2] === 'chapter' && rest[3]) return adminOk(req, env) ? json(await extPutChapter(db, decodeURIComponent(rest[3]), req)) : json({ error: 'forbidden' }, 403);
+    if (m === 'PUT' && rest[0] === 'ext' && rest[1] === 'admin' && rest[2] === 'asset' && rest[3]) return adminOk(req, env) ? json(await extPutAsset(db, decodeURIComponent(rest[3]), req)) : json({ error: 'forbidden' }, 403);
     if (m === 'POST' && rest.join('/') === 'soul/sync') return json(await soulSync(db, body));
     if (m === 'GET' && rest[0] === 'soul' && rest[1]) return json(await soulGet(db, decodeURIComponent(rest[1])));
     return json({ error: 'not found' }, 404);

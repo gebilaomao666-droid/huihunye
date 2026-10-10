@@ -105,3 +105,16 @@ CREATE TABLE IF NOT EXISTS souls (
     created_at TEXT DEFAULT (datetime('now')),
     updated_at TEXT DEFAULT (datetime('now'))
 );
+
+-- 扩展内容: 服务端存放的章节(JSON)与素材(二进制), 不随前端发布
+CREATE TABLE IF NOT EXISTS ext_chapters (
+    key TEXT PRIMARY KEY,
+    data TEXT NOT NULL,
+    updated_at TEXT DEFAULT (datetime('now'))
+);
+CREATE TABLE IF NOT EXISTS ext_assets (
+    key TEXT PRIMARY KEY,
+    mime TEXT,
+    data BLOB,
+    updated_at TEXT DEFAULT (datetime('now'))
+);
