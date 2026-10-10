@@ -6,25 +6,25 @@
     <title>回魂夜 · 纸人招魂</title>
     <!-- 性能: 无构建时浏览器要逐层解析 import 才知道子模块, 这里一次性预声明全部模块, 避免三层瀑布
          (href 必须与 import 语句里的 ?v= 完全一致, 改版本号时一起改) -->
-    <link rel="modulepreload" href="js/app.js?v=20261010-warm">
-    <link rel="modulepreload" href="js/api.js?v=20261010-warm">
-    <link rel="modulepreload" href="js/audio.js?v=20261010-warm">
-    <link rel="modulepreload" href="js/nodes.js?v=20261010-warm">
-    <link rel="modulepreload" href="js/i18n.js?v=20261010-warm">
-    <link rel="modulepreload" href="js/storage.js?v=20261010-warm">
-    <link rel="modulepreload" href="js/sceneMixin.js?v=20261010-warm">
-    <link rel="modulepreload" href="js/uiMixin.js?v=20261010-warm">
-    <link rel="modulepreload" href="js/smsMixin.js?v=20261010-warm">
-    <link rel="modulepreload" href="js/persistenceMixin.js?v=20261010-warm">
-    <link rel="modulepreload" href="js/rpg/runtimeInstance.js?v=20261010-warm">
-    <link rel="modulepreload" href="js/rpg/runtime.js?v=20261010-warm">
-    <link rel="modulepreload" href="js/rpg/sceneEngine.js?v=20261010-warm">
-    <link rel="modulepreload" href="js/rpg/assets.js?v=20261010-warm">
+    <link rel="modulepreload" href="js/app.js?v=20261011-soul">
+    <link rel="modulepreload" href="js/api.js?v=20261011-soul">
+    <link rel="modulepreload" href="js/audio.js?v=20261011-soul">
+    <link rel="modulepreload" href="js/nodes.js?v=20261011-soul">
+    <link rel="modulepreload" href="js/i18n.js?v=20261011-soul">
+    <link rel="modulepreload" href="js/storage.js?v=20261011-soul">
+    <link rel="modulepreload" href="js/sceneMixin.js?v=20261011-soul">
+    <link rel="modulepreload" href="js/uiMixin.js?v=20261011-soul">
+    <link rel="modulepreload" href="js/smsMixin.js?v=20261011-soul">
+    <link rel="modulepreload" href="js/persistenceMixin.js?v=20261011-soul">
+    <link rel="modulepreload" href="js/rpg/runtimeInstance.js?v=20261011-soul">
+    <link rel="modulepreload" href="js/rpg/runtime.js?v=20261011-soul">
+    <link rel="modulepreload" href="js/rpg/sceneEngine.js?v=20261011-soul">
+    <link rel="modulepreload" href="js/rpg/assets.js?v=20261011-soul">
     <!-- 首屏实物素材先发起下载(标题字/名牌/令牌/字体), 不等 CSS 解析 -->
     <link rel="preload" href="img/ui2/title.webp" as="image">
     <link rel="preload" href="fonts/ui3/msz.woff2" as="font" type="font/woff2" crossorigin>
     <!-- 全站界面: 暗红漆木 + 旧铜金 + 米黄楷书(规范见 css/hhy.css 文件头) -->
-    <link rel="stylesheet" href="css/hhy.css?v=20261010-warm">
+    <link rel="stylesheet" href="css/hhy.css?v=20261011-soul">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="img/icon-192.png">
     <link rel="apple-touch-icon" href="img/icon-192.png">
@@ -101,10 +101,13 @@ window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault()
         <!-- 分享卡片(暂无入口, 保持可用) -->
         <div id="share-card-overlay" class="veil" v-if="shareCardVisible" @click.self="closeShareCard">
             <div class="board panel share-panel">
-                <h2 class="panel-title">{{ t("shareCardTitle") }}</h2>
-                <div class="panel-body"><img :src="shareCardDataUrl" class="share-card-img" alt="分享卡片"></div>
+                <h2 class="panel-title">分 享</h2>
+                <div class="panel-body share-body"><img :src="shareCardDataUrl" class="share-card-img" alt="分享图"></div>
+                <div class="closeup-hint" v-if="shareHint">{{ shareHint }}</div>
                 <nav class="panel-foot medals">
-                    <button type="button" class="medal sm" @click="closeShareCard"><span class="m obj tk-c"><b class="g">收</b></span><span class="medal-lbl">{{ t("close") }}</span></button>
+                    <button type="button" class="medal sm" @click="shareCardNative"><span class="m obj tk-d"><b class="g">传</b></span><span class="medal-lbl">分享</span></button>
+                    <button type="button" class="medal sm" @click="saveShareCard"><span class="m obj tk-b"><b class="g">存</b></span><span class="medal-lbl">保存</span></button>
+                    <button type="button" class="medal sm" @click="closeShareCard"><span class="m obj tk-c"><b class="g">收</b></span><span class="medal-lbl">关闭</span></button>
                 </nav>
             </div>
         </div>
@@ -244,6 +247,9 @@ window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault()
                             </button>
                             <button v-if="saveSlots.some(s => s)" type="button" class="medal load-btn" style="--r:-1deg;--y:3px" @click="toggleSaveMenuRpg">
                                 <span class="m obj tk-b" style="--lit:.86"><b class="g">档</b></span><span class="medal-lbl">读取存档</span>
+                            </button>
+                            <button v-if="ngPlusUnlocked" type="button" class="medal ng-btn" style="--r:-1.5deg;--y:4px" @click="startNewGamePlus" :disabled="starting" title="二周目：一九五八年，第一个新郎">
+                                <span class="m obj tkt-b" style="--lit:.95"><b class="g">再</b></span><span class="medal-lbl">再守一夜</span>
                             </button>
                             <button type="button" class="medal book-btn" style="--r:1deg;--y:5px" @click="toggleEndingBook">
                                 <span class="m obj tk-d" style="--lit:.84"><b class="g">册</b></span><span class="medal-lbl">收集册</span>
@@ -475,6 +481,18 @@ window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault()
                         <div class="setting-row-rpg" v-if="isPhone && !isStandalone">
                             <span class="setting-label">全屏</span>
                             <button type="button" class="medal sm toggle-switch" :class="{ on: fullscreenOn }" role="switch" :aria-checked="fullscreenOn ? 'true' : 'false'" @click="toggleFullscreen"><span class="m obj" :class="fullscreenOn ? 'tk-a' : 'tk-c'"><b class="g">{{ fullscreenOn ? '开' : '关' }}</b></span></button>
+                        </div>
+                        <div class="setting-row-rpg soul-row">
+                            <span class="setting-label">招魂码</span>
+                            <div class="setting-control soul-ctl">
+                                <button type="button" class="soul-code strip" @click="copySoulCode" title="点击复制">{{ soulCodeText }}</button>
+                                <span class="soul-tip">换手机时输入它，结局、死法、成就都跟着走</span>
+                                <div class="soul-restore">
+                                    <input type="text" v-model="soulInput" maxlength="9" placeholder="输入别处的招魂码" class="soul-input" autocomplete="off" spellcheck="false" @keydown.enter="restoreSoul">
+                                    <button type="button" class="medal sm soul-btn" :disabled="soulBusy" @click="restoreSoul"><span class="m obj tk-b"><b class="g">招</b></span><span class="medal-lbl">找回</span></button>
+                                </div>
+                                <span class="soul-msg" v-if="soulMsg">{{ soulMsg }}</span>
+                            </div>
                         </div>
                         <div class="setting-row-rpg">
                             <span class="setting-label">震动</span>
@@ -723,11 +741,33 @@ window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault()
                     <button v-for="tab in bookTabs" :key="tab.key" type="button" role="tab" class="book-tab" :class="{ on: bookTab === tab.key, strip: bookTab === tab.key }" :aria-selected="bookTab === tab.key ? 'true' : 'false'" @click="bookTab = tab.key">{{ tab.name }}<small>{{ tab.count }}</small></button>
                 </nav>
                 <div class="panel-body book-body">
-                    <div v-if="bookTab === 'ending'" class="tag-grid book-grid">
-                        <div v-for="code in allEndingCodes" :key="code" class="book-cell tag" :class="{ unlocked: endingCollection.includes(code), legendary: ['G','H'].includes(code) }">
-                            <span class="cell-code">{{ code }}</span>
-                            <span class="cell-name">{{ endingCollection.includes(code) ? getEndingName(code) : '未 解' }}</span>
-                        </div>
+                    <div v-if="bookTab === 'ending'" class="end-grid">
+                        <button v-for="e in endingGallery" :key="e.code" type="button" class="end-cell" :class="{ unlocked: e.unlocked, legendary: e.legendary }" @click="openEndingCard(e)">
+                            <span class="end-pic"><img :src="e.cg" alt="" loading="lazy" @error="$event.target.style.visibility = 'hidden'"><i class="end-veil"></i><b v-if="!e.unlocked" class="end-q">？</b></span>
+                            <span class="end-cap"><span class="cell-code">{{ e.code }}</span><span class="end-name">{{ e.name }}</span><small v-if="e.ng" class="end-ng">二周目</small></span>
+                            <span class="end-hint" v-if="!e.unlocked">{{ e.hint }}</span>
+                        </button>
+                    </div>
+                    <div v-else-if="bookTab === 'world'" class="world">
+                        <p v-if="worldState === 'loading'" class="book-empty">正在翻账簿…</p>
+                        <p v-else-if="worldState === 'offline'" class="book-empty">账簿暂时翻不开（网络不通）。<button type="button" class="link-btn" @click="loadWorld">再试一次</button></p>
+                        <template v-else-if="worldStats">
+                            <div class="world-sum">
+                                <div class="ws"><b>{{ worldStats.total_sessions }}</b><span>人踏入老宅</span></div>
+                                <div class="ws"><b>{{ worldStats.total_deaths }}</b><span>次死在里面</span></div>
+                                <div class="ws"><b>{{ worldStats.total_completed }}</b><span>人走到结局</span></div>
+                                <div class="ws"><b class="sm">{{ worldClearText }}</b><span>走出来通常要</span></div>
+                            </div>
+                            <h3 class="world-h">死法排行</h3>
+                            <ol class="world-bars" v-if="worldStats.deaths.length">
+                                <li v-for="d in worldStats.deaths.slice(0, 8)" :key="d.name"><span class="wb-name">{{ d.name }}<small>{{ d.chapter.replace(/：.*$/, '') }}</small></span><span class="wb-bar"><i :style="{ width: Math.max(4, d.count / worldDeathMax * 100) + '%' }"></i></span><span class="wb-n">{{ d.count }}</span></li>
+                            </ol>
+                            <p v-else class="book-empty">还没有人死。你是第一个进来的。</p>
+                            <h3 class="world-h">结局分布</h3>
+                            <ol class="world-bars">
+                                <li v-for="r in worldEndingRows" :key="r.code"><span class="wb-name">{{ r.code }} · {{ endingCollection.includes(r.code) ? r.name : '未 解' }}</span><span class="wb-bar"><i :style="{ width: Math.max(r.count ? 4 : 0, r.pct) + '%' }"></i></span><span class="wb-n">{{ r.pct }}%</span></li>
+                            </ol>
+                        </template>
                     </div>
                     <div v-else-if="bookTab === 'death'" class="tag-grid">
                         <button v-for="(d, i) in deathCatalog" :key="d.id" type="button" class="tag death-tag" :class="{ unlocked: d.seen }" @click="openDeathCard(d)" :disabled="!d.seen">
@@ -792,7 +832,7 @@ window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault()
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=20261010-warm"></script>
+    <script type="module" src="js/app.js?v=20261011-soul"></script>
     <script>
         // 极简 Service Worker: 不缓存任何资源(避免旧界面被缓存), 只为让浏览器允许「添加到桌面」
         if ('serviceWorker' in navigator) {

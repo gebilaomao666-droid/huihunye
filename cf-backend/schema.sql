@@ -91,3 +91,17 @@ CREATE TABLE IF NOT EXISTS player_achievements (
     unlocked_at TEXT DEFAULT (datetime('now')),
     UNIQUE(player_id, achievement_code)
 );
+
+-- 招魂码: 跨设备的收集进度(结局/死法/成就/周目), 不是账号, 没有密码
+CREATE TABLE IF NOT EXISTS souls (
+    code TEXT PRIMARY KEY,
+    name TEXT,
+    endings TEXT DEFAULT '[]',
+    deaths_seen TEXT DEFAULT '[]',
+    achievements TEXT DEFAULT '[]',
+    death_count INTEGER DEFAULT 0,
+    runs INTEGER DEFAULT 0,
+    ng_plus INTEGER DEFAULT 0,
+    created_at TEXT DEFAULT (datetime('now')),
+    updated_at TEXT DEFAULT (datetime('now'))
+);

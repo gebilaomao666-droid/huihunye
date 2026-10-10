@@ -1,4 +1,4 @@
-import { KEYS, readRaw, writeRaw } from './storage.js?v=20261010-warm';
+import { KEYS, readRaw, writeRaw } from './storage.js?v=20261011-soul';
 
 const I18N = {
     zh: {

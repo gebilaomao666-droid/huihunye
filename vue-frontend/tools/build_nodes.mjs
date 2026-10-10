@@ -77,7 +77,7 @@ function parseFile(file) {
     });
 }
 const files = fs.readdirSync(DIR).filter(f => /^\d\d_.*\.md$/.test(f)).sort();
-if (files.length !== 11) errors.push(`剧情定稿应为 00~10 共 11 个文件, 实际 ${files.length}`);
+if (files.length < 11) errors.push(`剧情定稿至少 00~10 共 11 个文件, 实际 ${files.length}`);
 files.forEach(parseFile);
 const paraText = ps => ps.filter(p => p !== '').join('\n\n');
 
@@ -118,6 +118,24 @@ const PRESENT = {
     node08b: { sceneImage: 'img/closeup/door_red_eye_wide.webp' },
     node08c: { camAlert: true },
     node_dead2: { deathCG: 'img/death/death_answer.webp' },
+    // 二周目(爷爷视角): 全部复用一周目素材
+    ng_01: { bgImage: 'img/ending/ending_g_keeper.webp', sceneImage: 'img/ending/ending_g_keeper.webp' },
+    ng_01b: { bgImage: 'img/ending/ending_g_keeper.webp' },
+    ng_dead2: { bgImage: 'img/ending/ending_g_keeper.webp', deathCG: 'img/death/death_07_paper_replace.jpg' },
+    ng_02: { bgImage: 'img/bg/ch02_living_room.jpg', sceneImage: 'img/bg/ch02_living_room.jpg', character: 'img/char/bride_paper.jpg' },
+    ng_02_explore: { bgImage: 'img/bg/ch02_hall_explore_v2.jpg', sceneImage: 'img/bg/ch02_hall_explore_v2.jpg' },
+    ng_03: { bgImage: 'img/bg/ch05_shrine.jpg', sceneImage: 'img/bg/ch05_shrine.jpg' },
+    ng_dead1: { bgImage: 'img/bg/ch05_shrine.jpg', deathCG: 'img/death/death_12_wedding.jpg' },
+    ng_04: { bgImage: 'img/bg/ch05_shrine.jpg', character: 'img/char/bride_paper.jpg' },
+    ng_04b: { bgImage: 'img/bg/ch05_shrine.jpg', character: 'img/char/bride_paper.jpg' },
+    ng_05: { bgImage: 'img/bg/ch05_shrine.jpg', sceneImage: 'img/closeup/veil_embroidery_wide.webp', character: 'img/char/bride_paper.jpg' },
+    ng_06: { bgImage: 'img/bg/ch05_fog_hall.webp', sceneImage: 'img/death/death_11_coffin.webp' },
+    ng_07: { bgImage: 'img/bg/ch02_living_room.jpg', sceneImage: 'img/closeup/closeup_ritual_bone_charm.png' },
+    ng_08: { bgImage: 'img/bg/ch09_beam.webp', sceneImage: 'img/bg/ch09_beam.webp' },
+    ng_08b: { bgImage: 'img/bg/ch09_beam.webp' },
+    ng_09: { bgImage: 'img/bg/ch02_living_room.jpg', character: 'img/char/grandpa_normal.jpg' },
+    ng_endZ: { endingCG: 'img/ending/ending_c_cycle.jpg' },
+    ng_endY: { endingCG: 'img/bg/ch05_fog_hall.webp' },
     node11: { sceneImage: 'img/bg/ch03_kitchen.jpg', bgImage: 'img/bg/ch03_kitchen.jpg' },
     node12: { bgImage: 'img/bg/ch03_kitchen.jpg' },
     node_dead3: { bgImage: 'img/bg/ch02_living_room.jpg', deathCG: 'img/death/death_11_coffin.webp' },
@@ -158,6 +176,13 @@ const PRESENT = {
 };
 // 热点坐标(百分比) 与特写图。旧数据同 id 热点的坐标/特写图会先被沿用, 这里覆盖或补齐
 // 2026-10-09 美术 v2: 换了场景图的探索节点(node11/14/23/7x/8x_veil/10x)按新图用网格重新对位
+// 只换热点特写图、坐标沿用旧数据(热点 id → 图)
+const CLOSEUP_OVERRIDE = {
+    'node5x_vigil#water_bowl_dont_look': 'img/closeup/water_bowl_handprint.webp',   // 原来错配成纸条图
+    'node7x_funeral_explore#white_banner': 'img/closeup/closeup_white_banner.jpg',
+    'node9x_grave_explore#grave_name_tag': 'img/closeup/closeup_new_grave.jpg',
+    'node9x_grave_explore#paper_children': 'img/closeup/closeup_new_grave.jpg',
+};
 const HS_LAYOUT = {
     node01_explore: {
         // 坐标按 2026-10-09 新车厢图 ch01_bus.jpg(bus_g_102 后排视角, 1536x864) 用网格实测对位
@@ -192,6 +217,14 @@ const HS_LAYOUT = {
         eyes_done: [40, 44, 20, 14]
     },
     node5x_vigil: {},
+    ng_02_explore: {
+        ng_water_bowl: [57, 62, 18, 9, 'img/closeup/water_bowl_handprint.webp'],
+        ng_genealogy: [22, 58, 16, 10, 'img/closeup/closeup_genealogy_missing_page.png'],
+        ng_lamp: [57, 30, 9, 11, 'img/closeup/closeup_spirit_lamp_dim.jpg'],
+        ng_tablet: [39, 18, 19, 23, 'img/closeup/tablet_crooked.webp'],
+        ng_coffin: [34, 46, 30, 12, 'img/closeup/closeup_coffin_sealed_name_tag.jpg'],
+        ng_paper_groom: [76, 22, 21, 36, 'img/item/item_puppet.jpg']
+    },
     node_explore_cave: {
         bone_amulet: [10, 60, 22, 18, 'img/closeup/closeup_ritual_bone_charm.png'],
         blood_pearl: [40, 52, 20, 16],
@@ -223,7 +256,7 @@ const HS_LAYOUT = {
         submit: [44, 58, 13, 22]
     },
     node9x_grave_explore: {
-        grave_name_tag: [40, 55, 22, 18, 'img/closeup/closeup_grave_paper_money.png'],
+        grave_name_tag: [40, 55, 22, 18, 'img/closeup/closeup_new_grave.jpg'],
         crossroads: [62, 46, 30, 18]
     },
     node10x_ritual_prep: {
@@ -339,7 +372,7 @@ for (const id of order) {
                 o.closeup = true;
                 o.closeupTitle = h.f['特写标题'] || h.label;
                 o.closeupText = cu;
-                const img = (lay && lay[4]) || (prev && prev.closeupImage);
+                const img = (lay && lay[4]) || CLOSEUP_OVERRIDE[id + '#' + h.id] || (prev && prev.closeupImage);
                 if (img) o.closeupImage = img;
             }
             if (PUZZLE_KIND.pz_wipe_eyes.counter === h.id && id === puzzles.pz_wipe_eyes?.node) o.stepPuzzle = 'pz_wipe_eyes';

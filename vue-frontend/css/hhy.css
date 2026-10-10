@@ -1259,7 +1259,74 @@ button.tag.unlocked:hover { filter: drop-shadow(0 0 8px rgba(200, 50, 30, .8)) b
    ===================================================================== */
 
 /* ---------- 竖屏(手机 390x844 等) ---------- */
+
+/* ===== 结局图鉴: 每个结局一张显影的旧照片, 未解锁只剩剪影和一句暗示 ===== */
+.end-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px 12px; padding: 4px 2px 8px; }
+.end-cell {
+    appearance: none; border: 0; padding: 0; background: none; cursor: pointer; text-align: left; color: var(--cream);
+    display: flex; flex-direction: column; gap: 6px; transform: rotate(-.6deg);
+}
+.end-cell:nth-child(even) { transform: rotate(.7deg); }
+.end-pic {
+    position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; background: #110808;
+    box-shadow: 0 0 0 5px #efe2c4, 0 0 0 6px rgba(0, 0, 0, .55), calc(var(--lx) * 4px) 7px 8px rgba(0, 0, 0, .85);
+}
+.end-pic img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
+.end-cell:not(.unlocked) .end-pic img { filter: brightness(.34) saturate(.15) blur(3px) contrast(1.15); transform: scale(1.08); }
+.end-cell.unlocked .end-pic img { filter: sepia(.25) contrast(1.05) brightness(.9); }
+.end-cell.unlocked:hover .end-pic img { transform: scale(1.04); filter: sepia(.1) contrast(1.05) brightness(1); }
+.end-veil { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, .55) 100%); pointer-events: none; }
+.end-q { position: absolute; inset: 0; display: grid; place-items: center; font: normal 44px/1 var(--msz); color: rgba(232, 217, 176, .4); text-shadow: 0 0 10px #000; }
+.end-cap { display: flex; align-items: baseline; gap: 8px; padding: 2px 2px 0; }
+.end-name { font: normal 17px/1.2 var(--msz); color: #f1e2bc; letter-spacing: .08em; text-shadow: 0 1px 2px #000; }
+.end-cell:not(.unlocked) .end-name { color: rgba(232, 217, 176, .5); }
+.end-cell.legendary.unlocked .end-name { color: #f6cf72; text-shadow: 0 0 8px rgba(200, 120, 20, .6), 0 1px 2px #000; }
+.end-hint { font: normal 12px/1.45 var(--kai); color: rgba(232, 217, 176, .55); padding: 0 2px; }
+.end-ng { margin-left: auto; font: normal 11px/1 var(--kai); color: rgba(200, 40, 28, .9); letter-spacing: .1em; }
+
+/* ===== 阴间账簿: 全服统计 ===== */
+.world { padding: 2px 4px 8px; }
+.world-sum { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
+.ws { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 4px; background: rgba(0, 0, 0, .35); box-shadow: inset 0 0 0 1px rgba(176, 138, 78, .3); }
+.ws b { font: normal 30px/1 var(--brush); color: #f1e2bc; text-shadow: 0 0 10px rgba(200, 40, 28, .35), 0 1px 2px #000; }
+.ws b.sm { font-size: 18px; font-family: var(--msz); padding-top: 6px; }
+.ws span { font-size: 12px; color: var(--cream-dim); letter-spacing: .06em; text-align: center; }
+.world-h { font: normal 16px/1.2 var(--msz); color: var(--gold-hi); letter-spacing: .2em; margin: 10px 0 6px; text-align: center; }
+.world-bars { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.world-bars li { display: grid; grid-template-columns: minmax(96px, 30%) 1fr 40px; align-items: center; gap: 8px; font-size: 14px; }
+.wb-name { font-family: var(--kai); color: var(--cream); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wb-name small { display: block; font-size: 11px; color: var(--cream-dim); }
+.wb-bar { height: 10px; background: rgba(255, 255, 255, .05); box-shadow: inset 0 0 0 1px rgba(176, 138, 78, .3); }
+.wb-bar i { display: block; height: 100%; background: linear-gradient(90deg, #5a1008, #c8281c 70%, #ffb38a); box-shadow: 0 0 8px rgba(200, 40, 28, .5); transition: width .5s ease; }
+.wb-n { text-align: right; font-family: var(--msz); color: var(--gold-hi); }
+.link-btn { appearance: none; background: none; border: 0; color: var(--gold-hi); text-decoration: underline; cursor: pointer; font: inherit; }
+
+/* ===== 设置里的招魂码 ===== */
+.soul-row { align-items: flex-start; }
+.soul-ctl { flex-direction: column; align-items: flex-end; gap: 6px; max-width: 70%; }
+.soul-code { appearance: none; border: 0; cursor: pointer; min-height: 44px; padding: 6px 14px; font: normal 20px/1 var(--msz); letter-spacing: .18em; color: #f1e2bc; }
+.soul-tip, .soul-msg { font-size: 12px; color: var(--cream-dim); text-align: right; line-height: 1.4; }
+.soul-msg { color: var(--gold-hi); }
+.soul-restore { display: flex; align-items: center; gap: 6px; }
+.soul-input {
+    width: 178px; min-height: 44px; padding: 6px 8px; font: normal 16px/1.2 var(--kai); letter-spacing: .1em; text-transform: uppercase;
+    color: var(--cream); background: rgba(0, 0, 0, .4); border: 1px solid rgba(176, 138, 78, .45); outline: 0;
+}
+.soul-input:focus { border-color: var(--gold-hi); }
+
+/* ===== 分享图浮层 ===== */
+.share-panel { --pw: 520px; }
+.share-body { display: grid; place-items: center; }
+.share-card-img { max-width: 100%; max-height: min(62dvh, 640px); box-shadow: calc(var(--lx) * 4px) 8px 12px rgba(0, 0, 0, .9), 0 0 0 1px rgba(176, 138, 78, .4); }
+
 @media (orientation: portrait) {
+    .end-grid { grid-template-columns: repeat(2, 1fr); gap: 12px 10px; }
+    .world-sum { grid-template-columns: repeat(2, 1fr); }
+    .soul-ctl { max-width: 100%; align-items: stretch; }
+    .soul-tip, .soul-msg { text-align: left; }
+    .soul-row { flex-direction: column; align-items: stretch; }
+    .soul-input { flex: 1; width: auto; }
+
     .home .scene-img { background-position: 30% 60%; }
     .home .scene-glow { background: radial-gradient(ellipse 40% 18% at 32% 62%, rgba(150, 30, 18, .22), transparent 70%); }
     .home-wrap { justify-content: flex-end; padding-bottom: max(6dvh, var(--sab)); gap: 3.4dvh; }
@@ -1308,7 +1375,8 @@ button.tag.unlocked:hover { filter: drop-shadow(0 0 8px rgba(200, 50, 30, .8)) b
     .hud-tools { --mw: 40px; }
     .objective-text { width: calc(100vw - 2 * var(--gut) - 162px); }
     .menu-medals .medal-lbl { font-size: 12px; letter-spacing: 0; padding-left: 0; }
-    .book-tab { min-width: 64px; padding-left: 10px; padding-right: 10px; font-size: 16px; }
+    .book-tab { min-width: 0; padding-left: 7px; padding-right: 7px; font-size: 15px; white-space: nowrap; }
+    .book-tab small { font-size: 10px; margin-left: 2px; }
 }
 
 /* ---------- 横屏矮视口(手机 844x390 等) ---------- */

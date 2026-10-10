@@ -6,7 +6,8 @@
 // - 只打一次 console.warn, 不再刷屏 console.error
 // 线上后端地址(Cloudflare Worker); 留空则请求当前站点同源的 /api
 const REMOTE_API = 'https://weikongbu-api.gebilaomao666.workers.dev';
-const API_BASE = /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname)
+// 本地调试默认打本机 Java 后端; 地址栏带 ?api=remote 时改打线上 Worker(验收账簿/招魂码用)
+const API_BASE = /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname) && !/[?&]api=remote/.test(window.location.search)
     ? 'http://localhost:8080'
     : (REMOTE_API || window.location.origin);
 

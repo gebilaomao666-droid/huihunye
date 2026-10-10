@@ -230,6 +230,70 @@ async function unlockAchievement(db, b) {
     return r.meta && r.meta.changes > 0 ? { status: 'unlocked', code } : { status: 'already_unlocked', code };
 }
 
+// ---------------- 招魂码(跨设备进度) + 全服账簿 ----------------
+// 招魂码: 8 位, 去掉易混字符; 客户端离线也能先自生成, 服务端只认格式
+const SOUL_RE = /^[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{8}$/;
+const normSoul = (v) => (typeof v === 'string' ? v.toUpperCase().replace(/[^0-9A-Z]/g, '') : '');
+const uniqStr = (arr, n, max) => Array.isArray(arr) ? [...new Set(arr.filter((x) => typeof x === 'string').map((x) => x.slice(0, n)))].slice(0, max) : [];
+const parseList = (t) => { try { const v = JSON.parse(t || '[]'); return Array.isArray(v) ? v : []; } catch (e) { return []; } };
+
+async function soulGet(db, code) {
+    const c = normSoul(code);
+    if (!SOUL_RE.test(c)) return { error: '招魂码格式不对。' };
+    const r = await db.prepare('SELECT * FROM souls WHERE code = ?1').bind(c).first();
+    if (!r) return { error: '没有这个招魂码。' };
+    return soulView(r);
+}
+function soulView(r) {
+    return {
+        code: r.code, name: r.name || '', endings: parseList(r.endings), deaths_seen: parseList(r.deaths_seen),
+        achievements: parseList(r.achievements), death_count: r.death_count || 0, runs: r.runs || 0, ng_plus: r.ng_plus || 0,
+        created_at: r.created_at, updated_at: r.updated_at
+    };
+}
+// 同步: 客户端上传本地进度, 服务端做并集后回传; 没有这个码就建
+async function soulSync(db, b) {
+    const c = normSoul(b.code);
+    if (!SOUL_RE.test(c)) return { error: '招魂码格式不对。' };
+    const old = await db.prepare('SELECT * FROM souls WHERE code = ?1').bind(c).first();
+    const endings = uniqStr([...parseList(old && old.endings), ...(b.endings || [])], 8, 32);
+    const deaths = uniqStr([...parseList(old && old.deaths_seen), ...(b.deaths_seen || [])], 64, 200);
+    const ach = uniqStr([...parseList(old && old.achievements), ...(b.achievements || [])], 32, 100);
+    const deathCount = Math.max(old ? old.death_count : 0, Number(b.death_count) || 0);
+    const runs = Math.max(old ? old.runs : 0, Number(b.runs) || 0);
+    const ng = Math.max(old ? old.ng_plus : 0, Number(b.ng_plus) || 0);
+    const name = str(b.name, 16) || (old && old.name) || '';
+    await db.prepare(`INSERT INTO souls (code, name, endings, deaths_seen, achievements, death_count, runs, ng_plus, updated_at)
+        VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)
+        ON CONFLICT(code) DO UPDATE SET name = excluded.name, endings = excluded.endings, deaths_seen = excluded.deaths_seen,
+            achievements = excluded.achievements, death_count = excluded.death_count, runs = excluded.runs, ng_plus = excluded.ng_plus, updated_at = excluded.updated_at`)
+        .bind(c, name, JSON.stringify(endings), JSON.stringify(deaths), JSON.stringify(ach), deathCount, runs, ng, now()).run();
+    const r = await db.prepare('SELECT * FROM souls WHERE code = ?1').bind(c).first();
+    return { status: old ? 'merged' : 'created', ...soulView(r) };
+}
+
+// 全服账簿: 死法排行 / 结局分布 / 人数 / 通关时长
+async function world(db) {
+    const a = await db.prepare('SELECT COUNT(*) AS total, COUNT(ending_type) AS completed FROM sessions').first();
+    const d = await db.prepare('SELECT COUNT(*) AS c, COUNT(DISTINCT session_id) AS s FROM deaths').first();
+    const deathRows = (await db.prepare('SELECT death_name AS name, chapter, COUNT(*) AS c FROM deaths GROUP BY death_name ORDER BY c DESC LIMIT 20').all()).results || [];
+    const endRows = (await db.prepare('SELECT ending_type AS k, COUNT(*) AS c FROM sessions WHERE ending_type IS NOT NULL GROUP BY ending_type').all()).results || [];
+    const endings = {};
+    for (const r of endRows) endings[r.k] = r.c;
+    // 通关时长中位数(秒), 只算 3 分钟~6 小时之间的, 滤掉挂机
+    const times = (await db.prepare('SELECT survive_time AS t FROM sessions WHERE ending_type IS NOT NULL AND survive_time BETWEEN 180 AND 21600 ORDER BY t').all()).results || [];
+    const median = times.length ? times[Math.floor(times.length / 2)].t : 0;
+    const souls = await db.prepare('SELECT COUNT(*) AS c, SUM(CASE WHEN ng_plus > 0 THEN 1 ELSE 0 END) AS ng FROM souls').first();
+    const recent = (await db.prepare('SELECT death_name, chapter, died_at FROM deaths ORDER BY id DESC LIMIT 5').all()).results || [];
+    return {
+        total_sessions: a.total, total_completed: a.completed, total_deaths: d.c, dead_sessions: d.s,
+        deaths: deathRows.map((r) => ({ name: r.name, chapter: r.chapter || '', count: r.c })),
+        endings, median_clear_seconds: median,
+        souls: souls ? souls.c : 0, ng_plus_souls: souls ? (souls.ng || 0) : 0,
+        recent_deaths: recent
+    };
+}
+
 // ---------------- 路由 ----------------
 
 async function route(req, env) {
@@ -263,6 +327,9 @@ async function route(req, env) {
     if (m === 'GET' && rest.join('/') === 'online') return json(await online(db));
     if (m === 'GET' && rest[0] === 'player_achievements' && rest[1]) return json(await playerAchievements(db, decodeURIComponent(rest[1])));
     if (m === 'POST' && rest.join('/') === 'achievement/unlock') return json(await unlockAchievement(db, body));
+    if (m === 'GET' && rest.join('/') === 'world') return json(await world(db));
+    if (m === 'POST' && rest.join('/') === 'soul/sync') return json(await soulSync(db, body));
+    if (m === 'GET' && rest[0] === 'soul' && rest[1]) return json(await soulGet(db, decodeURIComponent(rest[1])));
     return json({ error: 'not found' }, 404);
 }
 

@@ -11,7 +11,7 @@ let sfxEnabled = true;
 const V2_BASE = 'audio/v2/';
 const V2_VER = 'b1';           // 替换 audio/v2 下某个文件内容时手动 +1
 // BGM 缓存版本: 仅在"替换 BGM 文件内容"时手动 +1, 免得每次部署都重下数 MB 音频。
-const AUDIO_VER = 'a3';
+const AUDIO_VER = 'a4';
 
 // 各组增益(线性)。v2 素材已归一: 音效 -16 LUFS, 环境 -18 LUFS, 峰值 ≤ -1 dBFS;
 // BGM 仍用原有 audio/bgm_*.mp3(约 -11~-13 LUFS, 峰值贴 0 dBFS), 所以 BGM 组压得更低。
@@ -23,17 +23,20 @@ let busMaster = null, busBgm = null, busAmb = null, busSfx = null, limiter = nul
 // ---------- 素材表 ----------
 // 场景(节点 sceneName)→ 环境层 [文件, 增益]; 最多两条, 场景切换时交叉淡变
 const AMB_HALL = [['amb_house_night_creak', 0.7], ['amb_candles_hall', 0.6]];
+const AMB_HALL_INCENSE = [['amb_incense', 0.55], ['amb_candles_hall', 0.5]];
+const AMB_SHRINE = [['amb_taoist_chant_far', 0.35], ['amb_candles_hall', 0.5]];
 const SCENE_AMB = {
-    '末班车': [['amb_wind_paper_window', 0.45]],
-    '末班车车厢': [['amb_wind_paper_window', 0.45]],
-    '荒野': [['amb_wind_paper_window', 0.6]],
-    '回城的车': [['amb_wind_paper_window', 0.4]],
-    '村口槐树': [['amb_dog_far', 0.7], ['amb_joss_paper_fire', 0.45]],
-    '村路野草': [['amb_dog_far', 0.6], ['amb_wind_paper_window', 0.5]],
-    '村口夜路': [['amb_dog_far', 0.7], ['amb_wind_paper_window', 0.45]],
-    '村口': [['amb_dog_far', 0.5], ['amb_wind_paper_window', 0.4]],
+    '末班车': [['amb_rain_window', 0.55], ['amb_wind_paper_window', 0.25]],
+    '末班车车厢': [['amb_rain_window', 0.55], ['amb_wind_paper_window', 0.25]],
+    '荒野': [['amb_wind_paper_window', 0.6], ['amb_crickets', 0.3]],
+    '回城的车': [['amb_rain_window', 0.45]],
+    '村口槐树': [['amb_crickets', 0.5], ['amb_joss_paper_fire', 0.45]],
+    '村路野草': [['amb_crickets', 0.6], ['amb_dog_far', 0.5]],
+    '村口夜路': [['amb_crickets', 0.55], ['amb_dog_far', 0.6]],
+    '老宅门口': [['amb_crickets', 0.4], ['amb_house_night_creak', 0.5]],
+    '村口': [['amb_crickets', 0.45], ['amb_dog_far', 0.5]],
     '老宅堂屋': AMB_HALL, '门缝': AMB_HALL, '门外': AMB_HALL, '手机屏幕': AMB_HALL,
-    '黑漆棺': AMB_HALL, '黑漆棺旁': AMB_HALL, '守灵·添香': AMB_HALL, '供桌': AMB_HALL,
+    '黑漆棺': AMB_HALL, '黑漆棺旁': AMB_HALL, '守灵·添香': AMB_HALL_INCENSE, '供桌': AMB_HALL_INCENSE,
     '门外的喊声': [['amb_house_night_creak', 0.6], ['amb_wind_paper_window', 0.5]],
     '堂屋大门': [['amb_house_night_creak', 0.7], ['amb_wind_paper_window', 0.45]],
     '后院厨房': [['amb_house_night_creak', 0.6], ['amb_wind_paper_window', 0.5]],
@@ -51,14 +54,15 @@ const SCENE_AMB = {
     '纸人队伍': [['amb_wind_paper_window', 0.6], ['amb_dog_far', 0.35]],
     '村中灵棚': [['amb_candles_hall', 0.6], ['amb_wind_paper_window', 0.45]],
     '灵棚棺木': [['amb_candles_hall', 0.6], ['amb_wind_paper_window', 0.4]],
-    '祠堂': AMB_HALL, '喜位': AMB_HALL, '破镜': AMB_HALL,
+    '祠堂': AMB_SHRINE, '喜位': AMB_SHRINE, '破镜': [['amb_taoist_chant_far', 0.25], ['amb_house_night_creak', 0.5]],
     '后院老井': [['amb_well_drip', 0.7], ['amb_wind_paper_window', 0.4]],
     '阴阳路': [['amb_wind_paper_window', 0.6], ['amb_joss_paper_fire', 0.3]],
     '送亲队伍': [['amb_wind_paper_window', 0.55]],
     '乱葬岗·新坟': [['amb_wind_paper_window', 0.55], ['amb_joss_paper_fire', 0.45]],
     '三岔口': [['amb_wind_paper_window', 0.6]],
     '回忆': [['amb_house_night_creak', 0.4]],
-    '回魂法坛': [['amb_candles_hall', 0.65], ['amb_house_night_creak', 0.45]],
+    '纸扎铺': [['amb_candles_hall', 0.5], ['amb_crickets', 0.35]],
+    '回魂法坛': [['amb_incense', 0.6], ['amb_taoist_chant_far', 0.22]],
 };
 // 个别节点覆盖场景环境(长明灯被风吹灭: 蜡烛声撤掉, 换成风)
 const NODE_AMB = {
@@ -66,7 +70,7 @@ const NODE_AMB = {
 };
 // 章节兜底(场景没配时按章)
 const CHAPTER_AMB = {
-    1: [['amb_wind_paper_window', 0.5]],
+    1: [['amb_crickets', 0.5], ['amb_wind_paper_window', 0.3]],
     2: AMB_HALL, 3: [['amb_house_night_creak', 0.6], ['amb_wind_paper_window', 0.5]], 4: AMB_HALL, 5: AMB_HALL,
     6: [['amb_cellar_drip', 0.6]], 7: [['amb_wind_paper_window', 0.6]], 8: AMB_HALL, 9: AMB_HALL, 10: AMB_HALL,
 };
@@ -86,7 +90,9 @@ const KIND_SFX = {
 };
 const NODE_EVENTS = {
     // 第一章
+    node04: [['sfx_woman_laugh_far', 2600, 0.35]],
     node05: [['sfx_door_creak_open', 'end', 0.7]],
+    node05b: [['sfx_cloth_drag', 'end', 0.5]],
     // 第二章
     node06: [['sfx_door_bolt_room', 150, 0.9], ['sfx_coffin_scratch_inside', 'end', 0.8]],
     node08: [['sfx_footsteps_approach', 200, 0.85], ['sfx_knock_door_room', 'end', 0.95]],
@@ -96,18 +102,25 @@ const NODE_EVENTS = {
     node09b: [['sfx_paper_page_turn', 'end', 0.8]],
     node10: [['sfx_footsteps_recede', 0, 0.8], ['sfx_coffin_scratch_inside', 'end', 0.75]],
     // 第三章
+    node11: [['sfx_match_strike', 900, 0.6], ['sfx_breath_panic', 'end', 0.35]],
     node12: [['sfx_wet_squelch', 'end', 0.8], ['sfx_stinger_hit_low', 'end', 0.85]],
+    node15b: [['sfx_door_creak_open_room', 300, 0.85], ['sfx_breath_panic', 'end', 0.3]],
     // 第四章
     node13: [['sfx_match_strike', 200, 0.85], ['sfx_oil_lamp_light', 1200, 0.75], ['sfx_paper_effigy_rustle_room', 'end', 0.8]],
     node13b: [['sfx_whisper_ear', 'end', 0.85], ['sfx_stinger_hit_mid', 'end', 0.7]],
+    node14: [['sfx_paper_effigy_rustle_room', 500, 0.7], ['sfx_baby_cry_far', 'end', 0.3]],
     node15: [['sfx_paper_effigy_rustle', 400, 0.8]],
     // 第五章
+    node17: [['sfx_nail_scratch_wood_room', 1200, 0.6]],
+    node5x_vigil: [['sfx_coffin_scratch_inside', 2500, 0.45]],
     node5x_call: [['sfx_knock_slow_room', 0, 0.8], ['sfx_whisper_ear', 'end', 0.85]],
+    node21: [['sfx_breath_slow', 'end', 0.5]],
     node18: [['sfx_slam_room', 0, 1.0], ['sfx_stinger_hit_low', 0, 0.8], ['sfx_coffin_lid_slide_room', 700, 0.7]],
     node19: [['sfx_door_bolt', 100, 0.9], ['sfx_wet_drag_room', 'end', 0.8]],
     node20: [['sfx_breath_ear', 'end', 0.8]],
     // 第六章
     node22: [['sfx_wet_drag', 'end', 0.5]],
+    node_explore_cave: [['sfx_bones_rattle_room', 1800, 0.5]],
     node_puzzle_door: [['sfx_bone_crack', 0, 0.9]],
     node_puzzle_success: [['sfx_coffin_lid_slide_room', 0, 0.8]],
     node_genealogy: [['sfx_paper_page_turn', 0, 0.8], ['sfx_paper_page_turn', 1600, 0.7]],
@@ -115,11 +128,14 @@ const NODE_EVENTS = {
     node22b: [['sfx_stinger_hit_mid', 'end', 0.8]],
     node23: [['sfx_woman_cry_far', 1500, 0.55]],
     // 第七章
-    node24: [['sfx_paper_effigy_rustle_room', 'end', 0.85]],
+    node24: [['sfx_gong_muffled', 600, 0.6], ['sfx_paper_effigy_rustle_room', 'end', 0.85]],
     node7x_coffin_alive: [['sfx_coffin_lid_slide', 0, 0.8], ['sfx_breath_slow', 1500, 0.6], ['sfx_whisper_ear', 'end', 0.8]],
     node25: [['sfx_paper_effigy_rustle', 300, 0.75], ['sfx_cloth_drag', 1600, 0.6]],
     // 第八章
-    node26: [['sfx_whisper_ear', 'end', 0.85]],
+    node26: [['sfx_woman_laugh_far', 800, 0.45], ['sfx_whisper_ear', 'end', 0.85]],
+    node26b: [['sfx_paper_effigy_rustle', 'end', 0.7]],
+    node9x_grave_explore: [['sfx_bones_rattle_room', 1500, 0.45], ['sfx_baby_cry_far', 'end', 0.3]],
+    node9x_crossroads: [['sfx_suona_far', 1200, 0.6]],
     node8x_hall: [['sfx_cloth_drag_room', 200, 0.75], ['sfx_gong_room', 'end', 0.7]],
     node8x_veil: [['sfx_cloth_drag_room', 400, 0.6]],
     node8x_mirror: [['sfx_tinnitus', 0, 0.45], ['sfx_stinger_gong_swell', 'end', 0.9]],
@@ -130,12 +146,15 @@ const NODE_EVENTS = {
     node9x_bus_trap: [['sfx_whisper_ear', 'end', 0.85]],
     // 第九章
     node28: [['sfx_woman_cry_far', 600, 0.6], ['sfx_wet_squelch', 'end', 0.5]],
-    node29b: [['sfx_whisper_ear', 'end', 0.75]],
+    node29: [['sfx_brush_write', 1200, 0.45]],
+    node29b: [['sfx_breath_slow', 600, 0.5], ['sfx_whisper_ear', 'end', 0.75]],
     // 第十章
     node10x_altar: [['sfx_qing_room', 300, 0.7]],
     node10x_recite: [['sfx_muyu_roll', 0, 0.6], ['sfx_tinnitus', 'end', 0.45]],
     node10x_jade: [['sfx_stinger_gong_swell', 'end', 0.9]],
     node10x_bell: [['sfx_bell_copper', 400, 0.6]],
+    node10x_turn: [['sfx_stinger_gong_swell', 'end', 0.85]],
+    node_endH: [['sfx_bell_copper_shake', 1500, 0.5]],
     node_endG2: [['sfx_bell_copper_room', 300, 0.8]],
 };
 // 死亡节点(isDeath): 低频 stinger + 尖叫
@@ -535,12 +554,16 @@ function audioReset() {
 
 // ===== BGM(真实音频文件, 经 WebAudio 的 bgm 总线) =====
 const BGM_FILES = {
-    base:    'audio/bgm_ambient_loop.mp3',   // 全程氛围铺底(可循环)
+    base:    'audio/bgm_ambient_loop.mp3',   // 第一二章: 全程氛围铺底(可循环)
+    dread:   'audio/mus_darkness_speaks.mp3', // 第三~五章: 熄灯/纸人围灵/出棺, 压抑低鸣
+    cellar:  'audio/mus_drone_long_note.mp3', // 第六章地下: 长音低频
+    village: 'audio/mus_ossuary_air.mp3',     // 第七章纸人村: 空旷阴冷
     wedding: 'audio/bgm_suona_climax.mp3',   // 冥婚/阴阳: 唢呐送葬悲调
-    ritual:  'audio/bgm_suona_climax.mp3',   // 回魂: 同上
+    truth:   'audio/mus_erhu_solo.mp3',       // 第九章真相: 二胡独奏
+    ritual:  'audio/bgm_suona_climax.mp3',   // 回魂: 唢呐
     ending:  'audio/bgm_ending_relief.mp3',  // 感人结局: 哀婉释怀
 };
-const BGM_VOL = { base: 0.5, wedding: 0.62, ritual: 0.62, ending: 0.66 };
+const BGM_VOL = { base: 0.5, dread: 0.42, cellar: 0.4, village: 0.45, wedding: 0.62, truth: 0.5, ritual: 0.62, ending: 0.66 };
 const liveBgm = new Set();   // { el, g, fadeTimer }
 let bgmToken = 0;
 

@@ -8,7 +8,8 @@ const CHAPTER_BACKGROUNDS = {
     '第七章：纸人村': 'img/bg/ch06_village_street.jpg',
     '第八章：冥婚大典': 'img/bg/ch05_shrine.jpg',
     '第九章：真相': 'img/bg/ch02_living_room.jpg',
-    '第十章：回魂': 'img/bg/ch10_ritual.jpg'
+    '第十章：回魂': 'img/bg/ch10_ritual.jpg',
+    '二周目：第一个新郎': 'img/ending/ending_g_keeper.webp'
 };
 
 const SCENE_NAMES = {
@@ -21,7 +22,8 @@ const SCENE_NAMES = {
     '第七章：纸人村': '纸人村',
     '第八章：冥婚大典': '祠堂',
     '第九章：真相': '堂屋',
-    '第十章：回魂': '回魂坛'
+    '第十章：回魂': '回魂坛',
+    '二周目：第一个新郎': '纸扎铺'
 };
 
 const CHAPTER_OBJECTIVES = [
@@ -34,7 +36,8 @@ const CHAPTER_OBJECTIVES = [
     { match: ['纸人村'], text: '分清活人和纸人' },
     { match: ['冥婚'], text: '别让这场婚礼办成' },
     { match: ['真相'], text: '听她说完' },
-    { match: ['回魂'], text: '把她的名字还给她' }
+    { match: ['回魂'], text: '把她的名字还给她' },
+    { match: ['第一个新郎'], text: '看她一眼' }
 ];
 
 // 界面实物素材(ui3: 暗红漆木 + 旧铜令牌 + 暗漆名牌 + 黄裱纸), 由 css/hhy.css 按界面打开时取用

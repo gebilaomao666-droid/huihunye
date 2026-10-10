@@ -1,17 +1,18 @@
-import { apiPost, apiGet, isApiOffline } from './api.js?v=20261010-warm';
-import { initAudio, resumeAudio, playTone, playHeartbeat, playScream, playKnock, playWhisper, playTinnitus, startBgm, stopBgm, playSuonaPhrase, playJumpscareSfx, setSfxEnabled } from './audio.js?v=20261010-warm';
+import { apiPost, apiGet, isApiOffline } from './api.js?v=20261011-soul';
+import { initAudio, resumeAudio, playTone, playHeartbeat, playScream, playKnock, playWhisper, playTinnitus, startBgm, stopBgm, playSuonaPhrase, playJumpscareSfx, setSfxEnabled } from './audio.js?v=20261011-soul';
 // v2 音频新增接口用命名空间按需调用(浏览器若还缓存着旧 audio.js 也不会因缺导出而整页报错)
-import * as audioExt from './audio.js?v=20261010-warm';
-import { NODES, ITEMS, HINT_SYSTEM, BPM_MAP, SFX_MAP, MESSAGES } from './nodes.js?v=20261010-warm';
-import { t, setLang, getLang } from './i18n.js?v=20261010-warm';
-import { gameRuntime } from './rpg/runtimeInstance.js?v=20261010-warm';
-import { getVisibleHotspots, resolveHotspot } from './rpg/sceneEngine.js?v=20261010-warm';
-import { CHAPTER_BACKGROUNDS, objectiveForNode, sceneNameForChapter, speakerForCharacter } from './rpg/assets.js?v=20261010-warm';
-import { KEYS, readJSON, writeJSON, readRaw, writeRaw, remove as removeKey } from './storage.js?v=20261010-warm';
-import { sceneMixin } from './sceneMixin.js?v=20261010-warm';
-import { uiMixin } from './uiMixin.js?v=20261010-warm';
-import { smsMixin } from './smsMixin.js?v=20261010-warm';
-import { persistenceMixin } from './persistenceMixin.js?v=20261010-warm';
+import * as audioExt from './audio.js?v=20261011-soul';
+import { NODES, ITEMS, HINT_SYSTEM, BPM_MAP, SFX_MAP, MESSAGES } from './nodes.js?v=20261011-soul';
+import { t, setLang, getLang } from './i18n.js?v=20261011-soul';
+import { gameRuntime } from './rpg/runtimeInstance.js?v=20261011-soul';
+import { getVisibleHotspots, resolveHotspot } from './rpg/sceneEngine.js?v=20261011-soul';
+import { CHAPTER_BACKGROUNDS, objectiveForNode, sceneNameForChapter, speakerForCharacter } from './rpg/assets.js?v=20261011-soul';
+import { KEYS, readJSON, writeJSON, readRaw, writeRaw, remove as removeKey } from './storage.js?v=20261011-soul';
+import { sceneMixin } from './sceneMixin.js?v=20261011-soul';
+import { uiMixin } from './uiMixin.js?v=20261011-soul';
+import { smsMixin } from './smsMixin.js?v=20261011-soul';
+import { persistenceMixin } from './persistenceMixin.js?v=20261011-soul';
+import { soulMixin } from './soulMixin.js?v=20261011-soul';
 
 const { createApp } = Vue;
 
@@ -152,7 +153,7 @@ const Rpg2DStage = {
 };
 
 createApp({
-    mixins: [sceneMixin, uiMixin, smsMixin, persistenceMixin],
+    mixins: [sceneMixin, uiMixin, smsMixin, persistenceMixin, soulMixin],
     components: {
         'rpg-2d-stage': Rpg2DStage
     },
@@ -431,12 +432,14 @@ createApp({
             return [
                 { key: 'ending', name: '结局', count: this.endingCollection.length + '/' + this.allEndingCodes.length },
                 { key: 'death', name: '死法', count: this.deathCatalog.filter((d) => d.seen).length + '/' + this.deathCatalog.length },
-                { key: 'epitaph', name: '墓志铭', count: String(this.epitaphs.length) }
+                { key: 'epitaph', name: '墓志铭', count: String(this.epitaphs.length) },
+                { key: 'world', name: '阴间账簿', count: '' }
             ];
         },
         bookProgressText() {
             if (this.bookTab === 'death') return '见过的死法 ' + this.deathCatalog.filter((d) => d.seen).length + ' / ' + this.deathCatalog.length + '　点木牌看死因';
             if (this.bookTab === 'epitaph') return '封入黄裱纸的话 ' + this.epitaphs.length + ' 句';
+            if (this.bookTab === 'world') return '招魂码 ' + this.soulCodeText + '　换手机时在设置里输入即可找回进度';
             return '收集进度 ' + this.endingCollection.length + ' / ' + this.allEndingCodes.length;
         },
         currentSceneName() {
@@ -495,6 +498,8 @@ createApp({
         setSfxEnabled(this.soundEnabled);
         if (audioExt.audioRegisterNodes) audioExt.audioRegisterNodes(NODES, SFX_MAP);
         this.achievements = this.buildLocalAchievements();
+        this.loadBookData();
+        this.initSoul();
         this.detectResume();
 
         // 先进开始界面; 统计/遗言/成就/云端续玩全部后台进行, 回来再填(后端挂起也不会卡在"正在连接老宅")
@@ -545,6 +550,7 @@ createApp({
         // 标题页主令牌: 没写名讳先提示; 有上次进度时重新入宅要确认
         async onStartPrimary() {
             if (this.starting) return;
+            this._ngRun = false;
             if (!(this.playerName || '').trim()) {
                 this.showToast('先在名牌上写下你的名讳。');
                 const el = this.$refs.nameInput;
@@ -607,7 +613,7 @@ createApp({
             }
             const wasUnlocked = def.unlocked;
             def.unlocked = true;
-            if (!wasUnlocked) this.queueAchievementToast(def.name);
+            if (!wasUnlocked) { this.queueAchievementToast(def.name); this.syncSoul('ach'); }
             // 同步到服务器(离线时 apiPost 直接返回 null)
             if (this.playerId) {
                 apiPost('/api/achievement/unlock', {
@@ -648,56 +654,6 @@ createApp({
         getAchievementRarityColor(rarity) {
             const colors = { common: '#8a7a5a', rare: '#4a90d9', epic: '#9b59b6', legendary: '#ffd700' };
             return colors[rarity] || '#8a7a5a';
-        },
-
-        // ===== 分享卡片 =====
-        // 分享卡: 暂无界面入口(下一阶段重做界面时接入), 保持可用且不报错
-        generateShareCard() {
-            const W = 800, H = 450;
-            const dpr = Math.min(Math.max(window.devicePixelRatio || 1, 1), 3);
-            const canvas = document.createElement('canvas');
-            canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
-            const ctx = canvas.getContext('2d');
-            if (!ctx) return;
-            ctx.scale(dpr, dpr);
-
-            ctx.fillStyle = '#0a0505';
-            ctx.fillRect(0, 0, W, H);
-            ctx.fillStyle = 'rgba(255,255,255,0.03)';
-            for (let y = 0; y < H; y += 4) ctx.fillRect(0, y, W, 2);
-            ctx.strokeStyle = '#8a0000';
-            ctx.lineWidth = 2;
-            ctx.strokeRect(20, 20, W - 40, H - 40);
-
-            ctx.fillStyle = '#c9a86c';
-            ctx.font = 'bold 36px "Noto Serif SC", serif';
-            ctx.textAlign = 'center';
-            ctx.fillText('《回魂夜》存活报告', W / 2, 80);
-
-            ctx.fillStyle = '#8a7a5a';
-            ctx.font = '20px "Noto Serif SC", serif';
-            ctx.textAlign = 'left';
-            const total = ALL_ENDING_CODES.length || 8;
-            const endings = this.endingCollection.length;
-            const achievements = this.achievements.filter(a => a.unlocked).length;
-            const fear = (this.currentNode && this.currentNode.fearScore) || (this.playerStats ? this.playerStats.fear : 0);
-            ctx.fillText(`结局收集: ${endings}/${total}`, 80, 150);
-            ctx.fillText(`死亡次数: ${this.deathCount}`, 80, 190);
-            ctx.fillText(`成就解锁: ${achievements}/${this.achievements.length}`, 80, 230);
-            ctx.fillText(`恐惧值: ${fear}`, 80, 270);
-
-            ctx.fillStyle = '#3a1515';
-            ctx.fillRect(80, 310, 640, 30);
-            ctx.fillStyle = '#8a0000';
-            ctx.fillRect(80, 310, 640 * Math.min(endings / total, 1), 30);
-
-            ctx.fillStyle = '#5a3a1a';
-            ctx.font = '14px "Noto Serif SC", serif';
-            ctx.textAlign = 'center';
-            ctx.fillText(this.gameUrl() + ' | 它记得你。', W / 2, 400);
-
-            this.shareCardDataUrl = canvas.toDataURL('image/png');
-            this.shareCardVisible = true;
         },
 
         // 当前部署地址(不再写死已过期的服务器)
@@ -879,6 +835,7 @@ createApp({
                 // 图没到齐就开场, 手机上第一张就是黑的; 开局把全部图片预热完再进(带进度条)
                 try { await this.ensureAssetsLoaded(); } catch (e) { this.loading = false; }
                 this.resetRun({ keepSnapshot: false, stayOnScreen: true });
+                this.bumpRuns();
                 this.gameStartTime = Date.now();
                 this._runDeaths = 0;
                 this._runHintBurns = 0;
@@ -887,7 +844,7 @@ createApp({
                 this.showDanmuPreview();
                 this.checkNightOwl();
                 this.ensureSession();            // 会话请求在后台, 不阻塞进入游戏
-                this.enterNode('node01');
+                this.enterNode(this._ngRun ? 'ng_01' : 'node01');
             } finally {
                 setTimeout(() => { this._starting = false; this.starting = false; }, 400);
             }
@@ -1138,6 +1095,10 @@ createApp({
             if (node.isEnding || node.isFinal) mood = 'ending';        // 结局: 唢呐送葬句
             else if (ch.includes('冥婚') || ch.includes('阴阳')) mood = 'wedding';
             else if (ch.includes('回魂')) mood = 'ritual';
+            else if (ch.includes('真相') || ch.includes('第一个新郎')) mood = 'truth';
+            else if (ch.includes('纸人村')) mood = 'village';
+            else if (ch.includes('地下')) mood = 'cellar';
+            else if (ch.includes('厨房') || ch.includes('纸人围灵') || ch.includes('出棺')) mood = 'dread';
             // 死亡节点不专门切 BGM(由 scream 等音效承担), 维持原氛围
             if (node.isDeath) return;
             if (mood !== this._bgmMood) {
@@ -1810,6 +1771,8 @@ createApp({
             const seen = readJSON(KEYS.deathsSeen, []);
             const list = Array.isArray(seen) ? seen : [];
             if (!list.includes(nodeId)) { list.push(nodeId); writeJSON(KEYS.deathsSeen, list); }
+            this.deathsSeenList = list;
+            this.syncSoul('death');
             if (ALL_DEATH_NODE_IDS.every((id) => list.includes(id))) this.unlockAchievement('all_deaths');
         },
 
@@ -1985,6 +1948,11 @@ createApp({
         restartGame() {
             this.startGame();
         },
+        // 标题页「再守一夜」: 二周目(爷爷视角), 之后的「重新来过」也留在二周目; 回标题页/入宅守灵才回到一周目
+        startNewGamePlus() {
+            this._ngRun = true;
+            this.startGame();
+        },
 
         // ===== 多周目文本注入 =====
         // 点对话框: 正在打字 → 跳过显示全文(并照常触发后续); 节点密码锁被关掉 → 重新打开
@@ -2107,10 +2075,12 @@ createApp({
             this.unlockAchievement('survivor');
             this.unlockAchievement('ending_' + code);
             if (code === TRUE_ENDING_CODE) this.unlockAchievement('true_end');
+            if (code === 'Y' || code === 'Z') this.markNgPlusDone();
             if (ALL_ENDING_CODES.length && ALL_ENDING_CODES.every((c) => this.endingCollection.includes(c))) this.unlockAchievement('all_endings');
             if (!this._runDeaths) this.unlockAchievement('no_death');
             if (!this._runHintBurns) this.unlockAchievement('no_hint');
             if (this.gameStartTime && Date.now() - this.gameStartTime < 10 * 60 * 1000) this.unlockAchievement('speedrun');
+            this.syncSoul('ending');
         },
 
         // ===== 真实时间彩蛋 =====
@@ -2126,25 +2096,8 @@ createApp({
             return null;
         },
 
-        // ===== 分享结局卡片 =====
-        shareEnding() {
-            const isDeath = this.currentNode?.isDeath;
-            const name = this.currentNode?.endingName || this.currentNode?.deathName || '未知结局';
-            const gameName = this.lang === 'zh' ? '回魂夜' : 'Soul Return';
-            const url = this.gameUrl();
-            const text = isDeath
-                ? `我在《${gameName}》中死在了【${name}】\n你敢来试试吗？`
-                : `我在《${gameName}》中打出了结局【${name}】\n你敢来试试吗？`;
-            if (navigator.share) {
-                navigator.share({ title: gameName + ' · ' + name, text, url }).catch(() => {});
-            } else if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text + '\n' + url)
-                    .then(() => this.showToast('分享文案已复制到剪贴板'))
-                    .catch(() => this.showToast('复制失败，请手动复制'));
-            } else {
-                this.showToast('浏览器不支持自动复制：' + url);
-            }
-        },
+        // 结局/死亡页「分享」: 生成分享图(soulMixin)
+        shareEnding() { this.generateShareCard(); },
 
         // ===== 结局名称查询 =====
         getEndingName(code) {

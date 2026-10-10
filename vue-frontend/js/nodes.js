@@ -1,7 +1,7 @@
 // ===== 回魂夜 · 剧情节点数据 =====
 // 本文件由 tools/build_nodes.mjs 从 docs/剧情定稿/*.md 生成, 不要手改; 改剧情请改 md 后重新生成:
 //   node tools/build_nodes.mjs
-// 93 个节点 | 21 种死法 | 8 个结局节点 | 10 个谜题
+// 110 个节点 | 23 种死法 | 10 个结局节点 | 10 个谜题
 
 const EPITAPHS = [
     "最后一排的温座",
@@ -1087,7 +1087,7 @@ const NODES = {
         ],
         "signal": 0,
         "battery": 0,
-        "deathCG": "img/death/death_09_possess.jpg?v=88a1171d",
+        "deathCG": "img/death/death_09_possess.jpg?v=84ebf9ef",
         "character": "img/char/it_shadow.jpg?v=8d01daac",
         "characterEmotion": "ghost",
         "characterPosition": "center",
@@ -1273,7 +1273,7 @@ const NODES = {
                 "closeup": true,
                 "closeupTitle": "水碗",
                 "closeupText": "你只用余光扫过水碗。碗里的水纹自己晃了一下，像有人从碗底往上呼了口气。\n\n你别开脸。",
-                "closeupImage": "img/item/item_note.jpg?v=4f78cddb"
+                "closeupImage": "img/closeup/water_bowl_handprint.webp?v=09fb301c"
             },
             {
                 "id": "vigil_done_exit",
@@ -1336,7 +1336,7 @@ const NODES = {
         ],
         "signal": 0,
         "battery": 0,
-        "deathCG": "img/death/death_08_burn.jpg?v=0b6286da",
+        "deathCG": "img/death/death_08_burn.jpg?v=76c0d89f",
         "hideCharacter": true,
         "isDeath": true,
         "deathName": "续灯",
@@ -1695,7 +1695,7 @@ const NODES = {
         "text": "你伸手去够那颗珠子。它睁开了。\n\n是一只眼睛。没有眼皮，泡得发白，黑眼仁在当中慢慢转过来，对准你。\n\n池水先是不动。然后从池底一圈一圈往上翻，像下面有什么换了口气。\n\n一只手从水里伸出来，扣住你的脚踝。手是软的，指甲很长，一下就陷进肉里。\n\n你被拖下去。池水是温的。\n\n你在水里睁着眼。池底铺满了眼睛，一颗挨一颗，全都在看你。它们缺了很多年的，就是一双还会眨的。",
         "signal": 0,
         "battery": 6,
-        "deathCG": "img/death/death_10_blood_curse.jpg?v=17cb15e8",
+        "deathCG": "img/death/death_10_blood_curse.jpg?v=7a7ad808",
         "hideCharacter": true,
         "isDeath": true,
         "deathName": "血池吞噬",
@@ -2019,7 +2019,7 @@ const NODES = {
                 "closeup": true,
                 "closeupTitle": "不动的白幡",
                 "closeupText": "白幡笔直垂着。棚外有夜风，幡一丝不动。\n\n幡上一行墨字，写的是你的姓。名字那两格被红笔圈着，空着。",
-                "closeupImage": "img/bg/ch07_funeral.jpg?v=52135cbd"
+                "closeupImage": "img/closeup/closeup_white_banner.jpg?v=41096802"
             },
             {
                 "id": "old_photo",
@@ -2679,7 +2679,7 @@ const NODES = {
                 "closeup": true,
                 "closeupTitle": "坟头的名牌",
                 "closeupText": "名牌上是你的全名。最后一个字刮得很深，和那块旧孝牌一模一样。\n\n墨还没干。\n\n纸钱堆里压着半碗供水，水面映着你背后那顶红轿。你别开了眼。",
-                "closeupImage": "img/closeup/closeup_grave_paper_money.png?v=e24d6e1b"
+                "closeupImage": "img/closeup/closeup_new_grave.jpg?v=1e2cbad3"
             },
             {
                 "id": "paper_children",
@@ -2691,7 +2691,7 @@ const NODES = {
                 "closeup": true,
                 "closeupTitle": "纸扎童男童女",
                 "closeupText": "两个纸扎童子守在坟边。金童的牌子写着“引魂”，玉女的牌子写着“送嫁”。\n\n你一靠近，它们画着笑的脸齐齐转过来，纸做的嘴里漏出一句：“新人快上轿。”",
-                "closeupImage": "img/closeup/closeup_grave_paper_money.png?v=e24d6e1b"
+                "closeupImage": "img/closeup/closeup_new_grave.jpg?v=1e2cbad3"
             },
             {
                 "id": "far_bus_light",
@@ -3306,6 +3306,449 @@ const NODES = {
         "isEnding": true,
         "endingCode": "H",
         "endingName": "回魂"
+    },
+
+    "ng_01": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "纸扎铺",
+        "time": "18:40",
+        "text": "一九五八年，七月十五。天还没黑透，铺子里已经点了灯。\n\n你二十二岁，跟师父学扎纸人第六年。竹篾劈得匀，浆糊熬得稠，一张脸画下来，村里人说比活人还像活人。\n\n今天的活是莫家的。莫家闺女绣禾，十八岁，上个月没的。她爹托人来说，要配一门亲，纸的就行。\n\n师父把一沓白纸拍在你面前。“脸要活人的。”他说，“这家规矩，不认画出来的。”\n\n墙上挂着一面小镜子。镜子里那张脸，二十二岁，黑头发，眼睛有点凹。\n\n你拿起笔。",
+        "bgImage": "img/ending/ending_g_keeper.webp?v=14baa150",
+        "sceneImage": "img/ending/ending_g_keeper.webp?v=14baa150",
+        "hideCharacter": true,
+        "choices": [
+            {
+                "text": "照着镜子，画自己的脸",
+                "next": "ng_02",
+                "setFlags": {
+                    "ng_own_face": true
+                }
+            },
+            {
+                "text": "画师父的脸",
+                "next": "ng_01b"
+            },
+            {
+                "text": "画完了，顺手给它点上眼睛",
+                "next": "ng_dead2"
+            }
+        ]
+    },
+
+    "ng_01b": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "纸扎铺",
+        "time": "18:50",
+        "text": "你画了师父的脸。\n\n师父看了一眼，没说话。他走过来，一巴掌把那张脸撕了下来，纸屑落在你手背上，像一片一片指甲。\n\n“你当我没想过。”他把镜子摘下来，塞进你怀里，“这屋子只认年轻的。老的躺进去，它嫌。”\n\n他的左手扶着门框。你头一回注意到，那只手只有四根手指。\n\n你重新铺纸。镜子里那张脸，这回你看得很仔细。",
+        "bgImage": "img/ending/ending_g_keeper.webp?v=14baa150",
+        "hideCharacter": true,
+        "choices": [
+            {
+                "text": "照着镜子，画自己的脸",
+                "next": "ng_02",
+                "setFlags": {
+                    "ng_own_face": true
+                }
+            }
+        ]
+    },
+
+    "ng_dead2": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "纸扎铺",
+        "time": "18:55",
+        "text": "你蘸了墨，在它眼眶里各点了一下。\n\n很小的两个点。点完你就后悔了。\n\n纸新郎的头慢慢抬起来。它的脸是你的脸，眼睛是你刚给的眼睛。它看了你一会儿，像在对镜子。\n\n然后它笑了。你没有笑。\n\n师父在门口站着，没有进来。他说：“我说过不点睛。”声音很轻，像在跟一个已经不在的人说话。\n\n纸新郎走出去了，走得很稳。它替你去了莫家，坐了喜位，掀了盖头。\n\n天亮以后，村里人见到你，都叫你那个名字。你照镜子。镜子里是一张白纸，眼眶里两个小点，不眨。",
+        "bgImage": "img/ending/ending_g_keeper.webp?v=14baa150",
+        "deathCG": "img/death/death_07_paper_replace.jpg?v=36b7f25b",
+        "hideCharacter": true,
+        "isDeath": true,
+        "deathName": "点睛",
+        "deathDesc": "纸人不点眼，是怕它认路。你给它点了，它第一个认的，是你。"
+    },
+
+    "ng_02": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "老宅堂屋",
+        "time": "19:30",
+        "text": "你抱着纸新郎进了莫家堂屋。\n\n黑漆棺材停在当中，棺盖没合严，露一道缝。供桌上三炷香，一盏长明灯，灯火是绿的。\n\n她坐在棺材边，穿红嫁衣，盖头盖到肩膀。她不动。屋里的老人也不动。他们排在墙根，一个挨一个，看着你怀里的纸人。\n\n莫家老爷子走过来，伸手摸了摸纸新郎的脸。摸得很慢，从眉毛摸到下巴。\n\n“像。”他说。\n\n他没有看纸人。他在看你。",
+        "bgImage": "img/bg/ch02_living_room.jpg?v=f0aa3c8a",
+        "sceneImage": "img/bg/ch02_living_room.jpg?v=f0aa3c8a",
+        "character": "img/char/bride_paper.jpg?v=284ebd86",
+        "hideCharacter": true,
+        "condTexts": [
+            {
+                "flag": "ng_own_face",
+                "not": false,
+                "text": "纸新郎的脸贴着你的脸。你画它的时候觉得像，现在抱着它，觉得它比你更像你。"
+            }
+        ],
+        "choices": [
+            {
+                "text": "把纸新郎立到喜位上",
+                "next": "ng_03"
+            },
+            {
+                "text": "先把这屋子看清楚",
+                "next": "ng_02_explore"
+            }
+        ]
+    },
+
+    "ng_02_explore": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "老宅堂屋",
+        "time": "19:35",
+        "text": "你把纸新郎靠在门边，自己往屋里走了两步。\n\n没人拦你。那些老人的眼睛跟着你转，像一排挂在墙上的旧照片。",
+        "bgImage": "img/bg/ch02_hall_explore_v2.jpg?v=76a8abba",
+        "sceneImage": "img/bg/ch02_hall_explore_v2.jpg?v=76a8abba",
+        "hideCharacter": true,
+        "exploreScene": true,
+        "sceneId": "ng_02_explore",
+        "sceneTitle": "老宅堂屋",
+        "returnNode": "ng_02",
+        "closeText": "退出场景",
+        "sceneHint": "点屋里的东西看一看。老人们不会拦你，他们只是看。",
+        "hotspots": [
+            {
+                "id": "ng_water_bowl",
+                "label": "供桌水碗",
+                "x": 57,
+                "y": 62,
+                "w": 18,
+                "h": 9,
+                "closeup": true,
+                "closeupTitle": "水碗",
+                "closeupText": "供桌上一碗清水，照理该映出你低头的脸。\n\n水里有一张脸，是你的，眼睛却是闭着的。你眨了眨眼，它没眨。",
+                "closeupImage": "img/closeup/water_bowl_handprint.webp?v=09fb301c"
+            },
+            {
+                "id": "ng_genealogy",
+                "label": "桌上的族谱",
+                "x": 22,
+                "y": 58,
+                "w": 16,
+                "h": 10,
+                "once": true,
+                "setFlags": {
+                    "ng_saw_name": true
+                },
+                "closeup": true,
+                "closeupTitle": "莫家的族谱",
+                "closeupText": "族谱摊在桌上，翻到最新的一页。\n\n“莫氏绣禾”四个字，被人拿墨涂了。墨还没干透，底下的字透出来，一笔一笔，像还在挣。\n\n旁边空着一格，笔搁在格子边上。等一个名字。",
+                "closeupImage": "img/closeup/closeup_genealogy_missing_page.png?v=2308b827"
+            },
+            {
+                "id": "ng_lamp",
+                "label": "长明灯",
+                "x": 57,
+                "y": 30,
+                "w": 9,
+                "h": 11,
+                "closeup": true,
+                "closeupTitle": "绿火的长明灯",
+                "closeupText": "灯火是绿的。灯油浮着一根黑头发，很长。\n\n火苗冲你这边斜过来，像有人在灯后头吹气。你退了一步，它跟了一步。",
+                "closeupImage": "img/closeup/closeup_spirit_lamp_dim.jpg?v=16ebe7b5"
+            },
+            {
+                "id": "ng_tablet",
+                "label": "祖宗牌位",
+                "x": 39,
+                "y": 18,
+                "w": 19,
+                "h": 23,
+                "closeup": true,
+                "closeupTitle": "歪着的牌位",
+                "closeupText": "牌位歪着。最前头那一块是新的，木头还白，没刻字。\n\n你伸手想扶正。木头是温的，像刚从谁手里接过来。",
+                "closeupImage": "img/closeup/tablet_crooked.webp?v=4a30dacf"
+            },
+            {
+                "id": "ng_coffin",
+                "label": "黑漆棺",
+                "x": 34,
+                "y": 46,
+                "w": 30,
+                "h": 12,
+                "closeup": true,
+                "closeupTitle": "没合严的棺盖",
+                "closeupText": "棺盖留着一道缝。缝里黑。\n\n你凑近看。里面铺着褥子，枕头是新的。有人在里面轻轻翻了个身。\n\n她在棺材外头坐着。那里面躺的，是谁。",
+                "closeupImage": "img/closeup/closeup_coffin_sealed_name_tag.jpg?v=fc2a0023"
+            },
+            {
+                "id": "ng_paper_groom",
+                "label": "门边的纸新郎",
+                "x": 76,
+                "y": 22,
+                "w": 21,
+                "h": 36,
+                "closeup": true,
+                "closeupTitle": "门边的纸新郎",
+                "closeupText": "它靠在门边，脸冲着你。\n\n你画的眉毛，你画的嘴。你没点眼睛，可它的眼眶看起来一点也不空。\n\n它比刚才又像你了一点。",
+                "closeupImage": "img/item/item_puppet.jpg?v=ad2546a9"
+            }
+        ]
+    },
+
+    "ng_03": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "喜位",
+        "time": "20:30",
+        "text": "唢呐响了。不知道从哪儿吹的，村里没人会这个调子。\n\n你把纸新郎往喜位上立。莫家老爷子按住你的手。\n\n“纸的替不了。”他说，“得活的坐一夜。”\n\n墙根那排老人一起站起来。他们的手很凉，很多，从你肩膀、胳膊、后腰一齐摁下去。师父就站在门口，低着头，没有看你。\n\n他们把你按进喜位。红绸从你头顶罩下来。\n\n纸新郎被立在你旁边，和你并排。它的脸贴着你的脸。",
+        "bgImage": "img/bg/ch05_shrine.jpg?v=0b9c7ba4",
+        "sceneImage": "img/bg/ch05_shrine.jpg?v=0b9c7ba4",
+        "hideCharacter": true,
+        "choices": [
+            {
+                "text": "挣开",
+                "next": "ng_dead1"
+            },
+            {
+                "text": "坐下。坐一夜而已",
+                "next": "ng_04"
+            }
+        ]
+    },
+
+    "ng_dead1": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "喜位",
+        "time": "20:31",
+        "text": "你挣。\n\n那些手没有用力，只是不松。你挣一下，它们就多一只。\n\n红绸裹到你脸上。里面是浆糊的味道，是你铺子里的浆糊。\n\n你还在挣，忽然觉得胳膊轻了。再挣，腿也轻了。你低头，看见自己的袖子瘪下去，像里头没有东西。\n\n唢呐停了。有人把你从喜位上抱起来，很轻，一只手就够。\n\n他们把你立到纸新郎原来的位置。纸新郎坐进了你的喜位。它的眼眶里，不知什么时候有了眼睛。",
+        "bgImage": "img/bg/ch05_shrine.jpg?v=0b9c7ba4",
+        "deathCG": "img/death/death_12_wedding.jpg?v=b65bff29",
+        "hideCharacter": true,
+        "isDeath": true,
+        "deathName": "喜服",
+        "deathDesc": "这家人请你，是客气。按你，是规矩。你挣，就不算人了。"
+    },
+
+    "ng_04": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "喜位",
+        "time": "23:00",
+        "text": "唢呐早停了。老人们一个一个退出去，门从外头带上。\n\n屋里剩你，剩她，剩那盏绿火。\n\n盖头底下，她说话了。声音很轻，像隔着一层纸。\n\n“你是扎纸人的。”\n\n“你画了我的新郎。”\n\n“你看我一眼。就一眼。我想知道，你画我的时候，画的是谁。”",
+        "bgImage": "img/bg/ch05_shrine.jpg?v=0b9c7ba4",
+        "character": "img/char/bride_paper.jpg?v=284ebd86",
+        "hideCharacter": true,
+        "condTexts": [
+            {
+                "flag": "ng_saw_name",
+                "not": false,
+                "text": "你想起族谱上那四个被涂掉的字。她没有名字了。她只剩这一张盖头底下的脸。"
+            }
+        ],
+        "choices": [
+            {
+                "text": "掀开盖头",
+                "next": "ng_05",
+                "setFlags": {
+                    "ng_saw_face": true
+                }
+            },
+            {
+                "text": "守规矩，不掀",
+                "next": "ng_04b"
+            }
+        ]
+    },
+
+    "ng_04b": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "喜位",
+        "time": "23:10",
+        "text": "你没有动。\n\n她等了很久。久到绿火矮下去一截。\n\n“好。”她说，“那你跟他们一样。”\n\n盖头底下传来一点声音，像在笑，又像在收拾什么。\n\n你忽然很困。困得像有人从后面按住你的眼皮。",
+        "bgImage": "img/bg/ch05_shrine.jpg?v=0b9c7ba4",
+        "character": "img/char/bride_paper.jpg?v=284ebd86",
+        "hideCharacter": true,
+        "choices": [
+            {
+                "text": "撑不住了",
+                "next": "ng_06"
+            }
+        ]
+    },
+
+    "ng_05": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "喜位",
+        "time": "23:10",
+        "text": "你掀开了盖头。\n\n她有脸。眉毛淡，嘴唇薄，左眼角一颗小痣。十八岁的姑娘，脸上没有一点死相，只是很白。\n\n她看着你。眼睛里有点亮，像很久没人叫过她，忽然被叫了一声。\n\n“你画我的时候，”她说，“画的是你自己。”\n\n她伸手，把你的盖头放下来。“记住我这张脸。后面的人，都不会再看了。”\n\n你忽然很困。困得像有人从后面按住你的眼皮。",
+        "bgImage": "img/bg/ch05_shrine.jpg?v=0b9c7ba4",
+        "sceneImage": "img/closeup/veil_embroidery_wide.webp?v=1ad2647e",
+        "character": "img/char/bride_paper.jpg?v=284ebd86",
+        "hideCharacter": true,
+        "choices": [
+            {
+                "text": "撑不住了",
+                "next": "ng_06"
+            }
+        ]
+    },
+
+    "ng_06": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "黑漆棺",
+        "time": "00:00",
+        "text": "你醒了。\n\n背后是褥子，头底下是新枕头。你伸手，手碰到木头。四面都是木头。\n\n棺盖合着。\n\n外面有人说话，是师父。他贴着棺盖，一个字一个字地说：\n\n“这家的规矩，新郎得躺一夜。躺到天亮，就是她的了。”\n\n“要么你躺着。要么，你找一个人替。”\n\n他的手指在棺盖上敲了四下。只有四下。",
+        "bgImage": "img/bg/ch05_fog_hall.webp?v=1a3b6996",
+        "sceneImage": "img/death/death_11_coffin.webp?v=dc2ca22f",
+        "hideCharacter": true,
+        "condTexts": [
+            {
+                "flag": "ng_saw_face",
+                "not": false,
+                "text": "黑里，你还看得见她那张脸。眼角一颗痣。她说后面的人都不会再看了。你是第一个看的，也是第一个躺进来的。"
+            }
+        ],
+        "choices": [
+            {
+                "text": "拍棺盖，喊师父",
+                "next": "ng_07"
+            },
+            {
+                "text": "躺着。躺到天亮",
+                "next": "ng_endY"
+            }
+        ]
+    },
+
+    "ng_07": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "老宅堂屋",
+        "time": "00:30",
+        "text": "棺盖掀开了。师父把你拽出来，拽得很急，像怕里面的东西改主意。\n\n他从怀里摸出一块骨头，巴掌长，磨得发白，上头刻着一个“替”字。\n\n“替死术。”他说，“不是不死。是把死往后推。”\n\n“推出去的活，接下的死。推一回，赔一根手指。推到没手指，就得自己躺。”\n\n他摊开左手。四根。\n\n“我推过一回。”他说，“推给我徒弟。”\n\n他看着你，眼睛里什么都没有。“你要推，就推给往后的人。你儿子，你孙子。他们还没生，不会怪你。”\n\n砧板上搁着一把切纸的刀。",
+        "bgImage": "img/bg/ch02_living_room.jpg?v=f0aa3c8a",
+        "sceneImage": "img/closeup/closeup_ritual_bone_charm.png?v=2a4d8538",
+        "hideCharacter": true,
+        "item": "bone_amulet",
+        "choices": [
+            {
+                "text": "砍下一根手指，接过骨符",
+                "next": "ng_08",
+                "setFlags": {
+                    "ng_pushed": true
+                }
+            },
+            {
+                "text": "把刀推回去",
+                "next": "ng_endY"
+            }
+        ]
+    },
+
+    "ng_08": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "回忆",
+        "time": "23:59",
+        "text": "二零零八年，七月十五。\n\n你七十岁。左手四根手指，扎了一辈子纸人，一个都没点过睛。\n\n儿子三十出头，在城里开车。今晚他坐末班车回来，一进门就说饿。他脖子有点歪，小时候摔的。\n\n你给他盛了饭。饭里竖着筷子，你没拔。\n\n五十年了。那块骨头在你怀里一直是温的，今晚忽然凉了。你知道，债到期了。\n\n儿子吃完饭，在堂屋梁下站着，看长明灯。\n\n你摸着怀里的骨符。",
+        "bgImage": "img/bg/ch09_beam.webp?v=e5cf7133",
+        "sceneImage": "img/bg/ch09_beam.webp?v=e5cf7133",
+        "hideCharacter": true,
+        "condTexts": [
+            {
+                "flag": "ng_pushed",
+                "not": false,
+                "text": "你左手四根手指。砍下去那天疼了三个月，后来不疼了，只是扎纸的时候总觉得少捏住一点什么。"
+            },
+            {
+                "flag": "ng_saw_face",
+                "not": false,
+                "text": "你想起她那张脸。五十年了，没人再看过。她在等的，一直不是新郎。"
+            }
+        ],
+        "choices": [
+            {
+                "text": "把骨符塞进儿子手里",
+                "next": "ng_09",
+                "setFlags": {
+                    "ng_pushed_son": true
+                }
+            },
+            {
+                "text": "自己躺进去，替他",
+                "next": "ng_08b"
+            }
+        ]
+    },
+
+    "ng_08b": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "老宅堂屋",
+        "time": "00:10",
+        "text": "你把骨符放回供桌，自己掀开棺盖，躺了进去。\n\n褥子是旧的，还是五十年前那一床。\n\n你躺了一夜。天亮的时候，你从棺材里坐起来，身上一点事没有。\n\n堂屋梁上，儿子吊在那儿，脚离地一尺。中山装上沁着黑水，往下滴。\n\n这屋子不要老的。它嫌。\n\n骨符还在供桌上。它等的不是你躺，是你推。",
+        "bgImage": "img/bg/ch09_beam.webp?v=e5cf7133",
+        "hideCharacter": true,
+        "choices": [
+            {
+                "text": "把骨符收回怀里",
+                "next": "ng_09",
+                "setFlags": {
+                    "ng_pushed_son": true
+                }
+            }
+        ]
+    },
+
+    "ng_09": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "回忆",
+        "time": "05:00",
+        "text": "二零二八年。你快九十了。\n\n床边坐着孙子，二十五岁，黑头发，眼睛有点凹。他攥着你的手。你的手只剩四根手指，凉得像浸过井水。\n\n你有很多话想说。\n\n想说那年你也是被按进喜位的新郎。想说你太怕那口棺材了。想说你把命推给了他爹，他爹又推给了他。\n\n想说不是不疼。是这屋子，从来不许人疼。\n\n可话到嘴边，都成了胡话。",
+        "bgImage": "img/bg/ch02_living_room.jpg?v=f0aa3c8a",
+        "character": "img/char/grandpa_normal.jpg?v=58f58fd7",
+        "hideCharacter": true,
+        "condTexts": [
+            {
+                "flag": "ng_pushed_son",
+                "not": false,
+                "text": "他爹走的第二天，你在堂屋坐了一夜。骨符在怀里又温了。它认下一个了。"
+            },
+            {
+                "flag": "ng_saw_face",
+                "not": false,
+                "text": "你最想说的是她的脸。眉毛淡，嘴唇薄，左眼角一颗痣。七十年了，只有你看过。你想让他也看一眼。"
+            }
+        ],
+        "choices": [
+            {
+                "text": "把话说清楚",
+                "next": "ng_endZ"
+            },
+            {
+                "text": "说不清了。攥紧他的手",
+                "next": "ng_endZ"
+            }
+        ]
+    },
+
+    "ng_endZ": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "末班车",
+        "time": "23:59",
+        "text": "你没说清。你的手松了。\n\n孙子在床边坐了很久。然后他起身，去赶车。回老宅守灵，是规矩。\n\n末班车十一点五十九分进村。车上就他一个人。司机脖子歪着，左手搭在方向盘上，四根手指。\n\n他低头看手机。车窗外，一盏绿火跟着车跑。\n\n你在很远的地方看着这一切，像看一张你自己画的纸人。眉眼齐全，没有点睛。\n\n你想喊他，让他看她一眼。就一眼。\n\n可你已经是纸的了。纸的，喊不出声。\n\n车停了。他下了车。",
+        "endingCG": "img/ending/ending_c_cycle.jpg?v=d379caae",
+        "hideCharacter": true,
+        "isEnding": true,
+        "endingCode": "Z",
+        "endingName": "第一个新郎",
+        "condTexts": [
+            {
+                "flag": "ng_saw_face",
+                "not": false,
+                "text": "她站在村口槐树底下，盖头盖到肩膀。七十年了，她还在等一个肯看的人。\n\n这一回，她等到的是你孙子。你画过他的脸。"
+            }
+        ]
+    },
+
+    "ng_endY": {
+        "chapter": "二周目：第一个新郎",
+        "sceneName": "黑漆棺",
+        "time": "05:30",
+        "text": "你躺着。\n\n棺盖外头，师父敲了很久。后来不敲了。再后来，天亮了。\n\n你没有儿子。没有孙子。没有二零零八年的梁，没有二零二八年的末班车。\n\n她坐在棺材边，梳了一夜的头。天亮的时候，她把梳子搁下，把盖头掀开一角，看了你一眼。\n\n“谢谢。”她说。\n\n这屋子安静了七十年。\n\n七十年后的七月十五，十一点五十九分，末班车还是进了村。车上坐着一个年轻人，低着头看手机，眼睛有点凹。\n\n你不认识他。\n\n这屋子，总能找到新郎。",
+        "endingCG": "img/bg/ch05_fog_hall.webp?v=1a3b6996",
+        "hideCharacter": true,
+        "isEnding": true,
+        "endingCode": "Y",
+        "endingName": "不推"
     }
 };
 
@@ -3314,7 +3757,7 @@ const ITEMS = {
     "note": {
         "name": "带血的纸条",
         "desc": "母亲写的守灵规矩。正面三条，背面“别回头”，最底下一行四根指头抹的血字：别信写纸的人。",
-        "image": "img/item/item_note.jpg?v=4f78cddb",
+        "image": "img/item/item_note.jpg?v=8bd0cfe7",
         "inspectImage": "img/closeup/closeup_blood_note.jpg?v=df4c1d60"
     },
     "lamp_oil": {
@@ -3742,7 +4185,20 @@ const BPM_MAP = {
     "node10x_recite": 160,
     "node10x_jade": 180,
     "node10x_bell": 160,
-    "node10x_turn": 150
+    "node10x_turn": 150,
+    "ng_01": 150,
+    "ng_01b": 150,
+    "ng_02": 150,
+    "ng_02_explore": 115,
+    "ng_03": 150,
+    "ng_04": 150,
+    "ng_04b": 150,
+    "ng_05": 150,
+    "ng_06": 150,
+    "ng_07": 150,
+    "ng_08": 150,
+    "ng_08b": 150,
+    "ng_09": 150
 };
 
 // 节点音效映射
