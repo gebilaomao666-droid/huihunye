@@ -586,6 +586,9 @@ body.final-flash #rpg-2d-stage::after { animation: final-flash .9s ease-out 1; }
 #scene-image .scene-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: scene-appear 1.4s ease-out; }
 /* 压暗交给这一层(不给 img 加 filter: 真机上 filter + 入场动画会把图渲染成纯黑) */
 #scene-image .scene-vignette { position: absolute; inset: 0; background: radial-gradient(circle, rgba(0, 0, 0, .14) 44%, rgba(0, 0, 0, .8) 100%); }
+/* 远程下发的整幅插画: 不裁切、少压暗(竖屏下完整显示整张横图) */
+#scene-image .full-frame .scene-img { object-fit: contain; }
+#scene-image .full-frame .scene-vignette { background: radial-gradient(circle, transparent 60%, rgba(0, 0, 0, .35) 100%); }
 #scene-image .scene-hint, .scene-intro-hint {
     position: absolute; left: 50%; bottom: calc(max(20px, var(--sab)) + 3dvh); transform: translateX(-50%);
     font: normal 16px/1.5 var(--kai); letter-spacing: .3em; padding-left: .3em; color: var(--cream);

@@ -132,7 +132,7 @@ window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault()
 
         <!-- ===== 场景图片展示 ===== -->
         <div id="scene-image" v-if="sceneImageVisible" @click="closeSceneImage">
-            <div class="scene-overlay">
+            <div class="scene-overlay" :class="{ 'full-frame': /^https?:/.test(sceneImageUrl || '') }">
                 <img :src="sceneImageUrl" class="scene-img" alt="">
                 <div class="scene-vignette"></div>
                 <div class="scene-hint">{{ sceneImageReady ? '点击屏幕继续' : '画面显影中…' }}</div>
