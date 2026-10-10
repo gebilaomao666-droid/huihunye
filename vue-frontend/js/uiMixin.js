@@ -1,6 +1,6 @@
 // 菜单 / 背包面板 / 道具操作 子系统 (从 app.js 抽出的方法 mixin)。
 // 相关状态仍在主组件 data(); Vue 合并后 this 指向同一实例。
-import { gameRuntime } from './rpg/runtimeInstance.js?v=20261010-cf';
+import { gameRuntime } from './rpg/runtimeInstance.js?v=20261010-fin';
 
 export const uiMixin = {
     methods: {

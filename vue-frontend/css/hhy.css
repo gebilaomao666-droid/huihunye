@@ -1279,11 +1279,15 @@ button.tag.unlocked:hover { filter: drop-shadow(0 0 8px rgba(200, 50, 30, .8)) b
     .explore-foot { justify-content: center; }
 
     .fin-wrap { justify-content: flex-start; padding-top: max(24px, var(--sat)); }
-    .fin-grid { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+    /* 手机: 令牌按钮排在标题正下方, 再往下才是正文和遗言; 正文不单独滚动(整页一起滚, 手指按在字上也能滑) */
+    .fin-grid { display: flex; flex-direction: column; align-items: stretch; gap: 22px; }
+    .fin-side { display: contents; }
+    .fin-medals { order: -1; justify-content: center; }
+    .fin-story { order: 0; max-height: none; }
+    .lastword { order: 1; align-self: center; margin-bottom: 16px; }
+    .fin-text { overflow: visible; overscroll-behavior: auto; }
     .fin .scene-img { background-position: 40% 50%; }
     .fin-shade { background: linear-gradient(180deg, rgba(10, 6, 6, .55) 0%, rgba(10, 6, 6, .9) 30%, rgba(10, 6, 6, .93) 100%); }
-    .fin-story { max-height: none; }
-    .fin-side { padding-bottom: 16px; }
     .end-title, .death-title { width: min(80vw, 340px); }
     .fin-medals { --mw: clamp(50px, 14vw, 72px); gap: 18px 3vw; }
     .fin-medals .medal-lbl { font-size: 13px; letter-spacing: .06em; padding-left: .06em; }
@@ -1375,7 +1379,7 @@ button.tag.unlocked:hover { filter: drop-shadow(0 0 8px rgba(200, 50, 30, .8)) b
     .fin-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px; }
     .end-title, .death-title { width: clamp(170px, 26vw, 230px); }
     .fin-story { max-height: none; }
-    .fin-text { font-size: 14.5px; }
+    .fin-text { font-size: 14.5px; overflow: visible; overscroll-behavior: auto; }
     .fin-medals { --mw: clamp(46px, 14dvh, 64px); gap: 10px 14px; }
     .fin-medals .medal-lbl { font-size: 12px; letter-spacing: .04em; padding-left: .04em; }
     .lastword { width: min(100%, 290px); }

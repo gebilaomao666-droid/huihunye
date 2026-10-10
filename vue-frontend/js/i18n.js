@@ -1,4 +1,4 @@
-import { KEYS, readRaw, writeRaw } from './storage.js?v=20261010-cf';
+import { KEYS, readRaw, writeRaw } from './storage.js?v=20261010-fin';
 
 const I18N = {
     zh: {
