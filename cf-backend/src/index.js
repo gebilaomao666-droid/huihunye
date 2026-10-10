@@ -309,7 +309,10 @@ async function extChapter(db, key, soul) {
 async function extAsset(db, key) {
     const row = await db.prepare('SELECT mime, data FROM ext_assets WHERE key = ?1').bind(str(key, 64)).first();
     if (!row) return json({ error: 'not found' }, 404);
-    return new Response(row.data, { status: 200, headers: { 'content-type': row.mime || 'application/octet-stream', 'Cache-Control': 'public, max-age=86400' } });
+    // D1 的 BLOB 在不同运行时可能回 ArrayBuffer 或数字数组, 统一成字节
+    const d = row.data;
+    const bytes = d instanceof ArrayBuffer ? new Uint8Array(d) : (ArrayBuffer.isView(d) ? new Uint8Array(d.buffer, d.byteOffset, d.byteLength) : Uint8Array.from(d || []));
+    return new Response(bytes, { status: 200, headers: { 'content-type': row.mime || 'application/octet-stream', 'content-length': String(bytes.byteLength), 'Cache-Control': 'public, max-age=86400' } });
 }
 function adminOk(req, env) {
     const k = req.headers.get('X-Admin-Key') || '';
