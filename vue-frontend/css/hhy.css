@@ -1286,6 +1286,7 @@ button.tag.unlocked:hover { filter: drop-shadow(0 0 8px rgba(200, 50, 30, .8)) b
 .end-cell.legendary.unlocked .end-name { color: #f6cf72; text-shadow: 0 0 8px rgba(200, 120, 20, .6), 0 1px 2px #000; }
 .end-hint { font: normal 12px/1.45 var(--kai); color: rgba(232, 217, 176, .55); padding: 0 2px; }
 .end-ng { margin-left: auto; font: normal 11px/1 var(--kai); color: rgba(200, 40, 28, .9); letter-spacing: .1em; }
+.end-true { color: rgba(232, 190, 90, .95); }
 
 /* ===== 阴间账簿: 全服统计 ===== */
 .world { padding: 2px 4px 8px; }

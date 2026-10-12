@@ -1,19 +1,19 @@
-import { apiPost, apiGet, isApiOffline } from './api.js?v=20261011-soul';
-import { initAudio, resumeAudio, playTone, playHeartbeat, playScream, playKnock, playWhisper, playTinnitus, startBgm, stopBgm, playSuonaPhrase, playJumpscareSfx, setSfxEnabled } from './audio.js?v=20261011-soul';
+import { apiPost, apiGet, isApiOffline } from './api.js?v=20261012-end';
+import { initAudio, resumeAudio, playTone, playHeartbeat, playScream, playKnock, playWhisper, playTinnitus, startBgm, stopBgm, playSuonaPhrase, playJumpscareSfx, setSfxEnabled } from './audio.js?v=20261012-end';
 // v2 音频新增接口用命名空间按需调用(浏览器若还缓存着旧 audio.js 也不会因缺导出而整页报错)
-import * as audioExt from './audio.js?v=20261011-soul';
-import { NODES, ITEMS, HINT_SYSTEM, BPM_MAP, SFX_MAP, MESSAGES } from './nodes.js?v=20261011-soul';
-import { t, setLang, getLang } from './i18n.js?v=20261011-soul';
-import { gameRuntime } from './rpg/runtimeInstance.js?v=20261011-soul';
-import { getVisibleHotspots, resolveHotspot } from './rpg/sceneEngine.js?v=20261011-soul';
-import { CHAPTER_BACKGROUNDS, objectiveForNode, sceneNameForChapter, speakerForCharacter } from './rpg/assets.js?v=20261011-soul';
-import { KEYS, readJSON, writeJSON, readRaw, writeRaw, remove as removeKey } from './storage.js?v=20261011-soul';
-import { sceneMixin } from './sceneMixin.js?v=20261011-soul';
-import { uiMixin } from './uiMixin.js?v=20261011-soul';
-import { smsMixin } from './smsMixin.js?v=20261011-soul';
-import { persistenceMixin } from './persistenceMixin.js?v=20261011-soul';
-import { soulMixin } from './soulMixin.js?v=20261011-soul';
-import { extMixin } from './extMixin.js?v=20261011-soul';
+import * as audioExt from './audio.js?v=20261012-end';
+import { NODES, ITEMS, HINT_SYSTEM, BPM_MAP, SFX_MAP, MESSAGES } from './nodes.js?v=20261012-end';
+import { t, setLang, getLang } from './i18n.js?v=20261012-end';
+import { gameRuntime } from './rpg/runtimeInstance.js?v=20261012-end';
+import { getVisibleHotspots, resolveHotspot } from './rpg/sceneEngine.js?v=20261012-end';
+import { CHAPTER_BACKGROUNDS, objectiveForNode, sceneNameForChapter, speakerForCharacter } from './rpg/assets.js?v=20261012-end';
+import { KEYS, readJSON, writeJSON, readRaw, writeRaw, remove as removeKey } from './storage.js?v=20261012-end';
+import { sceneMixin } from './sceneMixin.js?v=20261012-end';
+import { uiMixin } from './uiMixin.js?v=20261012-end';
+import { smsMixin } from './smsMixin.js?v=20261012-end';
+import { persistenceMixin } from './persistenceMixin.js?v=20261012-end';
+import { soulMixin } from './soulMixin.js?v=20261012-end';
+import { extMixin } from './extMixin.js?v=20261012-end';
 
 const { createApp } = Vue;
 
@@ -431,7 +431,7 @@ createApp({
         },
         bookTabs() {
             return [
-                { key: 'ending', name: '结局', count: this.endingCollection.length + '/' + this.allEndingCodes.length },
+                { key: 'ending', name: '结局', count: this.endingCollection.filter((c) => this.allEndingCodes.includes(c)).length + '/' + this.allEndingCodes.length },
                 { key: 'death', name: '死法', count: this.deathCatalog.filter((d) => d.seen).length + '/' + this.deathCatalog.length },
                 { key: 'epitaph', name: '墓志铭', count: String(this.epitaphs.length) },
                 { key: 'world', name: '阴间账簿', count: '' }
@@ -441,7 +441,7 @@ createApp({
             if (this.bookTab === 'death') return '见过的死法 ' + this.deathCatalog.filter((d) => d.seen).length + ' / ' + this.deathCatalog.length + '　点木牌看死因';
             if (this.bookTab === 'epitaph') return '封入黄裱纸的话 ' + this.epitaphs.length + ' 句';
             if (this.bookTab === 'world') return '招魂码 ' + this.soulCodeText + '　换手机时在设置里输入即可找回进度';
-            return '收集进度 ' + this.endingCollection.length + ' / ' + this.allEndingCodes.length;
+            return '收集进度 ' + this.endingCollection.filter((c) => this.allEndingCodes.includes(c)).length + ' / ' + this.allEndingCodes.length;
         },
         currentSceneName() {
             return this.currentNode?.sceneName || sceneNameForChapter(this.currentNode?.chapter || '');

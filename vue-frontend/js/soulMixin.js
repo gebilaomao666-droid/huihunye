@@ -1,8 +1,8 @@
 // 招魂码(跨设备收集进度) / 阴间账簿(全服统计) / 分享图
 // 招魂码不是账号: 8 位随机码, 本机先生成, 联网时把结局/死法/成就/周目并到云端(并集), 换设备输码即可找回。
-import { apiGet, apiPost } from './api.js?v=20261011-soul';
-import { KEYS, readJSON, writeJSON, readRaw, writeRaw } from './storage.js?v=20261011-soul';
-import { NODES } from './nodes.js?v=20261011-soul';
+import { apiGet, apiPost } from './api.js?v=20261012-end';
+import { KEYS, readJSON, writeJSON, readRaw, writeRaw } from './storage.js?v=20261012-end';
+import { NODES } from './nodes.js?v=20261012-end';
 
 const SOUL_ALPHABET = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
 const SOUL_KEY = 'hhs_soul';
@@ -178,7 +178,7 @@ export const soulMixin = {
             writeRaw(SOUL_KEY, c);
             this.absorbSoul(r);
             this.soulInput = '';
-            this.soulMsg = '已并入。结局 ' + this.endingCollection.length + ' / ' + this.allEndingCodes.length + '。';
+            this.soulMsg = '已并入。结局 ' + this.endingCollection.filter((c) => this.allEndingCodes.includes(c)).length + ' / ' + this.allEndingCodes.length + '。';
             this.syncSoul('restore');
             if (this.showToast) this.showToast('招魂成功，进度已并入');
         },
@@ -273,7 +273,7 @@ export const soulMixin = {
                 const lines = [
                     who + (isDeath ? ' 死在了' : ' 走到了') + (node.chapter || '老宅') + (node.time ? ' · ' + node.time : ''),
                     '本局死亡 ' + (this._runDeaths || 0) + ' 次' + (used ? ' · 用时 ' + used : '') + ' · 累计死亡 ' + (this.deathCount || 0) + ' 次',
-                    '结局 ' + this.endingCollection.length + ' / ' + this.allEndingCodes.length + ' · 死法 ' + deaths + (this.soulCode ? ' · 招魂码 ' + fmtSoul(this.soulCode) : ''),
+                    '结局 ' + this.endingCollection.filter((c) => this.allEndingCodes.includes(c)).length + ' / ' + this.allEndingCodes.length + ' · 死法 ' + deaths + (this.soulCode ? ' · 招魂码 ' + fmtSoul(this.soulCode) : ''),
                 ];
                 ctx.font = '400 30px ' + kai;
                 ctx.fillStyle = 'rgba(232,217,176,.92)';

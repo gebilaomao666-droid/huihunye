@@ -1,4 +1,4 @@
-import { KEYS, readRaw, writeRaw } from '../storage.js?v=20261011-soul';
+import { KEYS, readRaw, writeRaw } from '../storage.js?v=20261012-end';
 
 const PLAYER_ID_KEY = KEYS.playerId;
 

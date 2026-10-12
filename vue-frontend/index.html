@@ -6,25 +6,25 @@
     <title>回魂夜 · 纸人招魂</title>
     <!-- 性能: 无构建时浏览器要逐层解析 import 才知道子模块, 这里一次性预声明全部模块, 避免三层瀑布
          (href 必须与 import 语句里的 ?v= 完全一致, 改版本号时一起改) -->
-    <link rel="modulepreload" href="js/app.js?v=20261011-soul">
-    <link rel="modulepreload" href="js/api.js?v=20261011-soul">
-    <link rel="modulepreload" href="js/audio.js?v=20261011-soul">
-    <link rel="modulepreload" href="js/nodes.js?v=20261011-soul">
-    <link rel="modulepreload" href="js/i18n.js?v=20261011-soul">
-    <link rel="modulepreload" href="js/storage.js?v=20261011-soul">
-    <link rel="modulepreload" href="js/sceneMixin.js?v=20261011-soul">
-    <link rel="modulepreload" href="js/uiMixin.js?v=20261011-soul">
-    <link rel="modulepreload" href="js/smsMixin.js?v=20261011-soul">
-    <link rel="modulepreload" href="js/persistenceMixin.js?v=20261011-soul">
-    <link rel="modulepreload" href="js/rpg/runtimeInstance.js?v=20261011-soul">
-    <link rel="modulepreload" href="js/rpg/runtime.js?v=20261011-soul">
-    <link rel="modulepreload" href="js/rpg/sceneEngine.js?v=20261011-soul">
-    <link rel="modulepreload" href="js/rpg/assets.js?v=20261011-soul">
+    <link rel="modulepreload" href="js/app.js?v=20261012-end">
+    <link rel="modulepreload" href="js/api.js?v=20261012-end">
+    <link rel="modulepreload" href="js/audio.js?v=20261012-end">
+    <link rel="modulepreload" href="js/nodes.js?v=20261012-end">
+    <link rel="modulepreload" href="js/i18n.js?v=20261012-end">
+    <link rel="modulepreload" href="js/storage.js?v=20261012-end">
+    <link rel="modulepreload" href="js/sceneMixin.js?v=20261012-end">
+    <link rel="modulepreload" href="js/uiMixin.js?v=20261012-end">
+    <link rel="modulepreload" href="js/smsMixin.js?v=20261012-end">
+    <link rel="modulepreload" href="js/persistenceMixin.js?v=20261012-end">
+    <link rel="modulepreload" href="js/rpg/runtimeInstance.js?v=20261012-end">
+    <link rel="modulepreload" href="js/rpg/runtime.js?v=20261012-end">
+    <link rel="modulepreload" href="js/rpg/sceneEngine.js?v=20261012-end">
+    <link rel="modulepreload" href="js/rpg/assets.js?v=20261012-end">
     <!-- 首屏实物素材先发起下载(标题字/名牌/令牌/字体), 不等 CSS 解析 -->
     <link rel="preload" href="img/ui2/title.webp" as="image">
     <link rel="preload" href="fonts/ui3/msz.woff2" as="font" type="font/woff2" crossorigin>
     <!-- 全站界面: 暗红漆木 + 旧铜金 + 米黄楷书(规范见 css/hhy.css 文件头) -->
-    <link rel="stylesheet" href="css/hhy.css?v=20261011-soul">
+    <link rel="stylesheet" href="css/hhy.css?v=20261012-end">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="img/icon-192.png">
     <link rel="apple-touch-icon" href="img/icon-192.png">
@@ -744,7 +744,7 @@ window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault()
                     <div v-if="bookTab === 'ending'" class="end-grid">
                         <button v-for="e in endingGallery" :key="e.code" type="button" class="end-cell" :class="{ unlocked: e.unlocked, legendary: e.legendary }" @click="openEndingCard(e)">
                             <span class="end-pic"><img :src="e.cg" alt="" loading="lazy" @error="$event.target.style.visibility = 'hidden'"><i class="end-veil"></i><b v-if="!e.unlocked" class="end-q">？</b></span>
-                            <span class="end-cap"><span class="cell-code">{{ e.code }}</span><span class="end-name">{{ e.name }}</span><small v-if="e.ng" class="end-ng">二周目</small></span>
+                            <span class="end-cap"><span class="cell-code">{{ e.code }}</span><span class="end-name">{{ e.name }}</span><small v-if="e.ng" class="end-ng">二周目</small><small v-else-if="e.code === 'H' && e.unlocked" class="end-ng end-true">真结局</small></span>
                             <span class="end-hint" v-if="!e.unlocked">{{ e.hint }}</span>
                         </button>
                     </div>
@@ -832,7 +832,7 @@ window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault()
         </div>
     </div>
 
-    <script type="module" src="js/app.js?v=20261011-soul"></script>
+    <script type="module" src="js/app.js?v=20261012-end"></script>
     <script>
         // 极简 Service Worker: 不缓存任何资源(避免旧界面被缓存), 只为让浏览器允许「添加到桌面」
         if ('serviceWorker' in navigator) {

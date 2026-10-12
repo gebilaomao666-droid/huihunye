@@ -1,6 +1,6 @@
 // 全局唯一的游戏运行时实例 (纯函数封装: 库存/道具/节点效果)。
 // 由 app.js 与各 mixin 共享 import, 避免每处各自 createGameRuntime。
-import { createGameRuntime } from './runtime.js?v=20261011-soul';
-import { NODES, ITEMS } from '../nodes.js?v=20261011-soul';
+import { createGameRuntime } from './runtime.js?v=20261012-end';
+import { NODES, ITEMS } from '../nodes.js?v=20261012-end';
 
 export const gameRuntime = createGameRuntime({ nodes: NODES, items: ITEMS });

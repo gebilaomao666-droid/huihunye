@@ -1,8 +1,8 @@
 // 扩展章节: 服务端按收集进度下发的追加节点, 合并进本地剧情表后即可照常游玩。
 // 前端只负责"条件到了去问一声", 内容本身不随站点发布。
-import { apiGet, API_BASE } from './api.js?v=20261011-soul';
-import { NODES } from './nodes.js?v=20261011-soul';
-import { readRaw, writeRaw } from './storage.js?v=20261011-soul';
+import { apiGet, API_BASE } from './api.js?v=20261012-end';
+import { NODES } from './nodes.js?v=20261012-end';
+import { readRaw, writeRaw } from './storage.js?v=20261012-end';
 
 const EXT_KEY = 'x';
 const PROBE_AT = ['node29', 'node10x_altar'];          // 在这两个节点经过时问服务器

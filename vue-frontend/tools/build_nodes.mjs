@@ -134,7 +134,7 @@ const PRESENT = {
     ng_08: { bgImage: 'img/bg/ch09_beam.webp', sceneImage: 'img/bg/ch09_beam.webp' },
     ng_08b: { bgImage: 'img/bg/ch09_beam.webp' },
     ng_09: { bgImage: 'img/bg/ch02_living_room.jpg', character: 'img/char/grandpa_normal.jpg' },
-    ng_endZ: { endingCG: 'img/ending/ending_c_cycle.jpg' },
+    ng_endZ: { endingCG: 'img/ending/ending_z_paper.webp' },
     ng_endY: { endingCG: 'img/bg/ch05_fog_hall.webp' },
     node11: { sceneImage: 'img/bg/ch03_kitchen.jpg', bgImage: 'img/bg/ch03_kitchen.jpg' },
     node12: { bgImage: 'img/bg/ch03_kitchen.jpg' },
