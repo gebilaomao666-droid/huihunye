@@ -20,7 +20,7 @@ export const extMixin = {
         extLocalReady() {
             if (!BASE_ENDINGS.every((c) => this.endingCollection.includes(c))) return false;
             if (!this.endingCollection.includes('Z')) return false;
-            if (readRaw(SEEN_KEY, '') !== '1') return false;
+            if (readRaw(SEEN_KEY, '') !== '1' && !this.endingCollection.includes('X')) return false;   // 走过一次的(招魂码带过来)直接放行
             return true;
         },
         // 本局条件: 没死过、没烧过黄纸
