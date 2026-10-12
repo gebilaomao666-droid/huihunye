@@ -9,6 +9,7 @@ const PROBE_AT = ['node29', 'node10x_altar'];          // 在这两个节点经�
 const ATTACH_TO = 'node10x_turn';                        // 下发的节点挂在哪个选项点上
 const BASE_ENDINGS = ['A', 'B', 'C', 'D', 'E', 'G', 'H'];
 const SEEN_KEY = 'hhs_ng_face';
+const NOTICE_KEY = 'hhs_ext_notice';
 
 export const extMixin = {
     methods: {
@@ -25,6 +26,19 @@ export const extMixin = {
         // 本局条件: 没死过、没烧过黄纸
         extRunClean() {
             return !(this._runDeaths || 0) && !(this._runHintBurns || 0);
+        },
+        // 第一次走到结局: 问服务器有没有要说的话, 等结局 CG 收起后弹一次, 之后不再弹
+        async maybeExtNotice() {
+            if (readRaw(NOTICE_KEY, '') === '1' || this._extNoticing) return;
+            this._extNoticing = true;
+            const data = await apiGet('/api/ext/notice');
+            if (!data || data.error || !Array.isArray(data.lines) || !data.lines.length) { this._extNoticing = false; return; }
+            for (let i = 0; i < 40 && this.endingCGVisible; i++) await new Promise((r) => setTimeout(r, 250));
+            await new Promise((r) => setTimeout(r, 600));
+            this._extNoticing = false;
+            if (this.screen !== 'game') return;
+            writeRaw(NOTICE_KEY, '1');
+            await this.askConfirm([data.title || '', ...data.lines].join('\n'), { ok: data.ok || '记下了', okGlyph: data.okGlyph || '记', cancel: data.cancel || '知道了' });
         },
         async probeExt(nodeId) {
             if (!PROBE_AT.includes(nodeId) || this._extTried) return;

@@ -1814,6 +1814,7 @@ createApp({
             // 记录结局(+ 成就)
             if (node.endingCode) {
                 this.recordEnding(node.endingCode, node.endingName);
+                this.maybeExtNotice();
             }
 
             // 提交结果(不等)

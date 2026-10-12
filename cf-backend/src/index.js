@@ -306,6 +306,12 @@ async function extChapter(db, key, soul) {
     if (!row) return { error: '没有这一章。' };
     try { return { key, nodes: JSON.parse(row.data) }; } catch (e) { return { error: '章节损坏。' }; }
 }
+// 扩展公告: 首次结局时给玩家的一段话, 内容存在库里
+async function extNotice(db) {
+    const row = await db.prepare('SELECT data FROM ext_chapters WHERE key = ?1').bind('notice').first();
+    if (!row) return { error: '没有公告。' };
+    try { return JSON.parse(row.data); } catch (e) { return { error: '公告损坏。' }; }
+}
 async function extAsset(db, key) {
     const row = await db.prepare('SELECT mime, data FROM ext_assets WHERE key = ?1').bind(str(key, 64)).first();
     if (!row) return json({ error: 'not found' }, 404);
@@ -367,6 +373,7 @@ async function route(req, env) {
     if (m === 'GET' && rest[0] === 'player_achievements' && rest[1]) return json(await playerAchievements(db, decodeURIComponent(rest[1])));
     if (m === 'POST' && rest.join('/') === 'achievement/unlock') return json(await unlockAchievement(db, body));
     if (m === 'GET' && rest.join('/') === 'world') return json(await world(db));
+    if (m === 'GET' && rest[0] === 'ext' && rest[1] === 'notice') return json(await extNotice(db));
     if (m === 'GET' && rest[0] === 'ext' && rest[1] === 'chapter' && rest[2]) return json(await extChapter(db, decodeURIComponent(rest[2]), url.searchParams.get('soul') || ''));
     if (m === 'GET' && rest[0] === 'ext' && rest[1] === 'asset' && rest[2]) return extAsset(db, decodeURIComponent(rest[2]));
     if (m === 'PUT' && rest[0] === 'ext' && rest[1] === 'admin' && rest[2] === 'chapter' && rest[3]) return adminOk(req, env) ? json(await extPutChapter(db, decodeURIComponent(rest[3]), req)) : json({ error: 'forbidden' }, 403);
